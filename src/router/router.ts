@@ -50,7 +50,6 @@ export default class Router {
     routClickHandler() {
         document.body.addEventListener('click', (e) => {
             const link = e.target as HTMLLinkElement;
-            console.log(link);
             if (link.matches('[data-link]')) {
                 e.preventDefault();
                 const hashIndex = link.href.indexOf('#');
