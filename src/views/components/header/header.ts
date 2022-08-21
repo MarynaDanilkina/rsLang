@@ -1,4 +1,5 @@
 import { View } from '../../../interfaces/interfaces';
+import htmlConsts from '../../../models/htmlElements';
 export class Header implements View {
     html = `<header class="header">
         <div class="header__content_wrapper">
@@ -53,7 +54,6 @@ export class Header implements View {
         </div>
     </header>`;
     render() {
-        const BODY = <HTMLBodyElement>document.getElementById('app');
-        BODY.insertAdjacentHTML('beforeend', this.html);
+        htmlConsts.BODY.insertAdjacentHTML('beforeend', this.html);
     }
 }
