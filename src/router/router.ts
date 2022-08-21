@@ -44,6 +44,8 @@ export default class Router {
 
         if (location) {
             this.locationResolver(location);
+        } else {
+            window.location.href += '#/';
         }
     }
 
