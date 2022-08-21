@@ -1,6 +1,8 @@
 import { View } from '../../../interfaces/interfaces';
 import htmlConsts from '../../../models/htmlElements';
-export class Header implements View {
+import './header.sass';
+
+export default class Header implements View {
     html = `<header class="header">
         <div class="header__content_wrapper">
         <div class="header__logo_wrapper">
@@ -53,6 +55,7 @@ export class Header implements View {
         </nav>
         </div>
     </header>`;
+
     render() {
         htmlConsts.BODY.insertAdjacentHTML('beforeend', this.html);
     }
