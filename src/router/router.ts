@@ -3,7 +3,6 @@ export default class Router {
         switch (location) {
             case '#/': {
                 // render main page
-                break;
             }
             case '#/team/': {
                 // render team page
@@ -50,9 +49,11 @@ export default class Router {
     routClickHandler() {
         document.body.addEventListener('click', (e) => {
             const link = e.target as HTMLLinkElement;
+            console.log(link);
             if (link.matches('[data-link]')) {
                 e.preventDefault();
-                this.locationResolver(link.href);
+                const hashIndex = link.href.indexOf('#');
+                this.locationResolver(link.href.slice(hashIndex));
             }
         });
     }
