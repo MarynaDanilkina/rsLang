@@ -43,3 +43,5 @@ export interface SettingsData {
     wordsPerDay: 0;
     optional: { [key: string]: string };
 }
+
+// export interface FilterParams {}
