@@ -3,6 +3,7 @@ export default class Router {
         switch (location) {
             case '#/': {
                 // render main page
+                break;
             }
             case '#/team/': {
                 // render team page
