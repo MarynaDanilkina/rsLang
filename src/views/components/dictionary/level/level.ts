@@ -1,20 +1,24 @@
-import { View } from '../../../../interfaces/interfaces';
+import { LevelView, View } from '../../../../interfaces/interfaces';
 import './level.sass';
 
-export default class Level implements View {
-    html = `<div class="levels__difficulty">
-        <div class="levels__container">
-           <button class="button__level">
+export default class Level implements LevelView {
+    constructor(type: [string, string]) {
+        this.type = type;
+        this.html = `<button class="button__level">
             <div class="name__level">
-              <h3>A1</h3>
-              <p>Elementary 0-600 слов</p>
+              <h3>${this.type[0]}</h3>
+              <p>${this.type[1]}</p>
             </div>
             <img class="button__add" src="../../../../assets/images/plus.png" alt="plus">
           </button>
         </div>`;
+    }
+    type;
+
+    html;
 
     render() {
-        const MAIN = <HTMLElement>document.getElementById('main');
+        const MAIN = <HTMLElement>document.getElementById('levels__container');
         MAIN.insertAdjacentHTML('beforeend', this.html);
     }
 }
