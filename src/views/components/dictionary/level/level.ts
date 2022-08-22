@@ -1,4 +1,4 @@
-import { LevelView, View } from '../../../../interfaces/interfaces';
+import { LevelView } from '../../../../interfaces/interfaces';
 import './level.sass';
 
 export default class Level implements LevelView {

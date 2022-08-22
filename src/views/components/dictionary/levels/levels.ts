@@ -1,7 +1,6 @@
-import { LevelsView, View } from '../../../../interfaces/interfaces';
+import { LevelsView } from '../../../../interfaces/interfaces';
 import Level from '../level/level';
 import './levels.sass';
-import levelsMap from './levelsMap';
 
 export default class Levels implements LevelsView {
     constructor(levels: Array<[string, string]>) {

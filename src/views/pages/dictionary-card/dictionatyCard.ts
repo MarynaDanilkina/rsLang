@@ -12,6 +12,7 @@ export default class DictionaryCard implements LevelView {
     constructor(type: [string, string]) {
         this.type = type;
     }
+
     type;
 
     html = `<main id="main"></main>`;

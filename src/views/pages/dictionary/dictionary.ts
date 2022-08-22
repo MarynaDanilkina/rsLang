@@ -1,4 +1,4 @@
-import { GamesDictionaryView, View } from '../../../interfaces/interfaces';
+import { GamesDictionaryView } from '../../../interfaces/interfaces';
 import htmlConsts from '../../../models/htmlElements';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
