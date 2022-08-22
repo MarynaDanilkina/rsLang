@@ -1,0 +1,242 @@
+.card-wrapper
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 40px
+  flex-direction: column
+  z-index: 0
+
+  .sound
+    width: 47px
+    height: 41px
+    margin-right: 10px
+
+.cards
+  margin-top: 20px
+  position: relative
+  width: 1214px
+  height: 281px
+  display: flex
+  border: none
+  outline: none
+  background-color: #fff
+  border-radius: 6px
+  align-items: center
+  justify-content: space-between
+
+.cards::before
+  content: ''
+  position: absolute
+  top: -2px
+  bottom: -2px
+  left: -2px
+  right: -2px
+  background: linear-gradient(90deg, #f7941d 0%, #27aae1 100%)
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+  opacity: 0.3
+  filter: blur(10px)
+  border-radius: 5%
+  z-index: -1
+
+.cards__img
+  width: 308px
+  height: 217px
+  margin-left: 35px
+
+.card__info
+  margin-left: 20px
+
+.card-info__name
+  width: 504px
+  height: 29px
+  font-weight: 500
+  font-size: 24px
+  line-height: 26px
+  align-items: center
+  color: #000000
+
+.card-info__examples
+  width: 783px
+  height: 72px
+  font-weight: 400
+  font-size: 16px
+  line-height: 24px
+  align-items: center
+  color: #000000
+
+.card-info__buttons
+  display: flex
+
+.card__button
+  margin-top: 20px
+  margin-right: 20px
+  position: relative
+  width: 230px
+  height: 60px
+  display: flex
+  background-color: #fff
+  border-radius: 6px
+  align-items: center
+  justify-content: center
+  font-weight: 500
+  font-size: 24px
+  line-height: 26px
+  color: #000000
+
+.card__button:hover
+  cursor: pointer
+  background-color: #F3E4F9
+
+@media (max-width: 1400px)
+  .cards
+    width: 1078px
+    height: 265px
+
+  .card-info__examples
+    width: 647px
+
+  .card__button
+    margin-top: 0px
+    height: 50px
+
+@media (max-width: 1200px)
+  .cards
+    width: 905px
+
+  .cards__img
+    width: 287px
+    height: 191px
+    margin-left: 20px
+
+  .card-info__name
+    margin-top: 0px
+
+  .card-info__examples
+    width: 515px
+
+  .card__button
+    width: 200px
+    height: 45px
+
+@media (max-width: 992px)
+  .cards
+    width: 710px
+    align-items: flex-start
+
+  .cards__img
+    width: 230px
+    height: 152px
+    margin-top: 20px
+
+  .card__info
+    margin-top: 20px
+    width: 380px
+
+  .card-info__name
+    font-size: 30px
+
+  .card-info__examples
+    margin: 20px 0px
+    width: 410px
+
+  .card__button
+    margin-top: 20px
+    width: 167px
+    height: 39px
+    font-size: 15px
+
+  .sound
+    width: 47px
+    height: 41px
+    margin-right: 10px
+    position: relative
+    top: 190px
+    right: 450px
+
+@media (max-width: 768px)
+
+  .cards
+    width: 515px
+
+  .card-info__name
+    width: 330px
+    font-size: 21px
+    margin-bottom: 0
+
+  .card-info__examples
+    margin: 10px 0px
+    width: 250px
+    font-size: 12px
+
+  .card-info__buttons
+    position: relative
+    top: 35px
+    right: 185px
+
+  .sound
+    top: 194px
+    right: 182px
+
+@media (max-width: 576px)
+  .cards
+    width: 380px
+    height: 330px
+
+  .cards__img
+    width: 275px
+    height: 100px
+    margin-top: 60px
+
+  .card-info__name
+    position: relative
+    right: 161px
+
+  .card-info__examples
+    width: 170px
+
+  .card-info__buttons
+    top: 112px
+    right: 170px
+
+  .card-info__buttons
+    position: relative
+    top: 112px
+    right: 170px
+
+  .sound
+    top: 172px
+    right: 441px
+
+@media (max-width: 420px)
+  .cards
+    width: 300px
+    height: 440px
+    flex-direction: column
+
+  .cards__img
+    width: 259px
+    height: 184px
+    margin-top: 19px
+
+  .card-info__name
+    font-size: 18px
+    right: 0px
+
+  .card-info__examples
+    width: 266px
+
+  .card-info__buttons
+    top: 0px
+    right: 0px
+
+  .card__button
+    margin-top: 20px
+    width: 120px
+    height: 29px
+    font-size: 12px
+
+  .sound
+    top: 0px
+    right: 0px
+    width: 10%
+    margin-left: 10px
