@@ -13,6 +13,7 @@ export default class Dictionary implements GamesDictionaryView {
                         <h2>${this.page}</h2>
                     </main>`;
     }
+
     page: 'Игры' | 'Учебник';
 
     html;
