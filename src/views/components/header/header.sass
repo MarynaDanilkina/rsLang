@@ -1,0 +1,114 @@
+
+.header 
+  height: 80px
+  padding-top: 20px
+  padding-bottom: 20px
+
+.header__content_wrapper,
+.header__logo_wrapper,
+.header__logo 
+  height: 100%
+
+
+.header__content_wrapper,
+.navigation,
+#navItemLogin a 
+  display: flex
+  flex-direction: row
+
+.header__content_wrapper 
+  margin: 0 20vw
+  justify-content: space-between
+
+.navigation 
+  width: 40vw
+  justify-content: space-between
+  align-items: center
+  font-size: 14px
+
+.nav__item,
+.login__title 
+  align-self: center
+
+.login__title 
+  margin-left: 10px
+
+
+/* burger */
+.burger 
+  cursor: pointer
+  top: 50%
+  left: 50%
+  z-index: 4
+  transition: all 0.3s ease-in-out 0s
+  transform: rotate(180deg)
+  width: fit-content
+
+.burger.open 
+  transform: rotate(90deg)
+  cursor: pointer
+
+.bar 
+  width: 30px
+  height: 2px
+  background-color: #00093c
+  margin: 8px 0
+  transition: 0.4s
+
+.bar.middle_bar 
+  width: 20px
+
+
+/* hidden burger menu */
+.hidden_nav 
+  display: none
+  position: absolute
+  top: 0
+  z-index: 3
+  bottom: 0
+  font-weight: 200
+  font-size: 35px
+  line-height: 160%
+  height: 100vh
+  width: 500px
+  right: -500px
+  background: rgba(241, 231, 255, 1)
+  transition: right 0.5s ease-in-out 0s
+
+#dark_field 
+  background: transparent
+  transition: all 0.5s ease-in-out 0s
+
+#dark_field.open 
+  position: absolute
+  background: rgba(0, 0, 0, 0.36)
+  width: 100vw
+  height: 100vh
+  z-index: 2
+  top: 0vh
+  right: 40px
+
+.hidden_nav.open 
+  right: 0
+  display: block
+
+.hidden_nav_items_wrapper 
+  display: flex
+  flex-direction: column
+  text-align: left
+  padding-top: 100px
+
+.hidden_nav_item 
+  width: 100%
+  padding: 20px 0px 20px 100px
+  align-self: center
+
+.hidden_nav_item a 
+  transition: all 0.5s ease-in-out 0.5s
+
+.hidden_nav_item.open 
+  display: block
+
+.hidden_nav_item:hover 
+  background-color: rgba(94, 76, 146, 0.17)
+  transition: all 0.3s ease-in-out

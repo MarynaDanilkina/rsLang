@@ -1,0 +1,252 @@
+.game-wrapper
+  width: 100%
+
+.levels-wrapper
+  width: 100%
+
+.owl__img
+  display: flex
+  flex-direction: column
+
+.diagol
+  background-position: center center
+  background-size: auto
+  background-repeat: no-repeat
+  background-image: url(../../../../assets/images/speech.png)
+  position: relative
+  top: 172px
+  left: 176px
+  width: 300px
+  height: 220px
+
+.diagol h3
+  width: 230px
+  margin-left: 25px
+  margin-top: 20px
+  font-style: normal
+  font-weight: 500
+  font-size: 24px
+  line-height: 29px
+  text-align: center
+  color: #000000
+
+.diagol p
+  width: 260px
+  margin-left: 25px
+  margin-top: 20px
+  font-weight: 500
+  font-size: 20px
+  line-height: 24px
+  color: #000000
+
+.owl
+  width: 170px
+  height: 190px
+  position: relative
+  top: 113px
+  left: 158px
+  margin-right: 800px
+
+.games
+  background-position: center center
+  background-size: auto
+  background-repeat: no-repeat
+  background-image: url(../../../../assets/backgrounds/space_background.png)
+  background-color: #00093C
+  width: 100%
+  height: 600px
+  margin-bottom: 209px
+  display: flex
+  justify-content: center
+  align-items: center
+
+.game
+  display: flex
+  column-gap: 320px
+
+.game__container
+  width: 280px
+  height: 360px
+  background-color: #FFFFFF
+  border-radius: 20px
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.game__container:hover
+  cursor: pointer
+  background-color: #F3E4F9
+
+.game__img-bg
+  width: 140px
+  height: 140px
+  background: linear-gradient(70deg, #F7941D,#27AAE1)
+  border-radius: 70px
+  border: 3px
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 20px
+
+.game__img
+  width: 136px
+  height: 136px
+  border-radius: 70px
+  background-color: #fff
+  display: flex
+  align-items: center
+  justify-content: center
+
+.game__name
+  margin-top: 25px
+  color: #000000
+  font-family: Montserrat
+  font-weight: 700
+  font-size: 18px
+
+.game__about
+  color: #4F4F4F
+  font-family: Montserrat
+  font-weight: 500
+  font-size: 14px
+  text-align: center
+  width: 240px
+
+.audioGame
+  width: 107px
+  height: 76px
+
+.lion
+  width: 107px
+  height: 112px
+
+@media (max-width: 1400px)
+  .game
+    column-gap: 135px
+
+@media (max-width: 992px)
+  .diagol
+    top: 117px
+
+  .owl
+    top: 63px
+
+  .game
+    column-gap: 45px
+
+@media (max-width: 768px)
+  .game-wrapper
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+  .levels-wrapper
+    display: flex
+    justify-content: center
+    margin-top: 50px
+
+  .diagol
+    position: static
+    width: 300px
+    height: 220px
+    margin-bottom: -50px
+
+  .owl
+    width: 170px
+    height: 190px
+    position: static
+    margin-right: 0
+    margin-left: -20px
+
+  .game__container
+    width: 232px
+    height: 326px
+
+  .game__img-bg
+    width: 50%
+    height: 33%
+
+  .game__img
+    width: 93%
+    height: 93%
+
+  .audioGame
+    width: 78%
+    height: 80%
+
+  .games
+    background-size: 250%
+
+  .lion
+    width: 75%
+    height: 77%
+
+@media (max-width: 576px)
+  .levels-wrapper
+    margin-top: 25px
+
+  .diagol
+    background-size: 75%
+    margin-bottom: -75px
+
+  .diagol h3
+    width: 219px
+    margin-left: 40px
+    margin-top: 32px
+    font-size: 20px
+    line-height: 29px
+    margin-bottom: 0
+
+  .diagol p
+    width: 200px
+    margin-left: 50px
+    margin-top: 5px
+    font-size: 16px
+
+  .owl
+    width: 125px
+    height: 142px
+    margin-left: 15px
+
+  .games
+    height: 458px
+    margin-bottom: 82px
+
+  .game
+    column-gap: 20px
+
+  .game__container
+    width: 180px
+    height: 220px
+
+  .game__img-bg
+    width: 42%
+    height: 33%
+    margin-top: 10px
+
+  .game__name
+    margin-top: 10px
+    font-size: 15px
+
+  .game__about
+    margin-top: 0
+    width: 175px
+
+@media (max-width: 420px)
+  .game
+    column-gap: 10px
+
+  .game__container
+    width: 134px
+    height: 189px
+
+  .game__img-bg
+    height: 28%
+
+  .game__about
+    font-size: 12px
+    width: 130px
+
+  .games
+    height: 316px
+    margin-bottom: 20px
