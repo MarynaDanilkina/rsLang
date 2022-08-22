@@ -52,7 +52,8 @@ export default class Router {
             const link = e.target as HTMLLinkElement;
             if (link.matches('[data-link]')) {
                 e.preventDefault();
-                this.locationResolver(link.href);
+                const hashIndex = link.href.indexOf('#');
+                this.locationResolver(link.href.slice(hashIndex));
             }
         });
     }
