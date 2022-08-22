@@ -54,7 +54,7 @@ export default class Levels implements View {
         </div>
           <div class="games">
             <div class="game">
-              <div class="game__container">
+              <a href="#/games/" data-link class="game__container">
                 <div class="game__img-bg">
                   <div class="game__img">
                     <svg class="lion">
@@ -66,8 +66,8 @@ export default class Levels implements View {
                 <p class="game__about">
                   Тренировка Саванна развивает словарный запас. Чем больше слов ты знаешь, тем больше очков опыта получишь
                 </p>
-              </div>
-              <div class="game__container">
+              </a>
+              <a href="#/games/" data-link class="game__container">
                 <div class="game__img-bg">
                   <div class="game__img">
                     <svg class="audioGame">
@@ -79,7 +79,7 @@ export default class Levels implements View {
                 <p class="game__about">
                   Тренировка Аудиовызов улучшает восприятие речи на слух.
                 </p>
-              </div>
+              </a>
             </div>
         </div>
     </div>`;
