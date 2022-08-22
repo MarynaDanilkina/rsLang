@@ -1,36 +1,87 @@
+import htmlElements from '../models/htmlElements';
+import HiddenNavBlur from '../views/components/hiddenNavBlur/hiddenNavBlur';
+import Team from '../views/pages/team/team';
+import Dictionary from '../views/pages/dictionary/dictionary';
+import Main from '../views/pages/main/main';
+import GameDiscriptionPage from '../views/pages/games/gameDiscription/gameDiscription';
+import gameMap from '../views/components/games/gameDiscriptionSection/gameMap';
+import GameStatisticPage from '../views/pages/games/gameStatistic/gameStatistic';
+import Registration from '../views/pages/registration/registration';
+
 export default class Router {
     locationResolver(location: string) {
+        const hiddenNavBlur = new HiddenNavBlur();
         switch (location) {
             case '#/': {
-                // render main page
+                const main = new Main();
+
+                htmlElements.BODY.innerHTML = '';
+                main.render();
+                hiddenNavBlur.render();
+
                 break;
             }
             case '#/team/': {
-                // render team page
+                const team = new Team();
+
+                htmlElements.BODY.innerHTML = '';
+                team.render();
+                hiddenNavBlur.render();
+
                 break;
             }
             case '#/book/': {
-                // render student book (dictionary) page
+                const book = new Dictionary('Учебник');
+
+                htmlElements.BODY.innerHTML = '';
+                book.render();
+                hiddenNavBlur.render();
+
                 break;
             }
             case '#/games/': {
-                // render games page
+                const games = new Dictionary('Игры');
+
+                htmlElements.BODY.innerHTML = '';
+                games.render();
+                hiddenNavBlur.render();
+
                 break;
             }
             case '#/games/sprint/': {
-                // render sprint game page
+                const sprint = new GameDiscriptionPage(gameMap[0]);
+
+                htmlElements.BODY.innerHTML = '';
+                sprint.render();
+                hiddenNavBlur.render();
+
                 break;
             }
             case '#/games/audiocall/': {
-                // render audiocall game page
+                const audiocall = new GameDiscriptionPage(gameMap[1]);
+
+                htmlElements.BODY.innerHTML = '';
+                audiocall.render();
+                hiddenNavBlur.render();
+
                 break;
             }
-            case '#/staistic/': {
-                // render user statistic page
+            case '#/statistic/': {
+                const statistic = new GameStatisticPage();
+
+                htmlElements.BODY.innerHTML = '';
+                statistic.render();
+                hiddenNavBlur.render();
+
                 break;
             }
             case '#/login/': {
-                // render user authorization page
+                const login = new Registration();
+
+                htmlElements.BODY.innerHTML = '';
+                login.render();
+                hiddenNavBlur.render();
+
                 break;
             }
             default: {
@@ -53,7 +104,6 @@ export default class Router {
         document.body.addEventListener('click', (e) => {
             const link = e.target as HTMLLinkElement;
             if (link.matches('[data-link]')) {
-                e.preventDefault();
                 const hashIndex = link.href.indexOf('#');
                 this.locationResolver(link.href.slice(hashIndex));
             }
