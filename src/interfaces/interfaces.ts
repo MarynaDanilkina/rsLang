@@ -51,6 +51,13 @@ export interface View {
     render(): void;
 }
 
+export interface GameStatistic extends View {
+    type: 'right' | 'wrong';
+}
+
+export interface GameDiscription extends View {
+    gameParams: [name: string, imgSrc: string, rules: string];
+
 export interface LevelView extends View {
     type: [string, string];
 }
