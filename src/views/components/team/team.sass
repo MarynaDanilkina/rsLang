@@ -1,0 +1,272 @@
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  font-weight: inherit
+  font-size: inherit
+
+html,
+body
+  height: 100%
+  line-height: 1
+  font-size: 18px
+  color: rgb(6, 6, 6)
+  font-weight: 400
+  margin: 0px
+
+.wrapper
+  flex: 1 1 auto
+  margin: 0 auto
+  background-color: #FDF8FF
+  background-position: center top
+  min-height: 100%
+  overflow: hidden
+  display: flex
+  flex-direction: column
+
+.team-wrapper
+  margin-top: 123px
+  display: flex
+  justify-content: center
+  flex-direction: column
+  align-items: center
+  font-size: 36px
+
+.team__header
+  color: #00093C
+  font-family: Montserrat
+  font-weight: 700
+  display: flex
+  justify-content: center
+  width: 452px
+
+.teams
+  margin-top: 80px
+  background-position: center center
+  background-size: 100%
+  background-repeat: no-repeat
+  background-image: url(../../../assets/backgrounds/space_background.png)
+  background-color: #00093C
+  max-width: 100%
+  width: 1920px
+  height: 600px
+  margin-bottom: 209px
+  display: flex
+  justify-content: center
+  align-items: center
+
+.team
+  display: flex
+  column-gap: 20px
+
+.team__member
+  width: 280px
+  height: 360px
+  background-color: #FFFFFF
+  border-radius: 20px
+  display: flex
+  flex-direction: column
+  align-items: center
+  z-index: 0
+
+.team__img-bg
+  position: relative
+  width: 140px
+  height: 140px
+  border-radius: 70px
+  border: 3px
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 20px
+  background-color: #fff
+
+.team__img-bg:before
+  content: ''
+  position: absolute
+  top: -2px
+  bottom: -2px
+  left: -2px
+  right: -2px
+  background: linear-gradient(90deg, #f7941d 0%, #27aae1 100%)
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+  opacity: 0.3
+  filter: blur(10px)
+  border-radius: 50%
+  z-index: -1
+
+.team__img
+  width: 120px
+  height: 120px
+  border-radius: 70px
+  background-color: #fff
+  background-position: center center
+  background-size: 100%
+  background-repeat: no-repeat
+  background-image: url(../../../assets/images/team.jpg)
+
+.team__name
+  margin-top: 25px
+  color: #000000
+  font-family: Montserrat
+  font-weight: 700
+  font-size: 18px
+
+.team__talent
+  margin-top: 25px
+  color: #4F4F4F
+  font-family: Montserrat
+  font-weight: 500
+  font-size: 14px
+
+@media (max-width: 1400px)
+  .teams
+    margin-top: 20px
+    margin-bottom: 0px
+    height: 450px
+
+  .team__member
+    width: 250px
+    height: 300px
+
+  .team__name
+    margin-top: 12px
+    margin-bottom: 0px
+
+  .team__talent
+    margin-top: 10px
+
+@media (max-width: 1200px)
+  .team__member
+    width: 210px
+    height: 230px
+
+  .team__img
+    width: 90px
+    height: 90px
+
+  .team__img-bg
+    margin-top: 10px
+    width: 100px
+    height: 100px
+
+  .team__header
+    font-size: 26px
+
+  .team__name
+    margin-top: 11px
+    font-size: 14px
+
+  .team__talent
+    font-size: 13px
+
+  .teams
+    height: 400px
+
+@media (max-width: 992px)
+  .team__header
+    margin-bottom: 0px
+
+  .team__member
+    width: 175px
+    height: 200px
+
+  .team__img-bg
+    width: 80px
+    height: 80px
+
+  .team__img
+    width: 70px
+    height: 70px
+
+  .teams
+    height: 340px
+
+@media (max-width: 768px)
+  .teams
+    margin-top: 10px
+    height: 275px
+
+  .team__header
+    font-size: 18px
+
+  .team__img-bg
+    margin-top: 5px
+    width: 60px
+    height: 60px
+
+  .team__img
+    width: 50px
+    height: 50px
+
+  .team__member
+    width: 136px
+    height: 149px
+
+  .team__name
+    margin-top: 5px
+    font-size: 11px
+
+  .team__talent
+    margin-top: 6px
+    font-size: 10px
+
+@media (max-width: 576px)
+  .team__header
+    font-size: 16px
+
+  .team
+    column-gap: 10px
+
+  .teams
+    height: 140px
+
+  .team__member
+    width: 100px
+    height: 120px
+
+  .team__img-bg
+    width: 50px
+    height: 50px
+
+  .team__img
+    width: 40px
+    height: 40px
+
+  .team__name
+    margin-top: 5px
+    font-size: 9px
+  .team__talent
+    margin-top: 3px
+    font-size: 8px
+
+@media (max-width: 420px)
+  .team
+    column-gap: 5px
+
+  .teams
+    height: 135px
+
+  .team__member
+    width: 87px
+    height: 84px
+
+  .team__img-bg
+    width: 35px
+    height: 35px
+
+  .team__img
+    width: 30px
+    height: 30px
+
+  .team__header
+    font-size: 14px
+  .team__name
+    margin-top: 3px
+    font-size: 8px
+  .team__talent
+    margin-top: 2px
+    font-size: 6px
