@@ -57,7 +57,7 @@ export interface GameStatistic extends View {
 
 export interface GameDiscription extends View {
     gameParams: [name: string, imgSrc: string, rules: string];
-
+}
 export interface LevelView extends View {
     type: [string, string];
 }

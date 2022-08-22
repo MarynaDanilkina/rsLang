@@ -23,3 +23,4 @@ export default class Levels implements LevelsView {
             selectedlevel.render();
         });
     }
+}
