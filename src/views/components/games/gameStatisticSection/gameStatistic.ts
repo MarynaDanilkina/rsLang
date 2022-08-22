@@ -1,4 +1,4 @@
-import { GameStatistic, View } from '../../../../interfaces/interfaces';
+import { View } from '../../../../interfaces/interfaces';
 import ResultsList from './resultsList/resultsList';
 
 export default class GameStatisticview implements View {

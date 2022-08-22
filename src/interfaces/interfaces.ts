@@ -5,3 +5,7 @@ export interface View {
 export interface GameStatistic extends View {
     type: 'right' | 'wrong';
 }
+
+export interface GameDiscription extends View {
+    gameParams: [name: string, imgSrc: string, rules: string];
+}

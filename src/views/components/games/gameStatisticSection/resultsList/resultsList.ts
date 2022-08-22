@@ -7,10 +7,10 @@ export default class ResultsList implements GameStatistic {
         let amount: number;
         let title: string;
         if (type === 'right') {
-            amount = 3; //здесь функция получения правильных ответов;
+            amount = 3; // здесь функция получения правильных ответов;
             title = `Известные слова - ${amount}:`;
         } else {
-            amount = 10; //здесь функция получения неправильных ответов;
+            amount = 10; // здесь функция получения неправильных ответов;
             title = `Неизвестные слова - ${amount}:`;
         }
         this.html = `<div class="${this.type}_answers" class="${this.type}Answers">

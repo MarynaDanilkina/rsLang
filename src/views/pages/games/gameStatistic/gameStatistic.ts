@@ -1,4 +1,4 @@
-import { GameStatistic, View } from '../../../../interfaces/interfaces';
+import { View } from '../../../../interfaces/interfaces';
 import htmlElements from '../../../../models/htmlElements';
 import GameField from '../../../components/games/gameField/gameField';
 import GameStatisticview from '../../../components/games/gameStatisticSection/gameStatistic';

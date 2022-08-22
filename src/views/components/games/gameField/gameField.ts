@@ -1,4 +1,5 @@
 import { View } from '../../../../interfaces/interfaces';
+import './gameField.sass';
 
 export default class GameField implements View {
     html = `<section class="game-wrapper">
