@@ -45,3 +45,8 @@ export interface SettingsData {
 }
 
 // export interface FilterParams {}
+
+export interface View {
+    html: string;
+    render(): void;
+}
