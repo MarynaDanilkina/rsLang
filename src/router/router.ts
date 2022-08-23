@@ -7,6 +7,7 @@ import GameDiscriptionPage from '../views/pages/games/gameDiscription/gameDiscri
 import gameMap from '../views/components/games/gameDiscriptionSection/gameMap';
 import GameStatisticPage from '../views/pages/games/gameStatistic/gameStatistic';
 import Registration from '../views/pages/registration/registration';
+import Statistic from '../views/pages/statistic/statistic';
 
 export default class Router {
     locationResolver(location: string) {
@@ -67,7 +68,7 @@ export default class Router {
                 break;
             }
             case '#/statistic/': {
-                const statistic = new GameStatisticPage();
+                const statistic = new Statistic();
 
                 htmlElements.BODY.innerHTML = '';
                 statistic.render();
