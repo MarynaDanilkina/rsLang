@@ -6,7 +6,7 @@ import TitleSection from '../../components/mainContent/titleSection/titleSection
 import Team from '../../components/team/team';
 
 export default class Teams implements View {
-    html = `<main id="main"></main>`;
+    html = `<main id="main" class="team_page"></main>`;
 
     render() {
         const header = new Header();

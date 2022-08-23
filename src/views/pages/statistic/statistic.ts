@@ -6,7 +6,7 @@ import HeadingSection from '../../components/statistic/headingSection/headingSec
 import StatisticAll from '../../components/statistic/statistilAll/statistic';
 
 export default class Statistic implements View {
-    html = `<main id="main"></main>`;
+    html = `<main id="main" class="statistic_page"></main>`;
 
     render() {
         const header = new Header();

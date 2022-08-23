@@ -15,12 +15,13 @@ export default class DictionaryCard implements LevelView {
 
     type;
 
-    html = `<main id="main"></main>`;
+    html = `<main id="main" class="dictionary_card"></main>`;
 
     render() {
+        const MAIN = <HTMLElement>document.getElementById('main');
         const header = new Header();
         const footer = new Footer();
-        const level = new Levels([levelsMap[0]]);
+        const level = new Levels([levelsMap[0]], MAIN);
         const game = new Games();
         const card = new Card();
         const pagination = new Pagination();

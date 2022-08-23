@@ -12,7 +12,7 @@ export default class GameDiscriptionPage implements GameDiscription {
 
     gameParams;
 
-    html = `<main id="main"></main>`;
+    html = `<main id="main" class="game_discription_page"></main>`;
 
     render() {
         const header = new Header();

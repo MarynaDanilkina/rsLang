@@ -3,8 +3,9 @@ import Level from '../level/level';
 import './levels.sass';
 
 export default class Levels implements LevelsView {
-    constructor(levels: Array<[string, string]>) {
+    constructor(levels: Array<[string, string]>, container: HTMLElement) {
         this.levels = levels;
+        this.container = container;
     }
 
     html = `<div class="levels__difficulty">
@@ -15,9 +16,11 @@ export default class Levels implements LevelsView {
 
     levels;
 
+    container;
+
     render() {
-        const MAIN = <HTMLElement>document.getElementById('main');
-        MAIN.insertAdjacentHTML('beforeend', this.html);
+        // const MAIN = <HTMLElement>document.getElementById('main');
+        this.container.insertAdjacentHTML('beforeend', this.html);
         this.levels.forEach((level) => {
             const selectedlevel = new Level(level);
             selectedlevel.render();

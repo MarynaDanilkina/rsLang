@@ -1,4 +1,6 @@
 import { GameDiscription } from '../../../../interfaces/interfaces';
+import Levels from '../../dictionary/levels/levels';
+import levelsMap from '../../dictionary/levels/levelsMap';
 
 export default class GameDiscriptionView implements GameDiscription {
     constructor(gameParams: [name: string, imgSrc: string, rules: string]) {
@@ -9,7 +11,7 @@ export default class GameDiscriptionView implements GameDiscription {
                     <div class="game_rules">
                     ${gameParams[2]}
                     </div>
-                    <div class="btn-play">Играть</div>
+                    <div class="btn-play">Далее</div>
                 </div>`;
     }
 
@@ -19,6 +21,9 @@ export default class GameDiscriptionView implements GameDiscription {
 
     render() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
+        // const levels = new Levels(levelsMap, GAME_CONTAINER);
+
+        // levels.render();
         GAME_CONTAINER.insertAdjacentHTML('beforeend', this.html);
     }
 }

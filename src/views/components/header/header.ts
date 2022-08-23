@@ -6,7 +6,9 @@ export default class Header implements View {
     html = `<header class="header">
         <div class="header__content_wrapper">
         <div class="header__logo_wrapper">
-            <img src="../../../assets/images/header_logo.png" class="header__logo" />
+            <a href="#/">
+                <img src="../../../assets/images/header_logo.png" class="header__logo" />
+            </a>
         </div>
         <nav id="navigation" class="navigation">
             <div id="navItemMain" class="nav__item">

@@ -6,7 +6,7 @@ import Header from '../../../components/header/header';
 import './gameStatistic.sass';
 
 export default class GameStatisticPage implements View {
-    html = `<main id="main"></main>`;
+    html = `<main id="main" class="game_statistic_page"></main>`;
 
     render() {
         const header = new Header();

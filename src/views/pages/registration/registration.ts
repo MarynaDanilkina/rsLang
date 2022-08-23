@@ -5,7 +5,7 @@ import Header from '../../components/header/header';
 import './registration.sass';
 
 export default class Registration implements View {
-    html = `<main>
+    html = `<main id="main" class="registration_page">
                 <section id="registration_section" class="registration_section">
                 <div class="registration_owl">
                     <img class="owl_logo registration_owl_logo" src="../../../assets/images/owl.png" />

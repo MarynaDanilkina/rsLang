@@ -54,7 +54,7 @@ export default class Games implements View {
         </div>
           <div class="games">
             <div class="games_item">
-              <a href="#/games/" data-link class="games_item__container">
+              <a href="#/games/sprint/" data-link class="games_item__container">
                 <div class="games_item__img-bg">
                   <div class="games_item__img">
                     <svg class="lion">
@@ -67,7 +67,7 @@ export default class Games implements View {
                   Тренировка Саванна развивает словарный запас. Чем больше слов ты знаешь, тем больше очков опыта получишь
                 </p>
               </a>
-              <a href="#/games/" data-link class="games_item__container">
+              <a href="#/games/audiocall/" data-link class="games_item__container">
                 <div class="games_item__img-bg">
                   <div class="games_item__img">
                     <svg class="audioGame">

@@ -8,7 +8,7 @@ import TitleSection from '../../components/mainContent/titleSection/titleSection
 import VideoSection from '../../components/mainContent/videoSection/videoSection';
 
 export default class Main implements View {
-    html = `<main id="main"></main>`;
+    html = `<main id="main" class="main_page"></main>`;
 
     render() {
         const header = new Header();

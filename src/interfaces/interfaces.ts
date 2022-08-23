@@ -63,6 +63,7 @@ export interface LevelView extends View {
 }
 
 export interface LevelsView extends View {
+    container: HTMLElement;
     levels: Array<[string, string]>;
 }
 
