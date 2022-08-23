@@ -1,6 +1,4 @@
 import { GameDiscription } from '../../../../interfaces/interfaces';
-import Levels from '../../dictionary/levels/levels';
-import levelsMap from '../../dictionary/levels/levelsMap';
 
 export default class GameDiscriptionView implements GameDiscription {
     constructor(gameParams: [name: string, imgSrc: string, rules: string]) {

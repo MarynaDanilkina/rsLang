@@ -1,11 +1,9 @@
-import { GameDiscription, View } from '../../../../interfaces/interfaces';
+import { View } from '../../../../interfaces/interfaces';
 import htmlElements from '../../../../models/htmlElements';
 import Levels from '../../../components/dictionary/levels/levels';
 import levelsMap from '../../../components/dictionary/levels/levelsMap';
-import GameDiscriptionView from '../../../components/games/gameDiscriptionSection/gameDiscription';
 import GameField from '../../../components/games/gameField/gameField';
 import Header from '../../../components/header/header';
-// import './gameDiscription.sass';
 
 export default class gameDifficulties implements View {
     html = `<main id="main" class="game_difficulties_page"></main>`;
