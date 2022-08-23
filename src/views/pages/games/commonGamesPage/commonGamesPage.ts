@@ -4,7 +4,7 @@ import Footer from '../../../components/footer/footer';
 import Header from '../../../components/header/header';
 import Games from '../../../components/dictionary/games/games';
 
-export default class commonGamesPage implements View {
+export default class СommonGamesPage implements View {
     html = `<main id="main" class="games_page">
                 <h2>Игры</h2>
             </main>`;

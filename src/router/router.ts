@@ -7,7 +7,7 @@ import GameDiscriptionPage from '../views/pages/games/gameDiscription/gameDiscri
 import gameMap from '../views/components/games/gameDiscriptionSection/gameMap';
 import Registration from '../views/pages/registration/registration';
 import Statistic from '../views/pages/statistic/statistic';
-import commonGamesPage from '../views/pages/games/commonGamesPage/commonGamesPage';
+import CommonGamesPage from '../views/pages/games/commonGamesPage/commonGamesPage';
 
 export default class Router {
     locationResolver(location: string) {
@@ -41,7 +41,7 @@ export default class Router {
                 break;
             }
             case '#/games/': {
-                const games = new commonGamesPage();
+                const games = new CommonGamesPage();
 
                 htmlElements.BODY.innerHTML = '';
                 games.render();
