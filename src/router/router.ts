@@ -5,11 +5,9 @@ import Dictionary from '../views/pages/dictionary/dictionary';
 import Main from '../views/pages/main/main';
 import GameDiscriptionPage from '../views/pages/games/gameDiscription/gameDiscription';
 import gameMap from '../views/components/games/gameDiscriptionSection/gameMap';
-import GameStatisticPage from '../views/pages/games/gameStatistic/gameStatistic';
 import Registration from '../views/pages/registration/registration';
 import Statistic from '../views/pages/statistic/statistic';
 import commonGamesPage from '../views/pages/games/commonGamesPage/commonGamesPage';
-import gameDifficulties from '../views/pages/games/gameDifficulties/gameDifficulties';
 
 export default class Router {
     locationResolver(location: string) {
