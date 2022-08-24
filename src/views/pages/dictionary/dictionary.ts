@@ -6,6 +6,7 @@ import Levels from '../../components/dictionary/levels/levels';
 import Games from '../../components/dictionary/games/games';
 import './dictionary.sass';
 import levelsMap from '../../components/dictionary/levels/levelsMap';
+import DictionaryDevelopments from '../../../controllers/dictionary/dictionary';
 
 export default class Dictionary implements View {
     html = `<main id="main" class="dictionary_page">
@@ -26,5 +27,6 @@ export default class Dictionary implements View {
 
         game.render();
         footer.render();
+        DictionaryDevelopments();
     }
 }
