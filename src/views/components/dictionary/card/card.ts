@@ -1,23 +1,8 @@
+import { WordData } from '../../../../interfaces/interfaces';
 import './card.sass';
 
-export interface forX {
-    audio: string;
-    audioExample: string;
-    audioMeaning: string;
-    group: number;
-    id: string;
-    image: string;
-    page: number;
-    textExample: string;
-    textExampleTranslate: string;
-    textMeaning: string;
-    textMeaningTranslate: string;
-    transcription: string;
-    word: string;
-    wordTranslate: string;
-}
 export default class Card {
-    constructor(element: forX, link = 'https://rs-lang-kdz.herokuapp.com') {
+    constructor(element: WordData, link = 'https://rs-lang-kdz.herokuapp.com') {
         this.element = element;
         this.html = `<div class="card-wrapper">
                 <div class="cards">

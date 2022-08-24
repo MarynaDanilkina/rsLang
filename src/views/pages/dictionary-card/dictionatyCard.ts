@@ -7,14 +7,20 @@ import Levels from '../../components/dictionary/levels/levels';
 import Words from '../../../api/words';
 
 export default class DictionaryCard {
+    page: number;
+
+    constructor(page: number) {
+        this.page = page;
+    }
+
     async render() {
         const MAIN = <HTMLElement>document.getElementById('main');
         MAIN.innerHTML = '';
         const level = new Levels([levelsMap[0]], MAIN);
         const game = new Games();
-        const pagination = new Pagination();
+        const pagination = new Pagination(this.page);
         const words = new Words();
-        const x: Array<WordData> = await words.getWords(0, 0);
+        const x: Array<WordData> = await words.getWords(0, this.page);
         console.log(x);
         level.render();
         x.forEach((element) => {
