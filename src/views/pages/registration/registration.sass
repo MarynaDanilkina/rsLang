@@ -43,15 +43,15 @@
   text-align: center
   border-bottom: 1px solid #e0e0e0
   cursor: pointer
-  p 
-    margin: 0
-    padding-bottom: 4%
-  .gradient-line 
+  margin: 0
+  &::after
+    content: ''
     display: block
     width: 100%
     height: 4px
+    margin-top: 4%
   &.active 
-    .gradient-line
+    &::after
       background: linear-gradient(90deg, #f7941d 0%, #27aae1 100%)
 
 .signup_form 
