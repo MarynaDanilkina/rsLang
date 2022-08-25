@@ -1,4 +1,4 @@
-import { LevelView, WordData } from '../../../interfaces/interfaces';
+import { WordData } from '../../../interfaces/interfaces';
 import Games from '../../components/dictionary/games/games';
 import Card from '../../components/dictionary/card/card';
 import Pagination from '../../components/dictionary/pagination/pagination';

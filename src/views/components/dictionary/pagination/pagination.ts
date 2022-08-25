@@ -1,6 +1,5 @@
 import DictionaryDevelopments from '../../../../controllers/dictionary/dictionary';
 import { View } from '../../../../interfaces/interfaces';
-import Dictionary from '../../../pages/dictionary/dictionary';
 import './pagination.sass';
 
 export default class Pagination implements View {
@@ -12,8 +11,8 @@ export default class Pagination implements View {
         this.page = page;
         this.html = `<div class="pogination__container">
           <div class="pogination">
-            <button class="pogination__button" id='full_back'>&lt;&lt;</button>
-            <button class="pogination__button" id='back'>&lt;</button>
+            <button class="pogination__button" id='full_back' disabled='disabled'>&lt;&lt;</button>
+            <button class="pogination__button" id='back' disabled='disabled'>&lt;</button>
             <button class="pogination__button">${page + 1}</button>
             <button class="pogination__button" id='next'>&gt;</button>
             <button class="pogination__button" id='full_next'>&gt;&gt;</button>
@@ -29,5 +28,6 @@ export default class Pagination implements View {
         dictionary.back();
         dictionary.fullNext();
         dictionary.fullBack();
+        dictionary.pagination();
     }
 }
