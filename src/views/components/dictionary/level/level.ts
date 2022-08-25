@@ -5,12 +5,12 @@ export default class Level implements LevelView {
     constructor(type: [string, string]) {
         this.type = type;
         this.html = `
-        <button class="button__level" id="${this.type[0]}">
-            <div class="name__level">
-              <h3>${this.type[0]}</h3>
-              <p>${this.type[1]}</p>
+        <button class="${this.type[0]}" id="${this.type[0]}">
+            <div class="${this.type[0]}">
+              <h3 class="${this.type[0]}">${this.type[0]}</h3>
+              <p class="${this.type[0]}">${this.type[1]}</p>
             </div>
-            <img class="button__add" src="../../../../assets/images/plus.png" alt="plus">
+            <img class="${this.type[0]}" src="../../../../assets/images/plus.png" alt="plus">
           </button>`;
     }
 

@@ -28,6 +28,6 @@ export default class Dictionary implements View {
         game.render();
         footer.render();
         const dictionary = new DictionaryDevelopments();
-        dictionary.container();
+        dictionary.levels();
     }
 }

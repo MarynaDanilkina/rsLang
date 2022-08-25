@@ -2,13 +2,27 @@ import '../../views/components/dictionary/card/card.sass';
 import DictionaryCard from '../../views/pages/dictionary-card/dictionatyCard';
 
 let page = 0;
+
+export const mapper: Record<string, [string, string]> = {
+    A1: ['A1', 'Elementary 0-600 слов'],
+    A2: ['A2', 'Pre-Intermediate 601-1200 слов'],
+    B1: ['B1', 'Intermediate 1201-1800 слов'],
+    B2: ['B2', 'Upper-Intermediate 1801-2400 слов'],
+    C1: ['C1', 'Advanced 2401- 3000 слов'],
+    C2: ['C2', 'Proficiency 3001-3600 слов'],
+};
+
+let levelDictionary: [string, string];
+
 export default class DictionaryDevelopments {
-    container() {
+    levels() {
         const container = <HTMLElement>document.getElementById('levels__container');
 
         container.addEventListener('click', async (e) => {
-            console.log(e);
-            const dictionaryCard = new DictionaryCard(page);
+            const event = <HTMLElement>e.target;
+            const level = event.classList.value;
+            levelDictionary = mapper[level];
+            const dictionaryCard = new DictionaryCard(levelDictionary, page);
             await dictionaryCard.render();
         });
     }
@@ -19,7 +33,7 @@ export default class DictionaryDevelopments {
         next.addEventListener('click', async () => {
             if (page < 29) {
                 page += 1;
-                const dictionaryCard = new DictionaryCard(page);
+                const dictionaryCard = new DictionaryCard(levelDictionary, page);
                 await dictionaryCard.render();
             }
         });
@@ -31,7 +45,7 @@ export default class DictionaryDevelopments {
         back.addEventListener('click', async () => {
             if (page > 0) {
                 page -= 1;
-                const dictionaryCard = new DictionaryCard(page);
+                const dictionaryCard = new DictionaryCard(levelDictionary, page);
                 await dictionaryCard.render();
             }
         });
@@ -43,7 +57,7 @@ export default class DictionaryDevelopments {
         fullNext.addEventListener('click', async () => {
             if (page < 29) {
                 page = 29;
-                const dictionaryCard = new DictionaryCard(page);
+                const dictionaryCard = new DictionaryCard(levelDictionary, page);
                 await dictionaryCard.render();
             }
         });
@@ -55,7 +69,7 @@ export default class DictionaryDevelopments {
         fullBack.addEventListener('click', async () => {
             if (page > 0) {
                 page = 0;
-                const dictionaryCard = new DictionaryCard(page);
+                const dictionaryCard = new DictionaryCard(levelDictionary, page);
                 await dictionaryCard.render();
             }
         });
