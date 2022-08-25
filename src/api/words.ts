@@ -15,6 +15,11 @@ class Words {
         return (await response.json()) as Array<WordData>;
     }
 
+    async getWordsinGroup(groupNumber: number) {
+        const response = await fetch(`${this.words}?group=${groupNumber}`);
+        return (await response.json()) as Array<WordData>;
+    }
+
     async getWord(wordId: string) {
         const response = await fetch(`${this.words}/${wordId}`);
         return (await response.json()) as WordData;
