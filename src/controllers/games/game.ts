@@ -3,8 +3,12 @@ import { WordData } from '../../interfaces/interfaces';
 import Levels from '../../views/components/dictionary/levels/levels';
 import levelsMap from '../../views/components/dictionary/levels/levelsMap';
 import Audiocall from '../../views/pages/games/audiocall/audiocall';
+import getRandomIntInclusive from '../helpers/getRandomNumber';
+import shuffle from '../helpers/shuffle';
 
 export default class Game {
+    baseURL = 'https://rs-lang-kdz.herokuapp.com';
+
     gameLevel: number | undefined;
 
     words: WordData[] | undefined;
@@ -35,8 +39,11 @@ export default class Game {
     async startGame() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
         const wordsAPI = new Words();
+        const pageNumber = getRandomIntInclusive(0, 29);
 
-        this.words = await wordsAPI.getWordsinGroup(<number>this.gameLevel);
+        this.words = await wordsAPI.getWords(<number>this.gameLevel, pageNumber);
+        this.words = <WordData[]>shuffle(this.words);
+        console.log(this.words.length);
         GAME_CONTAINER.innerHTML = '';
 
         if (this.gameType === 'Audiocall') {

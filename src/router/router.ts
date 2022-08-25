@@ -8,7 +8,7 @@ import gameMap from '../views/components/games/gameDiscriptionSection/gameMap';
 import Registration from '../views/pages/registration/registration';
 import Statistic from '../views/pages/statistic/statistic';
 import CommonGamesPage from '../views/pages/games/commonGamesPage/commonGamesPage';
-import { Game } from '../controllers/games/game';
+import Audiocall from '../controllers/games/audiocall';
 
 export default class Router {
     locationResolver(location: string) {
@@ -61,7 +61,7 @@ export default class Router {
             }
             case '#/games/audiocall/': {
                 const audiocall = new GameDiscriptionPage(gameMap[1]);
-                const game = new Game();
+                const game = new Audiocall();
 
                 htmlElements.BODY.innerHTML = '';
                 audiocall.render();
