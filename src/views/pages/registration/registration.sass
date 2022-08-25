@@ -54,51 +54,58 @@
     &::after
       background: linear-gradient(90deg, #f7941d 0%, #27aae1 100%)
 
-.signup_form 
+.form
   display: none
   input
+    outline: none
+    border: none
     &[type='text'],
     &[type='password'],
     &[type='email'] 
-      padding: 3%
-      margin-bottom: 5%
-    &[type='submit'] 
-      margin-bottom: 3%
-
-form
-  display: none
+      display: block
+      padding: 4%
+      background: #dddfe6
+      border-radius: 6px
+      margin-bottom: 8%
+      &.warning
+        background-color: #ffcece
+      &.valide
+        background-color: #d4ecd4
+  &__button
+    width: 50%
+    padding: 3%
+    background: #f7941d
+    border: none
+    border-radius: 6px
+    color: white
+    margin-top: 5%
+    align-self: center
+    cursor: pointer
+    &:disabled
+      opacity: 0.5
+      cursor: default
+  &_signup 
+    input
+      &[type='text'],
+      &[type='password'],
+      &[type='email'] 
+        padding: 3%
+        margin-bottom: 5%
+      &[type='submit'] 
+        margin-bottom: 3%
   &.active 
     display: flex
     flex-direction: column
     width: 30%
     margin: 0 auto
 
-input
-  outline: none
-  border: none
-  &[type='text'],
-  &[type='password'],
-  &[type='email'] 
-    display: block
-    padding: 4%
-    background: #dddfe6
-    border-radius: 6px
-    margin-bottom: 8%
-  &[type='submit'] 
-    width: 50%
-    padding: 3%
-    background: #f7941d
-    border-radius: 6px
-    color: white
-    margin-top: 5%
-    align-self: center
-    cursor: pointer
+
 
 @media (max-width: 992px) 
   .reg-form_header 
     width: 40%
   
-  form
+  .form
     .active
       width: 35%
   
@@ -108,7 +115,7 @@ input
     width: 45%
     font-size: 80%
   
-  form
+  .form
     .active
       width: 40%
       font-size: 30%
@@ -121,7 +128,7 @@ input
   .reg-form_header 
     width: 50%
   
-  form
+  .form
     .active
       width: 45%
   
