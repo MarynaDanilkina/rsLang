@@ -10,9 +10,13 @@ class UserSettings {
         this.users = `${this.baseURL}/users`;
     }
 
-    async getSettings(userId: string) {
+    async getSettings(userId: string, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}/settings`);
+            const response = await fetch(`${this.users}/${userId}/settings`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             switch (response.status) {
                 case 401:
                     console.log('Access token is missing or invalid');
@@ -29,13 +33,14 @@ class UserSettings {
         }
     }
 
-    async upsertSettings(userId: string, settings: SettingsData) {
+    async upsertSettings(userId: string, settings: SettingsData, token: string) {
         try {
             const response = await fetch(`${this.users}/${userId}/settings}`, {
                 method: 'PUT',
                 body: JSON.stringify(settings),
                 headers: {
                     'Content-type': 'application/json',
+                    Authorization: `Bearer ${token}`,
                 },
             });
             switch (response.status) {

@@ -35,9 +35,13 @@ class UserArgWords {
     //     }
     // }
 
-    async getUserAgrWord(userId: string, wordId: string) {
+    async getUserAgrWord(userId: string, wordId: string, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}/aggregatedWords/${wordId}`);
+            const response = await fetch(`${this.users}/${userId}/aggregatedWords/${wordId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             switch (response.status) {
                 case 401:
                     console.log('Access token is missing or invalid');

@@ -10,9 +10,13 @@ class UserStat {
         this.users = `${this.baseURL}/users`;
     }
 
-    async getStatistics(userId: string) {
+    async getStatistics(userId: string, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}/statistics`);
+            const response = await fetch(`${this.users}/${userId}/statistics`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             switch (response.status) {
                 case 401:
                     console.log('Access token is missing or invalid');
@@ -29,13 +33,14 @@ class UserStat {
         }
     }
 
-    async upsertStatistics(userId: string, statistics: StatisticsData) {
+    async upsertStatistics(userId: string, statistics: StatisticsData, token: string) {
         try {
             const response = await fetch(`${this.users}/${userId}/statistics}`, {
                 method: 'PUT',
                 body: JSON.stringify(statistics),
                 headers: {
                     'Content-type': 'application/json',
+                    Authorization: `Bearer ${token}`,
                 },
             });
             switch (response.status) {
