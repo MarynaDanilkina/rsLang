@@ -1,6 +1,6 @@
 import { WordData /* FilterParams */ } from '../interfaces/interfaces';
 
-class User {
+class UserArgWords {
     private baseURL: string;
 
     private users: string;
@@ -55,4 +55,4 @@ class User {
     }
 }
 
-export default User;
+export default UserArgWords;
