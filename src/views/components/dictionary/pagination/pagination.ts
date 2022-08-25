@@ -13,7 +13,7 @@ export default class Pagination implements View {
           <div class="pogination">
             <button class="pogination__button" id='full_back' disabled='disabled'>&lt;&lt;</button>
             <button class="pogination__button" id='back' disabled='disabled'>&lt;</button>
-            <button class="pogination__button">${page + 1}</button>
+            <button class="pogination__button" id='button_page'>${page + 1}</button>
             <button class="pogination__button" id='next'>&gt;</button>
             <button class="pogination__button" id='full_next'>&gt;&gt;</button>
           </div>

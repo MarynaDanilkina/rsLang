@@ -21,9 +21,14 @@ export default class Card {
                     </div>
                   </div>
                   <div class="card__count">
-                    <svg class="sound">
+                    <svg class="sound" id="${element.id}">
                       <use xlink:href="#audioGame"></use>
                     </svg>
+                    <div>
+                      <audio src="" class="${element.word}"></audio>
+                      <audio src="" class="${element.word}"></audio>
+                      <audio src="" class="${element.word}"></audio>
+                    </div>
                   </div>
                 </div>
 	        </div>`;
