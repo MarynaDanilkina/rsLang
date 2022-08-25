@@ -9,11 +9,13 @@ export default class Audiocall extends Game {
         this.gameType = 'Audiocall';
     }
 
-    wrongAnswers: Array<string> = [];
+    wrongAnswers: Array<number> = [];
 
-    rightAnswers: Array<string> = [];
+    rightAnswers: Array<number> = [];
 
     currentQuestion = 0;
+
+    currentOptions: Array<number> = [];
 
     componentsToggler() {
         const SKIP_BTN = <HTMLDivElement>document.querySelector('.btn-skip');
@@ -27,16 +29,37 @@ export default class Audiocall extends Game {
         ANSWER_CARD.classList.toggle('hidden');
     }
 
+    optionsBtnsReset() {
+        const answerBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.answer');
+        answerBtns.forEach((btn) => {
+            const currentBtn = btn;
+            currentBtn.disabled = false;
+            currentBtn.classList.remove('wrong');
+            currentBtn.classList.remove('right');
+        });
+    }
+
     skip() {
+        const answerBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.answer');
+        const progressRange = <HTMLDivElement>document.querySelector('.game__progress-range');
+
         this.componentsToggler();
+        answerBtns.forEach((btn) => {
+            const currentBtn = btn;
+            currentBtn.disabled = true;
+        });
+        const index = this.currentOptions.indexOf(this.currentQuestion);
+        answerBtns[index].classList.add('right');
+        this.wrongAnswers.push(this.currentQuestion);
+        progressRange.children[this.currentQuestion].classList.add('wrong');
     }
 
     next() {
         if (this.currentQuestion !== 19) {
             this.currentQuestion += 1;
             this.changeContent();
+            this.componentsToggler();
         }
-        this.componentsToggler();
     }
 
     getAnswerOptions() {
@@ -50,11 +73,14 @@ export default class Audiocall extends Game {
         }
 
         options = <Array<number>>shuffle(options);
-        const answerBtns = document.querySelectorAll('.answer');
+        this.currentOptions = options;
+        const answerBtns: NodeListOf<HTMLDivElement> = document.querySelectorAll('.answer');
 
         answerBtns.forEach((option, i) => {
             const currentOption = option;
             currentOption.textContent = (<WordData[]>this.words)[options[i]].wordTranslate;
+            currentOption.onclick = (e) =>
+                this.answerHandler(e, (<WordData[]>this.words)[this.currentQuestion], options);
         });
     }
 
@@ -79,9 +105,7 @@ export default class Audiocall extends Game {
         };
 
         const NEXT_BTN = <HTMLDivElement>document.querySelector('.btn-next');
-        NEXT_BTN.addEventListener('click', () =>
-            this.stopAudiofiles.apply(this, [wordAudio, meaningAudio, exampleAudio])
-        );
+        NEXT_BTN.onclick = () => this.stopAudiofiles.apply(this, [wordAudio, meaningAudio, exampleAudio]);
     }
 
     stopAudiofiles(...Audiofiles: Array<HTMLAudioElement>) {
@@ -89,6 +113,8 @@ export default class Audiocall extends Game {
     }
 
     changeContent() {
+        this.optionsBtnsReset();
+
         const answer = (<WordData[]>this.words)[this.currentQuestion];
 
         const cardImg = <HTMLImageElement>document.querySelector('.card_img');
@@ -107,6 +133,30 @@ export default class Audiocall extends Game {
         this.getAnswerOptions();
 
         setTimeout(() => this.getAudiofiles(), 1000);
+    }
+
+    answerHandler(e: Event, currectAnswer: WordData, options: number[]) {
+        const progressRange = <HTMLDivElement>document.querySelector('.game__progress-range');
+        const answerBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.answer');
+        const selectedAnswer = <HTMLButtonElement>e.target;
+        answerBtns.forEach((btn) => {
+            const currentBtn = btn;
+            currentBtn.disabled = true;
+        });
+
+        if (selectedAnswer.textContent === currectAnswer.wordTranslate) {
+            selectedAnswer.classList.add('right');
+            this.rightAnswers.push(this.currentQuestion);
+            progressRange.children[this.currentQuestion].classList.add('right');
+        } else {
+            selectedAnswer.classList.add('wrong');
+            const index = options.indexOf(this.currentQuestion);
+            answerBtns[index].classList.add('right');
+            this.wrongAnswers.push(this.currentQuestion);
+            progressRange.children[this.currentQuestion].classList.add('wrong');
+        }
+
+        this.componentsToggler();
     }
 
     async startGame() {

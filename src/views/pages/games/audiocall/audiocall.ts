@@ -47,11 +47,11 @@ export default class Audiocall implements View {
                 </div>
             </div>
             <div class="answers_wrapper">
-                <div class="answer answer_1">Ответ</div>
-                <div class="answer answer_2">Ответ</div>
-                <div class="answer answer_3">Ответ</div>
-                <div class="answer answer_4">Ответ</div>
-                <div class="answer answer_5">Ответ</div>
+                <button class="answer answer_1">Ответ</button>
+                <button class="answer answer_2">Ответ</button>
+                <button class="answer answer_3">Ответ</button>
+                <button class="answer answer_4">Ответ</button>
+                <button class="answer answer_5">Ответ</button>
             </div>
             <div class="btn-skip">Не знаю ➜</div>
             <div class="btn-next hidden">Далее ➜</div>`;

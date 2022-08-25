@@ -43,7 +43,6 @@ export default class Game {
 
         this.words = await wordsAPI.getWords(<number>this.gameLevel, pageNumber);
         this.words = <WordData[]>shuffle(this.words);
-        console.log(this.words.length);
         GAME_CONTAINER.innerHTML = '';
 
         if (this.gameType === 'Audiocall') {
