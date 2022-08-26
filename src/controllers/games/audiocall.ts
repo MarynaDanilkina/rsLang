@@ -7,12 +7,8 @@ import Game from './game';
 export default class Audiocall extends Game {
     constructor() {
         super();
-        this.gameType = 'Audiocall';
+        this.gameType = 'audiocall';
     }
-
-    wrongAnswers: Array<number> = [];
-
-    rightAnswers: Array<number> = [];
 
     currentQuestion = 0;
 
@@ -63,6 +59,7 @@ export default class Audiocall extends Game {
         } else {
             const results = new GameStatisticview(<WordData[]>this.words, this.rightAnswers, this.wrongAnswers);
             results.render();
+            this.statisticGamePageListners();
         }
     }
 

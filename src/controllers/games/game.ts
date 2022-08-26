@@ -1,5 +1,6 @@
 import Words from '../../api/words';
 import { WordData } from '../../interfaces/interfaces';
+import State from '../../models/state';
 import Levels from '../../views/components/dictionary/levels/levels';
 import levelsMap from '../../views/components/dictionary/levels/levelsMap';
 import Audiocall from '../../views/pages/games/audiocall/audiocall';
@@ -13,7 +14,13 @@ export default class Game {
 
     words: WordData[] | undefined;
 
-    gameType: 'Audiocall' | 'Sprint' | undefined;
+    gameType: 'audiocall' | 'sprint' | undefined;
+
+    wrongAnswers: Array<number> = [];
+
+    rightAnswers: Array<number> = [];
+
+    winsSession = 0;
 
     renderLevels() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
@@ -45,14 +52,24 @@ export default class Game {
         this.words = <WordData[]>shuffle(this.words);
         GAME_CONTAINER.innerHTML = '';
 
-        if (this.gameType === 'Audiocall') {
+        if (this.gameType === 'audiocall') {
             const game = new Audiocall();
             game.render();
+            this.winsSession = State.games.audiocall.winsSession;
         }
-        if (this.gameType === 'Sprint') {
+        if (this.gameType === 'sprint') {
             // const game = new Sprint();
             // game.render()
+            this.winsSession = State.games.sprint.winsSession;
         }
+    }
+
+    updateStateWithResults() {
+        State.games[<'audiocall' | 'sprint'>this.gameType].learnedwords += 20;
+        State.games[<'audiocall' | 'sprint'>this.gameType].rightAnswers += this.rightAnswers.length;
+        State.games[<'audiocall' | 'sprint'>this.gameType].wrongAnswers += this.wrongAnswers.length;
+        State.games[<'audiocall' | 'sprint'>this.gameType].winsSession += this.winsSession;
+        console.log(State);
     }
 
     discriptionGamePageListners() {
@@ -70,5 +87,11 @@ export default class Game {
         PLAY_BTN.addEventListener('click', this.startGame.bind(this));
     }
 
-    statisticGamePageListners() {}
+    statisticGamePageListners() {
+        const EXIT_BTN = <HTMLDivElement>document.querySelector('.btn-exit');
+        const RESTART_BTN = <HTMLDivElement>document.querySelector('.btn-restart');
+        [EXIT_BTN, RESTART_BTN].forEach((btn) => {
+            btn.addEventListener('click', this.updateStateWithResults.bind(this));
+        });
+    }
 }

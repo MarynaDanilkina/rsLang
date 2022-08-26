@@ -27,8 +27,12 @@ export default class GameStatisticview implements GameStatistic {
             </div>
             <div class="game_results" id="gameResults"></div>
             <div class="btns_field">
-                <div class="btn-exit">Играть</div>
-                <div class="btn-restart">Главная</div>
+                <div class="btn-exit">
+                    <a href="#/games/">Играть</a>
+                </div>
+                <div class="btn-restart">
+                    <a href="#/games/">Главная</a>
+                </div>
             </div>`;
 
     render() {
