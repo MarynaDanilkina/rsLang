@@ -1,6 +1,7 @@
 import { LevelsView } from '../../../../interfaces/interfaces';
 import Level from '../level/level';
 import './levels.sass';
+import './gameLevels.sass';
 
 export default class Levels implements LevelsView {
     constructor(levels: Array<[string, string]>, container: HTMLElement) {
