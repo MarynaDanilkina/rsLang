@@ -1,39 +1,47 @@
-import { LevelView } from '../../../interfaces/interfaces';
-import htmlConsts from '../../../models/htmlElements';
-import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
+import { WordData } from '../../../interfaces/interfaces';
 import Games from '../../components/dictionary/games/games';
 import Card from '../../components/dictionary/card/card';
 import Pagination from '../../components/dictionary/pagination/pagination';
-import levelsMap from '../../components/dictionary/levels/levelsMap';
-import Levels from '../../components/dictionary/levels/levels';
+import Words from '../../../api/words';
+import LevelDictionary from '../../components/dictionary/level/levelDictionary';
+import DictionaryDevelopments from '../../../controllers/dictionary/dictionary';
 
-export default class DictionaryCard implements LevelView {
-    constructor(type: [string, string]) {
-        this.type = type;
+export const mapper: Record<string, number> = {
+    A1: 0,
+    A2: 1,
+    B1: 2,
+    B2: 3,
+    C1: 4,
+    C2: 5,
+};
+
+export default class DictionaryCard {
+    levels: [string, string];
+
+    page: number;
+
+    constructor(levels: [string, string], page: number) {
+        this.levels = levels;
+        this.page = page;
     }
 
-    type;
-
-    html = `<main id="main" class="dictionary_card"></main>`;
-
-    render() {
+    async render() {
         const MAIN = <HTMLElement>document.getElementById('main');
-        const header = new Header();
-        const footer = new Footer();
-        const level = new Levels([levelsMap[0]], MAIN);
+        MAIN.innerHTML = '';
+        const level = new LevelDictionary(this.levels);
         const game = new Games();
-        const card = new Card();
-        const pagination = new Pagination();
-
-        header.render();
-        htmlConsts.BODY.insertAdjacentHTML('beforeend', this.html);
+        const pagination = new Pagination(this.page);
+        const words = new Words();
+        const cards: Array<WordData> = await words.getWords(mapper[this.levels[0]], this.page);
+        const dictionary = new DictionaryDevelopments();
+        dictionary.setCards(cards);
         level.render();
-        card.render();
-        card.render();
-        card.render();
+        cards.forEach((element) => {
+            const card = new Card(element, 'https://rs-lang-kdz.herokuapp.com');
+            card.render();
+        });
         pagination.render();
         game.render();
-        footer.render();
+        dictionary.audio();
     }
 }
