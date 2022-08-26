@@ -19,11 +19,19 @@ class User {
                     'Content-type': 'application/json',
                 },
             });
-            if (response.status === 422) {
-                console.log('Incorrect e-mail or password');
+            switch (response.status) {
+                case 417:
+                    console.log('User with this e-mail exists');
+                    return response.status;
+                case 422:
+                    console.log('Incorrect e-mail or password');
+                    return response.status;
+                default:
+                    return response.status;
             }
         } catch (err) {
             console.log(err);
+            return 500;
         }
     }
 
