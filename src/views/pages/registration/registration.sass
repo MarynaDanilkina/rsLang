@@ -1,127 +1,130 @@
 /* registration section */
 
-.registration_section 
-  height: calc(100vh - 230px)
+.registration
+  &_section
+    height: calc(100vh - 230px)
+  &_owl,
+  &_owl_logo,
+  &_speech_logo,
+  &_text 
+    position: absolute
+  &_owl 
+    top: 30vh
+    left: 15vw
+    &_logo 
+      z-index: 1
+      width: 6vw
+      top: 18vh
+  &_speech_logo 
+    width: 13.5vw
+  &_text 
+    width: 13vw
+    font-size: 1vw
+    top: 1vh
+    left: 0.7vw
 
-.registration_owl,
-.registration_owl_logo,
-.registration_speech_logo,
-.registration_text 
-  position: absolute
-
-.registration_owl 
-  top: 30vh
-  left: 15vw
-
-.registration_owl_logo 
-  z-index: 1
-  width: 6vw
-  top: 18vh
-
-.registration_speech_logo 
-  width: 13.5vw
-
-.registration_text 
-  width: 13vw
-  font-size: 1vw
-  top: 1vh
-  left: 0.7vw
-
-.reg-form_wrapper 
-  justify-content: center
-  height: 100%
-  display: flex
-  flex-direction: column
-
-.reg-form_header 
-  display: flex
-  flex-direction: row
-  align-items: center
-  justify-content: space-between
-  width: 35%
-  margin: 0 auto
-  margin-bottom: 2%
+.reg-form
+  &_wrapper 
+    justify-content: center
+    align-items: center
+    height: 100%
+    display: flex
+    flex-direction: column
+  &_header 
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
+    width: 35%
+    margin: 0 auto
+    margin-bottom: 2%
 
 .page_title 
   width: 50%
   text-align: center
   border-bottom: 1px solid #e0e0e0
-
-.signup_form 
-  display: none
-
-form.active 
-  display: flex
-  flex-direction: column
-  width: 30%
-  margin: 0 auto
-
-input[type='text'],
-input[type='password'],
-input[type='email'] 
-  display: block
-  padding: 4%
-  background: #dddfe6
-  border-radius: 6px
-  outline: none
-  border: none
-  margin-bottom: 8%
-
-input[type='submit'] 
-  width: 50%
-  padding: 3%
-  outline: none
-  border: none
-  background: #f7941d
-  border-radius: 6px
-  color: white
-  margin-top: 5%
-  align-self: center
-
-.signup_form input[type='text'],
-.signup_form input[type='password'],
-.signup_form input[type='email'] 
-  padding: 3%
-  margin-bottom: 5%
-
-.signup_form input[type='submit'] 
-  margin-bottom: 3%
-
-form 
-  display: none
-
-
-.page_title p 
+  cursor: pointer
   margin: 0
-  padding-bottom: 4%
+  &::after
+    content: ''
+    display: block
+    width: 100%
+    height: 4px
+    margin-top: 4%
+  &.active 
+    &::after
+      background: linear-gradient(90deg, #f7941d 0%, #27aae1 100%)
 
-.page_title .gradient-line 
-  display: block
-  width: 100%
-  height: 4px
+.form
+  display: none
+  input
+    outline: none
+    border: none
+    &[type='text'],
+    &[type='password'],
+    &[type='email'] 
+      display: block
+      padding: 4%
+      background: #dddfe6
+      border-radius: 6px
+      margin-bottom: 8%
+      &.warning
+        background-color: #ffcece
+      &.valide
+        background-color: #d4ecd4
+  &__button
+    width: 50%
+    padding: 3%
+    background: #f7941d
+    border: none
+    border-radius: 6px
+    color: white
+    margin-top: 5%
+    align-self: center
+    cursor: pointer
+    &:disabled
+      opacity: 0.5
+      cursor: default
+  &_signup 
+    input
+      &[type='text'],
+      &[type='password'],
+      &[type='email'] 
+        padding: 3%
+        margin-bottom: 5%
+      &[type='submit'] 
+        margin-bottom: 3%
+  &.active 
+    display: flex
+    flex-direction: column
+    width: 30%
+    margin: 0 auto
 
-.page_title.active .gradient-line 
-  background: linear-gradient(90deg, #f7941d 0%, #27aae1 100%)
-
+.error-message
+  display: none
+  margin: 2vh
+  color: #ff0000
+  &.active
+    display: block
 
 @media (max-width: 992px) 
   .reg-form_header 
     width: 40%
   
-  .signup_form.active,
-  .login_form.active 
-    width: 35%
+  .form
+    .active
+      width: 35%
   
 
-@media (max-width: 992px) 
+@media (max-width: 768px) 
   .reg-form_header 
     width: 45%
     font-size: 80%
   
-  .signup_form.active,
-  .login_form.active 
-    width: 40%
-    font-size: 30%
+  .form
+    .active
+      width: 40%
+      font-size: 30%
   
   input 
     font-size: 10px
@@ -131,9 +134,9 @@ form
   .reg-form_header 
     width: 50%
   
-  .signup_form.active,
-  .login_form.active 
-    width: 45%
+  .form
+    .active
+      width: 45%
   
   input 
     font-size: 8px

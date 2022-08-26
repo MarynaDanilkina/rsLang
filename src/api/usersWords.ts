@@ -10,9 +10,13 @@ class UserWords {
         this.users = `${this.baseURL}/users`;
     }
 
-    async getAllUserWords(userId: string) {
+    async getAllUserWords(userId: string, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}/words`);
+            const response = await fetch(`${this.users}/${userId}/words`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             switch (response.status) {
                 case 402:
                     console.log('Access token is missing or invalid');
@@ -26,9 +30,13 @@ class UserWords {
         }
     }
 
-    async getUserWord(userId: string, wordId: string) {
+    async getUserWord(userId: string, wordId: string, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}/words/${wordId}`);
+            const response = await fetch(`${this.users}/${userId}/words/${wordId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             switch (response.status) {
                 case 401:
                     console.log('Access token is missing or invalid');
@@ -45,13 +53,14 @@ class UserWords {
         }
     }
 
-    async createUserWord(userId: string, wordId: string, userWord: UserWordData) {
+    async createUserWord(userId: string, wordId: string, userWord: UserWordData, token: string) {
         try {
             const response = await fetch(`${this.users}/${userId}/words/${wordId}`, {
                 method: 'POST',
                 body: JSON.stringify(userWord),
                 headers: {
                     'Content-type': 'application/json',
+                    Authorization: `Bearer ${token}`,
                 },
             });
             switch (response.status) {
@@ -69,13 +78,14 @@ class UserWords {
         }
     }
 
-    async updateUserWord(userId: string, wordId: string, userWord: UserWordData) {
+    async updateUserWord(userId: string, wordId: string, userWord: UserWordData, token: string) {
         try {
             const response = await fetch(`${this.users}/${userId}/words/${wordId}`, {
                 method: 'PUT',
                 body: JSON.stringify(userWord),
                 headers: {
                     'Content-type': 'application/json',
+                    Authorization: `Bearer ${token}`,
                 },
             });
             switch (response.status) {
@@ -93,9 +103,12 @@ class UserWords {
         }
     }
 
-    async deleteUser(userId: string, wordId: string) {
+    async deleteUser(userId: string, wordId: string, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}/words/${wordId}`, { method: 'DELETE' });
+            const response = await fetch(`${this.users}/${userId}/words/${wordId}`, {
+                method: 'DELETE',
+                headers: { Authorization: `Bearer ${token}` },
+            });
             if (response.status === 401) {
                 console.log('Access token is missing or invalid');
             }

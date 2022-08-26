@@ -19,17 +19,29 @@ class User {
                     'Content-type': 'application/json',
                 },
             });
-            if (response.status === 422) {
-                console.log('Incorrect e-mail or password');
+            switch (response.status) {
+                case 417:
+                    console.log('User with this e-mail exists');
+                    return response.status;
+                case 422:
+                    console.log('Incorrect e-mail or password');
+                    return response.status;
+                default:
+                    return response.status;
             }
         } catch (err) {
             console.log(err);
+            return 500;
         }
     }
 
-    async getUser(userId: string) {
+    async getUser(userId: string, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}`);
+            const response = await fetch(`${this.users}/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             switch (response.status) {
                 case 404:
                     console.log('User not found');
@@ -46,13 +58,14 @@ class User {
         }
     }
 
-    async updateUser(userId: string, userNewData: Omit<UserData, 'name'>) {
+    async updateUser(userId: string, userNewData: Omit<UserData, 'name'>, token: string) {
         try {
             const response = await fetch(`${this.users}/${userId}`, {
                 method: 'PUT',
                 body: JSON.stringify(userNewData),
                 headers: {
                     'Content-type': 'application/json',
+                    Authorization: `Bearer ${token}`,
                 },
             });
             switch (response.status) {
@@ -70,9 +83,14 @@ class User {
         }
     }
 
-    async deleteUser(userId: string) {
+    async deleteUser(userId: string, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}`, { method: 'DELETE' });
+            const response = await fetch(`${this.users}/${userId}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             if (response.status === 401) {
                 console.log('Access token is missing or invalid');
             }
@@ -81,9 +99,13 @@ class User {
         }
     }
 
-    async getNewUserTokens(userId: string) {
+    async getNewUserTokens(userId: string, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}/tokens`);
+            const response = await fetch(`${this.users}/${userId}/tokens`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             switch (response.status) {
                 case 403:
                     console.log('Access token is missing or invalid');
