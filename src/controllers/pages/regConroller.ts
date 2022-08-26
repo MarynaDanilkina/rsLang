@@ -97,11 +97,20 @@ export default class RegController {
             password: loginPassword.value,
         });
 
-        if (auth) {
+        if (auth.message === 'Authenticated') {
             this.saveCurrentUser(auth);
+        } else {
+            errorMessage.classList.add('active');
+            errorMessage.innerHTML = auth.message;
+            loginEmail.classList.remove('valide');
+            loginEmail.classList.add('warning');
         }
 
         const isSuccess = !!(await this.user.getUser(currentUser.userId, currentUser.token));
+        if (isSuccess) {
+            window.location.hash = '#/';
+        }
+
         showSpinner(false);
     };
 
@@ -113,9 +122,9 @@ export default class RegController {
 
         showSpinner(true);
         const createStatus = await this.user.createNewUser({
-            name: signupName.value,
-            email: signupEmail.value,
-            password: signupPassword.value,
+            name: signupName.value.trim(),
+            email: signupEmail.value.trim(),
+            password: signupPassword.value.trim(),
         });
 
         switch (createStatus) {
@@ -143,8 +152,8 @@ export default class RegController {
 
         if (createStatus === 200) {
             const auth = await this.authorization.signIn({
-                email: signupEmail.value,
-                password: signupPassword.value,
+                email: signupEmail.value.trim(),
+                password: signupPassword.value.trim(),
             });
 
             if (auth) {
@@ -152,6 +161,10 @@ export default class RegController {
             }
 
             const isSuccess = !!(await this.user.getUser(currentUser.userId, currentUser.token));
+
+            if (isSuccess) {
+                window.location.hash = '#/';
+            }
         }
 
         showSpinner(false);

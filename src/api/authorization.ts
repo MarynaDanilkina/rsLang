@@ -1,4 +1,5 @@
 import { UserData, AuthData } from '../interfaces/interfaces';
+import currentUser from '../models/currentUser';
 
 class Authorization {
     private baseURL: string;
@@ -20,13 +21,23 @@ class Authorization {
                 },
             });
             if (response.status === 403) {
+                const auth = { ...currentUser };
+                auth.message = 'Некорректный пароль или email !';
                 console.log('Incorrect e-mail or password');
-                return null;
+                return auth;
+            }
+            if (response.status === 404) {
+                const auth = { ...currentUser };
+                auth.message = 'Пользователь с таким email отсутствует !';
+                console.log('Incorrect e-mail or password');
+                return auth;
             }
             return (await response.json()) as AuthData;
         } catch (err) {
+            const auth = { ...currentUser };
+            auth.message = 'Возникли неполадки с сервером !';
             console.log(err);
-            return null;
+            return auth;
         }
     }
 }
