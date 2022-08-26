@@ -26,6 +26,7 @@
 .reg-form
   &_wrapper 
     justify-content: center
+    align-items: center
     height: 100%
     display: flex
     flex-direction: column
@@ -99,7 +100,12 @@
     width: 30%
     margin: 0 auto
 
-
+.error-message
+  display: none
+  margin: 2vh
+  color: #ff0000
+  &.active
+    display: block
 
 @media (max-width: 992px) 
   .reg-form_header 
