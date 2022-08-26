@@ -16,7 +16,7 @@ export function testEmail(this: HTMLInputElement) {
 
 export function testLength(this: HTMLInputElement, length: number) {
     this.classList.add('warning');
-    const isValid = this.value.length > length;
+    const isValid = this.value.trim().length > length;
 
     if (isValid || !this.value) {
         this.classList.remove('warning');
@@ -37,7 +37,7 @@ export function equalCheck(this: HTMLInputElement, input: HTMLInputElement) {
         this.classList.remove('warning');
     }
 
-    if (isValid) {
+    if (isValid && this.value) {
         this.classList.add('valide');
     } else {
         this.classList.remove('valide');

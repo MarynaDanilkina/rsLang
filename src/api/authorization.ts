@@ -21,6 +21,7 @@ class Authorization {
             });
             if (response.status === 403) {
                 console.log('Incorrect e-mail or password');
+                return null;
             }
             return (await response.json()) as AuthData;
         } catch (err) {

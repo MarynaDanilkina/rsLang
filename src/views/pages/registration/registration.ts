@@ -2,9 +2,17 @@ import { View } from '../../../interfaces/interfaces';
 import htmlConsts from '../../../models/htmlElements';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import RegController from '../../../controllers/pages/regConroller';
 import './registration.sass';
+import './spinner.sass';
 
 export default class Registration implements View {
+    private controller: RegController;
+
+    constructor() {
+        this.controller = new RegController();
+    }
+
     html = `<main id="main" class="registration_page">
               <section id="registration_section" class="registration_section">
                 <div class="registration_owl">
@@ -19,18 +27,20 @@ export default class Registration implements View {
                     <div class="page_title active" id="log-in">Вход</div>
                     <div class="page_title" id="signup">Регистрация</div>
                   </div>
-                  <form class="login_form active">
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <input type="submit" value="Войти" />
+                  <p class="error-message" id="error-message"></p>
+                  <form class="form form_login active" id="login-form">
+                    <input type="email" placeholder="Введите еmail ..." id="login-email" autocomplete="off" />
+                    <input type="password" placeholder="Введите пароль ..." id="login-password" />
+                    <button class="form__button" id="login-button"/>Войти</button> 
                   </form>
-                  <form class="signup_form">
-                    <input type="email" placeholder="Email" />
-                    <input type="text" placeholder="Name" />
-                    <input type="password" placeholder="Password" />
-                    <input type="password" placeholder="Repeat password" />
-                    <input type="submit" value="Зарегистрироваться" />
+                  <form class="form form_signup" id="signup-form">
+                    <input type="email" placeholder="Введите еmail ..." id="signup-email" autocomplete="off" />
+                    <input type="text" placeholder="Введите имя ..." id="signup-name" autocomplete="off" />
+                    <input type="password" placeholder="Придумайте пароль ..." id="signup-password" />
+                    <input type="password" placeholder="Повторите пароль ..." id="signup-password-repeat" />
+                    <button class="form__button" id="signup-button"/>Зарегистрироваться</button> 
                   </form>
+                  <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                 </div>
               </section>
             </main>`;
@@ -48,6 +58,7 @@ export default class Registration implements View {
             const target = <HTMLElement>evt.target;
             const logInFormButton = <HTMLDivElement>document.getElementById('log-in');
             const signupFormButton = <HTMLDivElement>document.getElementById('signup');
+            const errorMessage = <HTMLParagraphElement>document.getElementById('error-message');
             const forms = document.querySelectorAll('form');
 
             if (
@@ -56,8 +67,11 @@ export default class Registration implements View {
             ) {
                 logInFormButton.classList.toggle('active');
                 signupFormButton.classList.toggle('active');
+                errorMessage.classList.remove('active');
                 forms.forEach((form) => form.classList.toggle('active'));
             }
         });
+
+        this.controller.start();
     }
 }
