@@ -1,5 +1,7 @@
+import currentUser from './currentUser';
+
 const State = {
-    currentUserID: <string | undefined>undefined,
+    currentUserID: currentUser.userId,
     games: {
         audiocall: {
             learnedwords: 0,
