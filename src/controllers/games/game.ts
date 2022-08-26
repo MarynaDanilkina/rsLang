@@ -69,4 +69,6 @@ export default class Game {
 
         PLAY_BTN.addEventListener('click', this.startGame.bind(this));
     }
+
+    statisticGamePageListners() {}
 }

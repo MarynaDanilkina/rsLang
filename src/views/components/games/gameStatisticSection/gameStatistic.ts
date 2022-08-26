@@ -1,7 +1,20 @@
-import { View } from '../../../../interfaces/interfaces';
+import { GameStatistic, WordData } from '../../../../interfaces/interfaces';
 import ResultsList from './resultsList/resultsList';
+import '../../../pages/games/gameStatistic/gameStatistic.sass';
 
-export default class GameStatisticview implements View {
+export default class GameStatisticview implements GameStatistic {
+    constructor(gameWords: WordData[], rightAnswers: Array<number>, wrongAnswers: Array<number>) {
+        this.gameWords = gameWords;
+        this.rightAnswers = rightAnswers;
+        this.wrongAnswers = wrongAnswers;
+    }
+
+    gameWords;
+
+    rightAnswers;
+
+    wrongAnswers;
+
     html = `<div class="result_header">
                 <div class="result_owl">
                     <img class="owl_logo result_owl_logo" src="../../../../assets/images/owl.png" />
@@ -20,8 +33,11 @@ export default class GameStatisticview implements View {
 
     render() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
-        const resultsListRight = new ResultsList('right');
-        const resultsListWrong = new ResultsList('wrong');
+        const resultsListRight = new ResultsList('right', this.gameWords, this.rightAnswers);
+        const resultsListWrong = new ResultsList('wrong', this.gameWords, this.wrongAnswers);
+
+        GAME_CONTAINER.innerHTML = '';
+
         GAME_CONTAINER.insertAdjacentHTML('beforeend', this.html);
         resultsListRight.render();
         resultsListWrong.render();

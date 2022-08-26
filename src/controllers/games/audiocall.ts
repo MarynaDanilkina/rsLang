@@ -1,4 +1,5 @@
 import { WordData } from '../../interfaces/interfaces';
+import GameStatisticview from '../../views/components/games/gameStatisticSection/gameStatistic';
 import getRandomIntInclusive from '../helpers/getRandomNumber';
 import shuffle from '../helpers/shuffle';
 import Game from './game';
@@ -59,6 +60,9 @@ export default class Audiocall extends Game {
             this.currentQuestion += 1;
             this.changeContent();
             this.componentsToggler();
+        } else {
+            const results = new GameStatisticview(<WordData[]>this.words, this.rightAnswers, this.wrongAnswers);
+            results.render();
         }
     }
 
