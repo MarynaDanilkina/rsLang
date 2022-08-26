@@ -11,7 +11,7 @@ export default class Level implements LevelView {
               <p class="${this.type[0]}">${this.type[1]}</p>
             </div>
             <img class="${this.type[0]}" src="../../../../assets/images/plus.png" alt="plus">
-          </button>`;
+        </button>`;
     }
 
     type;
