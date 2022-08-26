@@ -2,7 +2,7 @@ import { LevelView } from '../../../../interfaces/interfaces';
 import './level.sass';
 
 export default class Level implements LevelView {
-    constructor(type: [string, string]) {
+    constructor(type: [string, string, string]) {
         this.type = type;
         this.html = `
         <button class="button__level" id="${this.type[0]}">

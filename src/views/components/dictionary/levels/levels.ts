@@ -4,7 +4,7 @@ import './levels.sass';
 import './gameLevels.sass';
 
 export default class Levels implements LevelsView {
-    constructor(levels: Array<[string, string]>, container: HTMLElement) {
+    constructor(levels: Array<[string, string, string]>, container: HTMLElement) {
         this.levels = levels;
         this.container = container;
     }

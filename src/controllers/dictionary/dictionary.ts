@@ -6,16 +6,16 @@ import DictionaryCard from '../../views/pages/dictionary-card/dictionatyCard';
 let page = 0;
 const link = 'https://rs-lang-kdz.herokuapp.com';
 
-export const mapper: Record<string, [string, string]> = {
-    A1: ['A1', 'Elementary 0-600 слов'],
-    A2: ['A2', 'Pre-Intermediate 601-1200 слов'],
-    B1: ['B1', 'Intermediate 1201-1800 слов'],
-    B2: ['B2', 'Upper-Intermediate 1801-2400 слов'],
-    C1: ['C1', 'Advanced 2401- 3000 слов'],
-    C2: ['C2', 'Proficiency 3001-3600 слов'],
+export const mapper: Record<string, [string, string, string]> = {
+    A1: ['A1', 'Elementary', '0-600 слов'],
+    A2: ['A2', 'Pre-Intermediate', '601-1200 слов'],
+    B1: ['B1', 'Intermediate', '1201-1800 слов'],
+    B2: ['B2', 'Upper-Intermediate', '1801-2400 слов'],
+    C1: ['C1', 'Advanced', '2401-3000 слов'],
+    C2: ['C2', 'Proficiency', '3001-3600 слов'],
 };
 
-let levelDictionary: [string, string];
+let levelDictionary: [string, string, string];
 
 export default class DictionaryDevelopments {
     cards!: WordData[];
@@ -25,7 +25,7 @@ export default class DictionaryDevelopments {
 
         container.addEventListener('click', async (e) => {
             const event = <HTMLElement>e.target;
-            const level = event.classList.value;
+            const level = event.id;
             levelDictionary = mapper[level];
             const dictionaryCard = new DictionaryCard(levelDictionary, page);
             await dictionaryCard.render();

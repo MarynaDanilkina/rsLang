@@ -71,12 +71,12 @@ export interface GameDiscription extends View {
     gameParams: [name: string, imgSrc: string, rules: string];
 }
 export interface LevelView extends View {
-    type: [string, string];
+    type: [string, string, string];
 }
 
 export interface LevelsView extends View {
     container: HTMLElement;
-    levels: Array<[string, string]>;
+    levels: Array<[string, string, string]>;
 }
 
 export interface GamesDictionaryView extends View {

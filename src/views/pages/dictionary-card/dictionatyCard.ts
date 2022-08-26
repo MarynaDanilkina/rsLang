@@ -16,11 +16,11 @@ export const mapper: Record<string, number> = {
 };
 
 export default class DictionaryCard {
-    levels: [string, string];
+    levels: [string, string, string];
 
     page: number;
 
-    constructor(levels: [string, string], page: number) {
+    constructor(levels: [string, string, string], page: number) {
         this.levels = levels;
         this.page = page;
     }
