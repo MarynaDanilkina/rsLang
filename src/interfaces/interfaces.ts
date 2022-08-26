@@ -1,7 +1,7 @@
 export interface WordData {
     id: string;
-    group: 0;
-    page: 0;
+    group: number;
+    page: number;
     word: string;
     image: string;
     audio: string;
@@ -14,7 +14,6 @@ export interface WordData {
     textMeaningTranslate: string;
     textExampleTranslate: string;
 }
-
 export interface UserData {
     name: string;
     email: string;
@@ -52,7 +51,20 @@ export interface View {
 }
 
 export interface GameStatistic extends View {
+    gameWords: WordData[];
+    rightAnswers: Array<number>;
+    wrongAnswers: Array<number>;
+}
+
+export interface GameStatisticList extends View {
     type: 'right' | 'wrong';
+    gameWords: WordData[];
+    answers: Array<number>;
+}
+
+export interface GameStatisticItem extends View {
+    type: 'right' | 'wrong';
+    word: WordData;
 }
 
 export interface GameDiscription extends View {
