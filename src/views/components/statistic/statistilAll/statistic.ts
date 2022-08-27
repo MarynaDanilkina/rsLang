@@ -1,17 +1,27 @@
 import { View } from '../../../../interfaces/interfaces';
+import State from '../../../../models/state';
 import './statistic.sass';
 
-export default class StatisticAll implements View {
-    html = `
+export default class StatisticAll {
+    constructor() {
+        this.learnedWordsSprint = State.games.sprint.learnedwords;
+        this.rightAnswersPercentSprint =
+            (<number>Math.round((State.games.sprint.rightAnswers / State.games.sprint.learnedwords) * 100)) | 0;
+        this.rightAnswersSessionSprint = State.games.sprint.rightAnswersSession;
+        this.learnedWordsAudioCall = State.games.audiocall.learnedwords;
+        this.rightAnswersPercentAudiocall =
+            (<number>Math.round((State.games.audiocall.rightAnswers / State.games.audiocall.learnedwords) * 100)) | 0;
+        this.rightAnswersSessionAudiocall = State.games.audiocall.rightAnswersSession;
+        this.html = `
           <div class="statistic">
             <div class="statistic_item">
               <div class="statistic_item__container">
                 <p class="statistic__name">Спринт</p>
                 <p class="statistic__info">
-                  Изучено 0 слов
+                  Изучено ${this.learnedWordsSprint} слов
                 </p>
                 <p class="statistic__info">
-                  Правильных ответов: 0%
+                  Правильных ответов: ${this.rightAnswersPercentSprint}%
                 </p>
                 <p class="statistic__info">
                   Самая длинная серия правильных ответов: 0
@@ -20,10 +30,10 @@ export default class StatisticAll implements View {
               <div class="statistic_item__container">
                 <p class="statistic__name">Аудиовызов</p>
                 <p class="statistic__info">
-                  Изучено 0 слов
+                  Изучено ${this.learnedWordsAudioCall} слов
                 </p>
                 <p class="statistic__info">
-                  Правильных ответов: 0%
+                  Правильных ответов: ${this.rightAnswersPercentAudiocall}%
                 </p>
                 <p class="statistic__info">
                   Самая длинная серия правильных ответов: 0
@@ -32,6 +42,21 @@ export default class StatisticAll implements View {
             </div>
         </div>
     </div>`;
+    }
+
+    learnedWordsSprint;
+
+    rightAnswersPercentSprint;
+
+    rightAnswersSessionSprint;
+
+    learnedWordsAudioCall;
+
+    rightAnswersPercentAudiocall;
+
+    rightAnswersSessionAudiocall;
+
+    html;
 
     render() {
         const MAIN = <HTMLElement>document.getElementById('main');
