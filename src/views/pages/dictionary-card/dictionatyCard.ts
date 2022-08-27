@@ -46,5 +46,6 @@ export default class DictionaryCard {
         game.render();
         dictionary.audio();
         dictionary.close();
+        dictionary.onlyAuthorized();
     }
 }

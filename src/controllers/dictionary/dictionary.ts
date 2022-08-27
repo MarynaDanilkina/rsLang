@@ -1,4 +1,5 @@
 import { WordData } from '../../interfaces/interfaces';
+import currentUser from '../../models/currentUser';
 import htmlElements from '../../models/htmlElements';
 import '../../views/components/dictionary/card/card.sass';
 import HiddenNavBlur from '../../views/components/hiddenNavBlur/hiddenNavBlur';
@@ -152,11 +153,24 @@ export default class DictionaryDevelopments {
         });
     }
 
-    setCards = (cards: WordData[]): void => {
+    setCards(cards: WordData[]): void {
         this.cards = cards;
-    };
+    }
 
-    getCards = (): WordData[] => {
+    getCards(): WordData[] {
         return this.cards;
-    };
+    }
+
+    onlyAuthorized() {
+        const button = document.querySelectorAll('.card-info__buttons');
+        if (currentUser.userId.length === 0) {
+            button.forEach((but) => {
+                but.classList.add('notActive');
+            });
+        } else {
+            button.forEach((but) => {
+                but.classList.remove('notActive');
+            });
+        }
+    }
 }
