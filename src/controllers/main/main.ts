@@ -12,11 +12,13 @@ export default class MainPageControllers {
                 hiddenMenu.classList.toggle('open');
                 setTimeout(() => {
                     hiddenMenu.style.display = 'none';
+                    htmlElements.BODY.style.overflowY = 'scroll';
                 }, 500);
             } else {
                 hiddenMenu.style.display = 'block';
                 setTimeout(() => {
                     hiddenMenu.classList.toggle('open');
+                    htmlElements.BODY.style.overflowY = 'hidden';
                 }, 0);
             }
         }
