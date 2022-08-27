@@ -1,6 +1,9 @@
 import { WordData } from '../../interfaces/interfaces';
+import htmlElements from '../../models/htmlElements';
 import '../../views/components/dictionary/card/card.sass';
+import HiddenNavBlur from '../../views/components/hiddenNavBlur/hiddenNavBlur';
 import DictionaryCard from '../../views/pages/dictionary-card/dictionatyCard';
+import Dictionary from '../../views/pages/dictionary/dictionary';
 
 let page = 0;
 const link = 'https://rs-lang-kdz.herokuapp.com';
@@ -24,10 +27,28 @@ export default class DictionaryDevelopments {
 
         container.addEventListener('click', async (e) => {
             const event = <HTMLElement>e.target;
-            const level = event.id;
+            console.log(event);
+            const level = event.classList.value;
+            console.log(level);
             levelDictionary = mapper[level];
+            console.log(levelDictionary);
+            console.log(page);
             const dictionaryCard = new DictionaryCard(levelDictionary, page);
             await dictionaryCard.render();
+        });
+    }
+
+    close() {
+        const close = <HTMLElement>document.getElementById('close');
+
+        close.addEventListener('click', (e) => {
+            console.log('+');
+            const book = new Dictionary();
+            const hiddenNavBlur = new HiddenNavBlur();
+
+            htmlElements.BODY.innerHTML = '';
+            book.render();
+            hiddenNavBlur.render();
         });
     }
 
