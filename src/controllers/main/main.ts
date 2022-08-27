@@ -3,9 +3,10 @@ import htmlElements from '../../models/htmlElements';
 export default class MainPageControllers {
     toggleHiddenMenu(e: Event) {
         const burger = document.querySelector('.burger');
-        if (e.target === burger) {
+        const blur = <HTMLDivElement>document.querySelector('.dark-field');
+
+        if (e.target === burger || e.target === blur) {
             const hiddenMenu = <HTMLDivElement>document.getElementById('hiddenMenu');
-            const blur = <HTMLDivElement>document.querySelector('.dark-field');
 
             blur.classList.toggle('open');
             if (hiddenMenu.classList.contains('open')) {
