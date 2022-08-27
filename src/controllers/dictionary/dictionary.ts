@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import { WordData } from '../../interfaces/interfaces';
 import '../../views/components/dictionary/card/card.sass';
 import DictionaryCard from '../../views/pages/dictionary-card/dictionatyCard';
@@ -109,7 +108,7 @@ export default class DictionaryDevelopments {
     audio() {
         const container = <HTMLElement>document.getElementById('main');
         const cards = this.getCards();
-        container.addEventListener('click', (e) => {
+        container.addEventListener('click', async (e) => {
             const event = <HTMLElement>e.target;
             if (event.classList.contains('sound')) {
                 const svgId = event.id;
@@ -119,12 +118,12 @@ export default class DictionaryDevelopments {
                 audio[1].src = `${link}/${card[0].audioExample}`;
                 audio[2].src = `${link}/${card[0].audioMeaning}`;
 
-                audio[0].play();
+                await audio[0].play();
                 for (let i = 0; i < audio.length - 1; i += 1) {
                     const audioId = audio[i];
-                    audioId.addEventListener('ended', () => {
+                    audioId.addEventListener('ended', async () => {
                         if (audioId.duration === audioId.currentTime) {
-                            audio[i + 1].play();
+                            await audio[i + 1].play();
                         }
                     });
                 }
