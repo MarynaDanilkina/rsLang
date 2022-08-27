@@ -35,23 +35,23 @@ export default class Header implements View {
           <div id="hiddenMenu" class="hidden_nav opens">
             <div class="hidden_nav_items_wrapper">
                 <div class="nav_item_active hidden_nav_item opens">
-                  <a href="#/">Главная</a>
+                  <a href="#/"  data-link>Главная</a>
                   <div class="line line_active"></div>
                 </div>
                 <div class="hidden_nav_item opens">
-                  <a href="#/book">Учебник</a>
+                  <a href="#/book/"  data-link>Учебник</a>
                   <div class="line"></div>
                 </div>
                 <div class="hidden_nav_item opens">
-                  <a href="#/games">Игры</a>
+                  <a href="#/games/"  data-link>Игры</a>
                   <div class="line"></div>
                 </div>
                 <div class="hidden_nav_item opens">
-                  <a href="#/statistic">Статистика</a>
+                  <a href="#/statistic/"  data-link>Статистика</a>
                   <div class="line"></div>
                 </div>
                 <div class="hidden_nav_item opens">
-                  <a href="#/team">О команде</a>
+                  <a href="#/team/"  data-link>О команде</a>
                   <div class="line"></div>
                 </div>
             </div>
