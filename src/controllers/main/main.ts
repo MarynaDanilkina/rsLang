@@ -7,7 +7,6 @@ export default class MainPageControllers {
             const hiddenMenu = <HTMLDivElement>document.getElementById('hiddenMenu');
             const blur = <HTMLDivElement>document.querySelector('.dark-field');
 
-            // hiddenMenu.classList.toggle('open');
             blur.classList.toggle('open');
             if (hiddenMenu.classList.contains('open')) {
                 hiddenMenu.classList.toggle('open');
