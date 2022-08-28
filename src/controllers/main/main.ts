@@ -4,8 +4,10 @@ export default class MainPageControllers {
     toggleHiddenMenu(e: Event) {
         const burger = document.querySelector('.burger');
         const blur = <HTMLDivElement>document.querySelector('.dark-field');
+        const navItems = Array.from(document.querySelectorAll('.hidden_nav_item'));
+        console.log(e.target);
 
-        if (e.target === burger || e.target === blur) {
+        if (e.target === burger || e.target === blur || navItems.includes(e.target as HTMLDivElement)) {
             const hiddenMenu = <HTMLDivElement>document.getElementById('hiddenMenu');
 
             blur.classList.toggle('open');
