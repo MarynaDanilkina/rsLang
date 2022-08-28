@@ -5,6 +5,9 @@ import '../../views/components/dictionary/card/card.sass';
 import HiddenNavBlur from '../../views/components/hiddenNavBlur/hiddenNavBlur';
 import DictionaryCard from '../../views/pages/dictionary-card/dictionatyCard';
 import Dictionary from '../../views/pages/dictionary/dictionary';
+import UserWords from '../../api/usersWords';
+import Words from '../../api/words';
+import UserArgWords from '../../api/usersAgrWords';
 
 let page = 0;
 const link = 'https://rs-lang-kdz.herokuapp.com';
@@ -28,12 +31,8 @@ export default class DictionaryDevelopments {
 
         container.addEventListener('click', async (e) => {
             const event = <HTMLElement>e.target;
-            console.log(event);
             const level = event.classList.value;
-            console.log(level);
             levelDictionary = mapper[level];
-            console.log(levelDictionary);
-            console.log(page);
             const dictionaryCard = new DictionaryCard(levelDictionary, page);
             await dictionaryCard.render();
         });
@@ -43,7 +42,6 @@ export default class DictionaryDevelopments {
         const close = <HTMLElement>document.getElementById('close');
 
         close.addEventListener('click', (e) => {
-            console.log('+');
             const book = new Dictionary();
             const hiddenNavBlur = new HiddenNavBlur();
 
@@ -163,6 +161,8 @@ export default class DictionaryDevelopments {
 
     onlyAuthorized() {
         const button = document.querySelectorAll('.card-info__buttons');
+        const container = <HTMLElement>document.getElementById('main');
+
         if (currentUser.userId.length === 0) {
             button.forEach((but) => {
                 but.classList.add('notActive');
@@ -172,5 +172,20 @@ export default class DictionaryDevelopments {
                 but.classList.remove('notActive');
             });
         }
+
+        container.addEventListener('click', async (e) => {
+            const event = <HTMLElement>e.target;
+            if (event.classList.contains('button__difficult')) {
+                const buttonId = event.id.split('-')[1];
+                const card = <HTMLElement>document.getElementById(`card-${buttonId}`);
+                const userWords = new UserWords();
+                const currentWord = { difficulty: 'hard' };
+
+                await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                card.classList.add('activeDifficultCard');
+                const b = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
+                console.log(b);
+            }
+        });
     }
 }

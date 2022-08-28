@@ -53,7 +53,7 @@ class UserWords {
         }
     }
 
-    async createUserWord(userId: string, wordId: string, userWord: UserWordData, token: string) {
+    async createUserWord(userId: string, wordId: string, userWord: object, token: string) {
         try {
             const response = await fetch(`${this.users}/${userId}/words/${wordId}`, {
                 method: 'POST',

@@ -69,6 +69,7 @@
 
 .card-info__buttons
   display: flex
+  margin-bottom: 10px
 
 .card__button
   margin-top: 20px
@@ -97,11 +98,18 @@
 .button__difficult:hover
   background-color: #d4b2b2
 
+.button__difficult:disabled
+  background-color: #f0d8d8
+  cursor: default
+
 .button__delete:hover
   background-color: #c8c8c8
 
 .notActive
   display: none
+
+.activeDifficultCard
+  background-color: #f0d8d8
 
 @media (max-width: 1400px)
   .cards
