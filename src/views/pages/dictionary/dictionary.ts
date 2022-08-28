@@ -31,5 +31,7 @@ export default class Dictionary implements View {
         footer.render();
         const dictionary = new DictionaryDevelopments();
         dictionary.levels();
+        dictionary.difficultWord();
+        dictionary.onlyAuthorized();
     }
 }

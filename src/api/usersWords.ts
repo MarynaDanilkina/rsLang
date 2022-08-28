@@ -78,7 +78,7 @@ class UserWords {
         }
     }
 
-    async updateUserWord(userId: string, wordId: string, userWord: UserWordData, token: string) {
+    async updateUserWord(userId: string, wordId: string, userWord: object, token: string) {
         try {
             const response = await fetch(`${this.users}/${userId}/words/${wordId}`, {
                 method: 'PUT',
@@ -102,6 +102,7 @@ class UserWords {
             console.log(err);
         }
     }
+    // Удаление из сложных или изученных слов
 
     async deleteUser(userId: string, wordId: string, token: string) {
         try {

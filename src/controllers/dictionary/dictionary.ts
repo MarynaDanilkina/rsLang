@@ -8,6 +8,7 @@ import Dictionary from '../../views/pages/dictionary/dictionary';
 import UserWords from '../../api/usersWords';
 import Words from '../../api/words';
 import UserArgWords from '../../api/usersAgrWords';
+import DifficultWord from '../../views/pages/difficultWord/difficultWord';
 
 let page = 0;
 const link = 'https://rs-lang-kdz.herokuapp.com';
@@ -35,6 +36,25 @@ export default class DictionaryDevelopments {
             levelDictionary = mapper[level];
             const dictionaryCard = new DictionaryCard(levelDictionary, page);
             await dictionaryCard.render();
+            const difficultCards = new UserWords();
+            if (currentUser.userId) {
+                const cards = await difficultCards.getAllUserWords(currentUser.userId, currentUser.token);
+                if (cards) {
+                    cards.forEach((el) => {
+                        const card = <HTMLElement>document.getElementById(`card-${el.wordId}`);
+                        if (card && el.difficulty === 'hard') {
+                            card.classList.add('activeDifficultCard');
+                            const button = <HTMLElement>document.getElementById(`difficult-${el.wordId}`);
+                            button.setAttribute('disabled', 'disabled');
+                        }
+                        if (card && el.difficulty === 'learned') {
+                            card.classList.add('activeLearnedCard');
+                            const button = <HTMLElement>document.getElementById(`learned-${el.wordId}`);
+                            button.setAttribute('disabled', 'disabled');
+                        }
+                    });
+                }
+            }
         });
     }
 
@@ -127,16 +147,16 @@ export default class DictionaryDevelopments {
 
     audio() {
         const container = <HTMLElement>document.getElementById('main');
-        const cards = this.getCards();
+        const words = new Words();
         container.addEventListener('click', async (e) => {
             const event = <HTMLElement>e.target;
             if (event.classList.contains('sound')) {
                 const svgId = event.id;
-                const card = cards.filter((el) => el.id === svgId);
-                const audio = document.querySelectorAll<HTMLAudioElement>(`.${card[0].word}`);
-                audio[0].src = `${link}/${card[0].audio}`;
-                audio[1].src = `${link}/${card[0].audioExample}`;
-                audio[2].src = `${link}/${card[0].audioMeaning}`;
+                const card = await words.getWord(svgId);
+                const audio = document.querySelectorAll<HTMLAudioElement>(`.${card.word}`);
+                audio[0].src = `${link}/${card.audio}`;
+                audio[1].src = `${link}/${card.audioExample}`;
+                audio[2].src = `${link}/${card.audioMeaning}`;
 
                 await audio[0].play();
                 for (let i = 0; i < audio.length - 1; i += 1) {
@@ -161,7 +181,7 @@ export default class DictionaryDevelopments {
 
     onlyAuthorized() {
         const button = document.querySelectorAll('.card-info__buttons');
-        const container = <HTMLElement>document.getElementById('main');
+        const levelDifficult = <HTMLElement>document.querySelector('.difficult button');
 
         if (currentUser.userId.length === 0) {
             button.forEach((but) => {
@@ -171,20 +191,87 @@ export default class DictionaryDevelopments {
             button.forEach((but) => {
                 but.classList.remove('notActive');
             });
+            if (levelDifficult) {
+                levelDifficult.removeAttribute('disabled');
+            }
         }
+    }
 
+    addDifficultWord() {
+        const container = <HTMLElement>document.getElementById('main');
         container.addEventListener('click', async (e) => {
             const event = <HTMLElement>e.target;
             if (event.classList.contains('button__difficult')) {
                 const buttonId = event.id.split('-')[1];
                 const card = <HTMLElement>document.getElementById(`card-${buttonId}`);
+                const learned = <HTMLElement>document.getElementById(`learned-${buttonId}`);
                 const userWords = new UserWords();
                 const currentWord = { difficulty: 'hard' };
-
-                await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                const getUserWords = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
+                console.log(getUserWords);
+                getUserWords?.forEach(async (word) => {
+                    if (word.wordId === buttonId && word.difficulty === 'learned') {
+                        await userWords.updateUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                        card.classList.remove('activeLearnedCard');
+                    } else if (word.wordId === buttonId && word.difficulty === 'hard') {
+                        await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                    }
+                });
                 card.classList.add('activeDifficultCard');
-                const b = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
-                console.log(b);
+                event.setAttribute('disabled', 'disabled');
+                learned.removeAttribute('disabled');
+            }
+        });
+    }
+
+    difficultWord() {
+        const button = <HTMLElement>document.querySelector('.difficult button');
+        if (button) {
+            button.addEventListener('click', async () => {
+                const dictionaryCard = new DifficultWord();
+                await dictionaryCard.render();
+            });
+        }
+    }
+
+    difficultDeleteWord() {
+        const container = <HTMLElement>document.getElementById('main');
+        container.addEventListener('click', async (e) => {
+            const event = <HTMLElement>e.target;
+            if (event.classList.contains('button-delete_difficult')) {
+                const buttonId = event.id.split('-')[1];
+                const userWords = new UserWords();
+                const card = <HTMLElement>document.getElementById(`cardWrapper-${buttonId}`);
+
+                await userWords.deleteUser(currentUser.userId, buttonId, currentUser.token);
+                card.remove();
+            }
+        });
+    }
+
+    learnedWord() {
+        const container = <HTMLElement>document.getElementById('main');
+        container.addEventListener('click', async (e) => {
+            const event = <HTMLElement>e.target;
+            if (event.classList.contains('button__learned')) {
+                const buttonId = event.id.split('-')[1];
+                const card = <HTMLElement>document.getElementById(`card-${buttonId}`);
+                const difficult = <HTMLElement>document.getElementById(`difficult-${buttonId}`);
+                const userWords = new UserWords();
+                const currentWord = { difficulty: 'learned' };
+                const getUserWords = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
+                console.log(getUserWords);
+                getUserWords?.forEach(async (word) => {
+                    if (word.wordId === buttonId && word.difficulty === 'hard') {
+                        await userWords.updateUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                        card.classList.remove('activeDifficultCard');
+                    } else if (word.wordId === buttonId && word.difficulty === 'learned') {
+                        await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                    }
+                });
+                card.classList.add('activeLearnedCard');
+                event.setAttribute('disabled', 'disabled');
+                difficult.removeAttribute('disabled');
             }
         });
     }

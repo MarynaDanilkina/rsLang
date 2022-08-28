@@ -29,7 +29,6 @@ export default class DictionaryCard {
     async render() {
         const MAIN = <HTMLElement>document.getElementById('main');
         MAIN.innerHTML = '';
-        console.log(this.levels);
         const level = new LevelDictionaryClose(this.levels);
         const game = new Games();
         const pagination = new Pagination(this.page);
@@ -46,6 +45,8 @@ export default class DictionaryCard {
         game.render();
         dictionary.audio();
         dictionary.close();
+        dictionary.addDifficultWord();
         dictionary.onlyAuthorized();
+        dictionary.learnedWord();
     }
 }
