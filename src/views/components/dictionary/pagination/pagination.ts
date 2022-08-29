@@ -28,6 +28,5 @@ export default class Pagination implements View {
         dictionary.back();
         dictionary.fullNext();
         dictionary.fullBack();
-        dictionary.pagination();
     }
 }

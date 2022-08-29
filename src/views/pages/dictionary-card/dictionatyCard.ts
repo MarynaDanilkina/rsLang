@@ -48,5 +48,6 @@ export default class DictionaryCard {
         dictionary.addDifficultWord();
         dictionary.onlyAuthorized();
         dictionary.learnedWord();
+        dictionary.styleCard();
     }
 }

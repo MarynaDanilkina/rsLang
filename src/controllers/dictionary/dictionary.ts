@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { WordData } from '../../interfaces/interfaces';
 import currentUser from '../../models/currentUser';
 import htmlElements from '../../models/htmlElements';
@@ -36,26 +37,31 @@ export default class DictionaryDevelopments {
             levelDictionary = mapper[level];
             const dictionaryCard = new DictionaryCard(levelDictionary, page);
             await dictionaryCard.render();
-            const difficultCards = new UserWords();
-            if (currentUser.userId) {
-                const cards = await difficultCards.getAllUserWords(currentUser.userId, currentUser.token);
-                if (cards) {
-                    cards.forEach((el) => {
-                        const card = <HTMLElement>document.getElementById(`card-${el.wordId}`);
-                        if (card && el.difficulty === 'hard') {
-                            card.classList.add('activeDifficultCard');
-                            const button = <HTMLElement>document.getElementById(`difficult-${el.wordId}`);
-                            button.setAttribute('disabled', 'disabled');
-                        }
-                        if (card && el.difficulty === 'learned') {
-                            card.classList.add('activeLearnedCard');
-                            const button = <HTMLElement>document.getElementById(`learned-${el.wordId}`);
-                            button.setAttribute('disabled', 'disabled');
-                        }
-                    });
-                }
-            }
+            await this.getWordsUser();
+            this.learnedWordStyle();
         });
+    }
+
+    async getWordsUser() {
+        const difficultCards = new UserWords();
+        if (currentUser.userId) {
+            const cards = await difficultCards.getAllUserWords(currentUser.userId, currentUser.token);
+            if (cards) {
+                cards.forEach((el) => {
+                    const card = <HTMLElement>document.getElementById(`card-${el.wordId}`);
+                    if (card && el.difficulty === 'hard') {
+                        card.classList.add('activeDifficultCard');
+                        const button = <HTMLElement>document.getElementById(`difficult-${el.wordId}`);
+                        button.setAttribute('disabled', 'disabled');
+                    }
+                    if (card && el.difficulty === 'learned') {
+                        card.classList.add('activeLearnedCard');
+                        const button = <HTMLElement>document.getElementById(`learned-${el.wordId}`);
+                        button.setAttribute('disabled', 'disabled');
+                    }
+                });
+            }
+        }
     }
 
     close() {
@@ -80,6 +86,7 @@ export default class DictionaryDevelopments {
                 const dictionaryCard = new DictionaryCard(levelDictionary, page);
                 await dictionaryCard.render();
             }
+            await this.pagination();
         });
     }
 
@@ -92,6 +99,7 @@ export default class DictionaryDevelopments {
                 const dictionaryCard = new DictionaryCard(levelDictionary, page);
                 await dictionaryCard.render();
             }
+            await this.pagination();
         });
     }
 
@@ -104,6 +112,7 @@ export default class DictionaryDevelopments {
                 const dictionaryCard = new DictionaryCard(levelDictionary, page);
                 await dictionaryCard.render();
             }
+            await this.pagination();
         });
     }
 
@@ -116,10 +125,11 @@ export default class DictionaryDevelopments {
                 const dictionaryCard = new DictionaryCard(levelDictionary, page);
                 await dictionaryCard.render();
             }
+            await this.pagination();
         });
     }
 
-    pagination() {
+    async pagination() {
         const next = <HTMLElement>document.getElementById('next');
         const fullNext = <HTMLElement>document.getElementById('full_next');
         const back = <HTMLElement>document.getElementById('back');
@@ -143,6 +153,8 @@ export default class DictionaryDevelopments {
             next.removeAttribute('disabled');
             fullNext.removeAttribute('disabled');
         }
+        await this.getWordsUser();
+        this.learnedWordStyle();
     }
 
     audio() {
@@ -207,19 +219,24 @@ export default class DictionaryDevelopments {
                 const learned = <HTMLElement>document.getElementById(`learned-${buttonId}`);
                 const userWords = new UserWords();
                 const currentWord = { difficulty: 'hard' };
+                let ok = true;
                 const getUserWords = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
-                console.log(getUserWords);
                 getUserWords?.forEach(async (word) => {
                     if (word.wordId === buttonId && word.difficulty === 'learned') {
+                        ok = false;
                         await userWords.updateUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
                         card.classList.remove('activeLearnedCard');
-                    } else if (word.wordId === buttonId && word.difficulty === 'hard') {
-                        await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
                     }
                 });
+                if (ok) {
+                    await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                }
+                const getUserWords1 = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
+                console.log(getUserWords1);
                 card.classList.add('activeDifficultCard');
                 event.setAttribute('disabled', 'disabled');
                 learned.removeAttribute('disabled');
+                this.learnedWordStyle();
             }
         });
     }
@@ -260,19 +277,53 @@ export default class DictionaryDevelopments {
                 const userWords = new UserWords();
                 const currentWord = { difficulty: 'learned' };
                 const getUserWords = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
-                console.log(getUserWords);
+                let ok = true;
                 getUserWords?.forEach(async (word) => {
                     if (word.wordId === buttonId && word.difficulty === 'hard') {
+                        ok = false;
                         await userWords.updateUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
                         card.classList.remove('activeDifficultCard');
-                    } else if (word.wordId === buttonId && word.difficulty === 'learned') {
-                        await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
                     }
                 });
+                if (ok) {
+                    await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                }
+                const getUserWords1 = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
+                console.log(getUserWords1);
                 card.classList.add('activeLearnedCard');
                 event.setAttribute('disabled', 'disabled');
                 difficult.removeAttribute('disabled');
+                this.learnedWordStyle();
             }
         });
+    }
+
+    learnedWordStyle() {
+        const cards = document.querySelectorAll('.activeLearnedCard');
+        const buttonPage = <HTMLElement>document.getElementById('button_page');
+        const games = document.querySelectorAll('.games_item__container');
+        if (cards.length === 20) {
+            htmlElements.BODY.style.backgroundColor = ' #f0f3e8';
+            buttonPage.style.backgroundColor = ' #f0f3e8';
+            games?.forEach((game) => {
+                game.setAttribute('disabled', 'disabled');
+            });
+        } else {
+            htmlElements.BODY.style.backgroundColor = '#ffffff';
+            buttonPage.style.backgroundColor = '#ffffff';
+            games?.forEach((game) => {
+                game.removeAttribute('disabled');
+            });
+        }
+    }
+
+    styleCard() {
+        const close = <HTMLElement>document.getElementById('close');
+        const cards = document.querySelectorAll<HTMLElement>('.cards');
+        if (close.className === 'A1') {
+            cards.forEach((card) => {
+                // card.style.backgroundColor = '#ececec';
+            });
+        }
     }
 }
