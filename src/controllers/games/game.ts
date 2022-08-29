@@ -25,11 +25,14 @@ export default class Game {
     renderLevels() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
         const levels = new Levels(levelsMap, GAME_CONTAINER);
-        const playBtnHtml = '<div class="btn-play">Играть</div>';
+        const playBtnHtml = '<button class="btn-play">Играть</button>';
 
         GAME_CONTAINER.innerHTML = '';
         levels.render();
         GAME_CONTAINER.insertAdjacentHTML('beforeend', playBtnHtml);
+
+        const btn = <HTMLButtonElement>document.querySelector('.btn-play');
+        btn.disabled = true;
 
         this.levelsGamePageListners();
     }
@@ -37,10 +40,13 @@ export default class Game {
     selectLevel(e: Event) {
         const selectedBtn = <HTMLButtonElement>e.currentTarget;
         const LEVELS_BTNS = Array.from(document.querySelectorAll('.button__level'));
+        const btn = <HTMLButtonElement>document.querySelector('.btn-play');
 
         LEVELS_BTNS.forEach((btn) => btn.classList.remove('selected'));
         selectedBtn.classList.add('selected');
         this.gameLevel = LEVELS_BTNS.indexOf(selectedBtn);
+
+        btn.disabled = false;
     }
 
     async startGame() {

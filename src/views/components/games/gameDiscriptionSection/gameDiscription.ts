@@ -9,7 +9,7 @@ export default class GameDiscriptionView implements GameDiscription {
                     <div class="game_rules">
                     ${gameParams[2]}
                     </div>
-                    <div class="btn-play">Далее</div>
+                    <button class="btn-play">Далее</button>
                 </div>`;
     }
 
