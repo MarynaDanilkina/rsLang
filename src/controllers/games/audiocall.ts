@@ -1,8 +1,10 @@
-import { WordData } from '../../interfaces/interfaces';
+import { UserWordData, WordData } from '../../interfaces/interfaces';
 import GameStatisticview from '../../views/components/games/gameStatisticSection/gameStatistic';
 import getRandomIntInclusive from '../../utils/getRandomNumber';
 import shuffle from '../../utils/shuffle';
 import Game from './game';
+import UserWords from '../../api/usersWords';
+import currentUser from '../../models/currentUser';
 
 export default class Audiocall extends Game {
     constructor() {
@@ -17,6 +19,10 @@ export default class Audiocall extends Game {
     answersKeyboardKeys: Array<string> = [];
 
     controlKeyboardKeys: '' | ' ' | 'Enter' = '';
+
+    userWordAPI = new UserWords();
+
+    learnedWords: UserWordData[] | undefined;
 
     componentsToggler() {
         const SKIP_BTN = <HTMLDivElement>document.querySelector('.btn-skip');
@@ -144,7 +150,7 @@ export default class Audiocall extends Game {
         this.keyboardListner();
     }
 
-    answerHandler(e: Event, currectAnswer: WordData, options: number[], keyboardTarget?: HTMLButtonElement) {
+    async answerHandler(e: Event, currectAnswer: WordData, options: number[], keyboardTarget?: HTMLButtonElement) {
         const progressRange = <HTMLDivElement>document.querySelector('.game__progress-range');
         const answerBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.answer');
         let selectedAnswer: HTMLButtonElement;
@@ -200,9 +206,37 @@ export default class Audiocall extends Game {
 
     async startGame() {
         await super.startGame();
+        this.learnedWords = <UserWordData[]>(
+            await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token)
+        );
+        console.log(currentUser.userId);
         this.changeContent();
         this.nextBtnListner();
         this.skipBtnListner();
+    }
+
+    async updateStateWithResults() {
+        super.updateStateWithResults();
+        if (currentUser.userId) {
+            const userWords = await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token);
+            let learned: UserWordData[];
+            if (userWords) {
+                learned = userWords?.filter((el) => el.difficulty === 'learned');
+            }
+            const difficultyLearned = { difficulty: 'learned' };
+            this.rightAnswers.forEach(async (el) => {
+                // if (!learned.find((a) => a.optional.id === (<WordData[]>this.words)[el].id)) {
+                await this.userWordAPI.createUserWord(
+                    currentUser.userId,
+                    (<WordData[]>this.words)[el].id,
+                    difficultyLearned,
+                    currentUser.token
+                );
+                // }
+            });
+            const p = await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token);
+            console.log(p);
+        }
     }
 
     nextBtnListner() {
