@@ -1,7 +1,7 @@
 import { WordData } from '../../interfaces/interfaces';
 import GameStatisticview from '../../views/components/games/gameStatisticSection/gameStatistic';
-import getRandomIntInclusive from '../helpers/getRandomNumber';
-import shuffle from '../helpers/shuffle';
+import getRandomIntInclusive from '../../utils/getRandomNumber';
+import shuffle from '../../utils/shuffle';
 import Game from './game';
 
 export default class Audiocall extends Game {

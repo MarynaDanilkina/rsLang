@@ -1,4 +1,4 @@
-import { WordData } from '../../interfaces/interfaces';
+import { WordData } from '../interfaces/interfaces';
 
 export default function shuffle(array: Array<number> | Array<WordData>) {
     const currentArray = array;

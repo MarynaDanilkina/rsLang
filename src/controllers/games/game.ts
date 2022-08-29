@@ -4,8 +4,8 @@ import State from '../../models/state';
 import Levels from '../../views/components/dictionary/levels/levels';
 import levelsMap from '../../views/components/dictionary/levels/levelsMap';
 import AudiocallView from '../../views/pages/games/audiocall/audiocallView';
-import getRandomIntInclusive from '../helpers/getRandomNumber';
-import shuffle from '../helpers/shuffle';
+import getRandomIntInclusive from '../../utils/getRandomNumber';
+import shuffle from '../../utils/shuffle';
 
 export default class Game {
     baseURL = 'https://rs-lang-kdz.herokuapp.com';
