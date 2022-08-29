@@ -4,10 +4,13 @@ export default class MainPageControllers {
     toggleHiddenMenu(e: Event) {
         const burger = document.querySelector('.burger');
         const blur = <HTMLDivElement>document.querySelector('.dark-field');
-        const navItems = Array.from(document.querySelectorAll('.hidden_nav_item'));
-        console.log(e.target);
+        const target = <HTMLElement>e.target;
 
-        if (e.target === burger || e.target === blur || navItems.includes(e.target as HTMLDivElement)) {
+        if (target.classList.contains('hidden_nav_item')) {
+            htmlElements.BODY.style.overflowY = 'scroll';
+        }
+
+        if (target === burger || target === blur || target.parentElement === burger) {
             const hiddenMenu = <HTMLDivElement>document.getElementById('hiddenMenu');
 
             blur.classList.toggle('open');

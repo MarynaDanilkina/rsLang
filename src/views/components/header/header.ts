@@ -34,26 +34,11 @@ export default class Header implements View {
           </div>
           <div id="hiddenMenu" class="hidden_nav">
             <div class="hidden_nav_items_wrapper">
-                <div class="hidden_nav_item">
-                  <a href="#/"  data-link>Главная</a>
-                  <div class="line line_active"></div>
-                </div>
-                <div class="hidden_nav_item">
-                  <a href="#/book/"  data-link>Учебник</a>
-                  <div class="line"></div>
-                </div>
-                <div class="hidden_nav_item">
-                  <a href="#/games/"  data-link>Игры</a>
-                  <div class="line"></div>
-                </div>
-                <div class="hidden_nav_item">
-                  <a href="#/statistic/"  data-link>Статистика</a>
-                  <div class="line"></div>
-                </div>
-                <div class="hidden_nav_item">
-                  <a href="#/team/"  data-link>О команде</a>
-                  <div class="line"></div>
-                </div>
+                <a href="#/"  data-link class="hidden_nav_item">Главная</a>
+                <a href="#/book/"  data-link class="hidden_nav_item">Учебник</a>
+                <a href="#/games/"  data-link class="hidden_nav_item">Игры</a>
+                <a href="#/statistic/"  data-link class="hidden_nav_item">Статистика</a>
+                <a href="#/team/"  data-link class="hidden_nav_item">О команде</a>
             </div>
           </div>
         </nav>
