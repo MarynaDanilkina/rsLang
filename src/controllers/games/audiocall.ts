@@ -16,6 +16,8 @@ export default class Audiocall extends Game {
 
     answersKeyboardKeys: Array<string> = [];
 
+    controlKeyboardKeys: '' | ' ' | 'Enter' = '';
+
     componentsToggler() {
         const SKIP_BTN = <HTMLDivElement>document.querySelector('.btn-skip');
         const NEXT_BTN = <HTMLDivElement>document.querySelector('.btn-next');
@@ -62,6 +64,7 @@ export default class Audiocall extends Game {
             const results = new GameStatisticview(<WordData[]>this.words, this.rightAnswers, this.wrongAnswers);
             results.render();
             this.statisticGamePageListners();
+            this.controlKeyboardKeys = '';
         }
     }
 
@@ -137,12 +140,16 @@ export default class Audiocall extends Game {
 
         setTimeout(() => this.getAudiofiles(), 1000);
         this.answersKeyboardKeys = ['1', '2', '3', '4', '5'];
+        this.controlKeyboardKeys = ' ';
+        this.keyboardListner();
     }
 
     answerHandler(e: Event, currectAnswer: WordData, options: number[], keyboardTarget?: HTMLButtonElement) {
         const progressRange = <HTMLDivElement>document.querySelector('.game__progress-range');
         const answerBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.answer');
         let selectedAnswer: HTMLButtonElement;
+        this.answersKeyboardKeys = [];
+
         if (keyboardTarget) {
             selectedAnswer = keyboardTarget;
         } else {
@@ -169,6 +176,7 @@ export default class Audiocall extends Game {
         }
 
         this.componentsToggler();
+        this.controlKeyboardKeys = 'Enter';
     }
 
     keyboardGameHandler(e: KeyboardEvent) {
@@ -177,7 +185,16 @@ export default class Audiocall extends Game {
         if (this.answersKeyboardKeys.includes(e.key)) {
             const keyboardTarget: HTMLButtonElement = answerBtns[+e.key - 1];
             this.answerHandler(e, (<WordData[]>this.words)[this.currentQuestion], this.currentOptions, keyboardTarget);
-            this.answersKeyboardKeys = [];
+        }
+        if (this.controlKeyboardKeys.includes(e.key)) {
+            if (e.key === ' ') {
+                this.skip();
+                this.controlKeyboardKeys = 'Enter';
+                this.answersKeyboardKeys = [];
+            } else {
+                this.controlKeyboardKeys = ' ';
+                this.next();
+            }
         }
     }
 
@@ -186,7 +203,6 @@ export default class Audiocall extends Game {
         this.changeContent();
         this.nextBtnListner();
         this.skipBtnListner();
-        setTimeout(() => this.keyboardListner(), 0);
     }
 
     nextBtnListner() {
@@ -200,7 +216,6 @@ export default class Audiocall extends Game {
     }
 
     keyboardListner() {
-        const answers = <HTMLElement>document.querySelector('answers_wrapper');
-        answers.addEventListener('keydown', (e) => this.keyboardGameHandler(e));
+        document.onkeydown = (e) => this.keyboardGameHandler(e);
     }
 }
