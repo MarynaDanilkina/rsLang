@@ -74,6 +74,7 @@ export default class DictionaryDevelopments {
             htmlElements.BODY.innerHTML = '';
             book.render();
             hiddenNavBlur.render();
+            this.learnedWordStyle();
         });
     }
 
@@ -237,6 +238,7 @@ export default class DictionaryDevelopments {
                 event.setAttribute('disabled', 'disabled');
                 learned.removeAttribute('disabled');
                 this.learnedWordStyle();
+                console.log('+');
             }
         });
     }
@@ -294,6 +296,7 @@ export default class DictionaryDevelopments {
                 event.setAttribute('disabled', 'disabled');
                 difficult.removeAttribute('disabled');
                 this.learnedWordStyle();
+                console.log('+');
             }
         });
     }
@@ -301,19 +304,26 @@ export default class DictionaryDevelopments {
     learnedWordStyle() {
         const cards = document.querySelectorAll('.activeLearnedCard');
         const buttonPage = <HTMLElement>document.getElementById('button_page');
-        const games = document.querySelectorAll('.games_item__container');
+        const sprint = <HTMLElement>document.getElementById('game_sprint');
+        const audiocall = <HTMLElement>document.getElementById('game_audiocall');
         if (cards.length === 20) {
-            htmlElements.BODY.style.backgroundColor = ' #f0f3e8';
-            buttonPage.style.backgroundColor = ' #f0f3e8';
-            games?.forEach((game) => {
-                game.setAttribute('disabled', 'disabled');
-            });
+            htmlElements.BODY.style.backgroundColor = '#e9ecfd';
+            sprint.style.backgroundColor = '#e9ecfd';
+            audiocall.style.backgroundColor = '#e9ecfd';
+            audiocall.style.pointerEvents = 'none';
+            sprint.style.pointerEvents = 'none';
+            if (buttonPage) {
+                buttonPage.style.backgroundColor = '#e9ecfd';
+            }
         } else {
             htmlElements.BODY.style.backgroundColor = '#ffffff';
-            buttonPage.style.backgroundColor = '#ffffff';
-            games?.forEach((game) => {
-                game.removeAttribute('disabled');
-            });
+            sprint.style.backgroundColor = '#ffffff';
+            audiocall.style.backgroundColor = '#ffffff';
+            audiocall.style.pointerEvents = 'auto';
+            sprint.style.pointerEvents = 'auto';
+            if (buttonPage) {
+                buttonPage.style.backgroundColor = '#ffffff';
+            }
         }
     }
 

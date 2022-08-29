@@ -45,9 +45,7 @@ export default class DictionaryCard {
         game.render();
         dictionary.audio();
         dictionary.close();
-        dictionary.addDifficultWord();
         dictionary.onlyAuthorized();
-        dictionary.learnedWord();
         dictionary.styleCard();
     }
 }

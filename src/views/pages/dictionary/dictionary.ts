@@ -33,5 +33,7 @@ export default class Dictionary implements View {
         dictionary.levels();
         dictionary.difficultWord();
         dictionary.onlyAuthorized();
+        dictionary.addDifficultWord();
+        dictionary.learnedWord();
     }
 }
