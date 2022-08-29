@@ -3,38 +3,41 @@
   height: 80px
   padding-top: 20px
   padding-bottom: 20px
+  &__content_wrapper
+    height: 100%
+    display: flex
+    flex-direction: row
+  &__logo_wrapper
+    height: 100%
+  &__logo 
+    height: 100%
+  .navigation
+    display: flex
+    flex-direction: row
+    width: 40vw
+    justify-content: space-between
+    align-items: center
+    font-size: 14px
+  #navItemLogin 
+    & a 
+      display: flex
+      flex-direction: row
 
-.header__content_wrapper,
-.header__logo_wrapper,
-.header__logo 
-  height: 100%
-
-
-.header__content_wrapper,
-.navigation,
-#navItemLogin a 
-  display: flex
-  flex-direction: row
-
-.header__content_wrapper 
-  margin: 0 20vw
-  justify-content: space-between
-
-.navigation 
-  width: 40vw
-  justify-content: space-between
-  align-items: center
-  font-size: 14px
-
-.nav__item,
-.login__title 
-  align-self: center
-
-.login__title 
-  margin-left: 10px
-
-
+  &__content_wrapper 
+    margin: 0 20vw
+    justify-content: space-between
+  .nav__item
+    align-self: center
+    font-weight: 700
+    transition: all 0.1s ease-in
+    &:hover
+      border-bottom: rgba(94, 76, 146) solid 3px
+  .login__title 
+    align-self: center
+    margin-left: 10px
+    
 /* burger */
+    
 .burger 
   cursor: pointer
   top: 50%
@@ -43,23 +46,17 @@
   transition: all 0.3s ease-in-out 0s
   transform: rotate(180deg)
   width: fit-content
-
-.burger.open 
-  transform: rotate(90deg)
-  cursor: pointer
-
-.bar 
-  width: 30px
-  height: 2px
-  background-color: #00093c
-  margin: 8px 0
-  transition: 0.4s
-
-.bar.middle_bar 
-  width: 20px
-
+  .bar 
+    width: 30px
+    height: 2px
+    background-color: #00093c
+    margin: 8px 0
+    transition: 0.4s
+    &.middle_bar 
+      width: 20px
 
 /* hidden burger menu */
+
 .hidden_nav 
   display: none
   position: absolute
@@ -74,42 +71,49 @@
   right: -500px
   background: rgba(241, 231, 255, 1)
   transition: right 0.5s ease-in-out 0s
-
+  &.open 
+    right: 0
+    display: block
+  &_items_wrapper 
+    display: flex
+    flex-direction: column
+    text-align: left
+    padding-top: 100px
+  &_item 
+    display: block
+    width: 100%
+    padding: 20px 0px 20px 100px
+    align-self: center
+    & a 
+      transition: all 0.5s ease-in-out 0.5s
+    &.open 
+      display: block
+    &:hover 
+      background-color: rgba(94, 76, 146, 0.17)
+      transition: all 0.3s ease-in-out
+  
 #dark_field 
   background: transparent
   transition: all 0.5s ease-in-out 0s
+  &.open 
+    position: absolute
+    background: rgba(0, 0, 0, 0.36)
+    width: 100vw
+    height: 100vh
+    z-index: 2
+    top: 0vh
+    right: 40px
 
-#dark_field.open 
-  position: absolute
-  background: rgba(0, 0, 0, 0.36)
-  width: 100vw
-  height: 100vh
-  z-index: 2
-  top: 0vh
-  right: 40px
+@media (max-width: 992px) 
+  .header 
+    #navItemMain, #navItemTeam, .login__title
+      display: none
+    .navigation
+      justify-content: end
+    .burger
+      margin-left: 30px
 
-.hidden_nav.open 
-  right: 0
-  display: block
-
-.hidden_nav_items_wrapper 
-  display: flex
-  flex-direction: column
-  text-align: left
-  padding-top: 100px
-
-.hidden_nav_item 
-  display: block
-  width: 100%
-  padding: 20px 0px 20px 100px
-  align-self: center
-
-.hidden_nav_item a 
-  transition: all 0.5s ease-in-out 0.5s
-
-.hidden_nav_item.open 
-  display: block
-
-.hidden_nav_item:hover 
-  background-color: rgba(94, 76, 146, 0.17)
-  transition: all 0.3s ease-in-out
+@media (max-width: 768px) 
+  .header
+    &__content_wrapper
+      margin: 0 10vw
