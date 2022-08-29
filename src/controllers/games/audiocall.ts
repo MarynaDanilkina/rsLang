@@ -14,6 +14,8 @@ export default class Audiocall extends Game {
 
     currentOptions: Array<number> = [];
 
+    answersKeyboardKeys: Array<string> = [];
+
     componentsToggler() {
         const SKIP_BTN = <HTMLDivElement>document.querySelector('.btn-skip');
         const NEXT_BTN = <HTMLDivElement>document.querySelector('.btn-next');
@@ -79,7 +81,7 @@ export default class Audiocall extends Game {
 
         answerBtns.forEach((option, i) => {
             const currentOption = option;
-            currentOption.textContent = (<WordData[]>this.words)[options[i]].wordTranslate;
+            currentOption.textContent = `${i + 1}. ${(<WordData[]>this.words)[options[i]].wordTranslate}`;
             currentOption.onclick = (e) =>
                 this.answerHandler(e, (<WordData[]>this.words)[this.currentQuestion], options);
         });
@@ -134,18 +136,27 @@ export default class Audiocall extends Game {
         this.getAnswerOptions();
 
         setTimeout(() => this.getAudiofiles(), 1000);
+        this.answersKeyboardKeys = ['1', '2', '3', '4', '5'];
     }
 
-    answerHandler(e: Event, currectAnswer: WordData, options: number[]) {
+    answerHandler(e: Event, currectAnswer: WordData, options: number[], keyboardTarget?: HTMLButtonElement) {
         const progressRange = <HTMLDivElement>document.querySelector('.game__progress-range');
         const answerBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.answer');
-        const selectedAnswer = <HTMLButtonElement>e.target;
+        let selectedAnswer: HTMLButtonElement;
+        if (keyboardTarget) {
+            selectedAnswer = keyboardTarget;
+        } else {
+            selectedAnswer = <HTMLButtonElement>e.target;
+        }
         answerBtns.forEach((btn) => {
             const currentBtn = btn;
             currentBtn.disabled = true;
         });
 
-        if (selectedAnswer.textContent === currectAnswer.wordTranslate) {
+        if (
+            (<string>selectedAnswer.textContent).slice((<string>selectedAnswer.textContent).indexOf('.') + 2) ===
+            currectAnswer.wordTranslate
+        ) {
             selectedAnswer.classList.add('right');
             this.rightAnswers.push(this.currentQuestion);
             progressRange.children[this.currentQuestion].classList.add('right');
@@ -160,11 +171,22 @@ export default class Audiocall extends Game {
         this.componentsToggler();
     }
 
+    keyboardGameHandler(e: KeyboardEvent) {
+        const answerBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.answer');
+
+        if (this.answersKeyboardKeys.includes(e.key)) {
+            const keyboardTarget: HTMLButtonElement = answerBtns[+e.key - 1];
+            this.answerHandler(e, (<WordData[]>this.words)[this.currentQuestion], this.currentOptions, keyboardTarget);
+            this.answersKeyboardKeys = [];
+        }
+    }
+
     async startGame() {
         await super.startGame();
         this.changeContent();
         this.nextBtnListner();
         this.skipBtnListner();
+        setTimeout(() => this.keyboardListner(), 0);
     }
 
     nextBtnListner() {
@@ -175,5 +197,10 @@ export default class Audiocall extends Game {
     skipBtnListner() {
         const SKIP_BTN = <HTMLDivElement>document.querySelector('.btn-skip');
         SKIP_BTN.addEventListener('click', this.skip.bind(this));
+    }
+
+    keyboardListner() {
+        const answers = <HTMLElement>document.querySelector('answers_wrapper');
+        answers.addEventListener('keydown', (e) => this.keyboardGameHandler(e));
     }
 }
