@@ -1,7 +1,7 @@
 import { View } from '../../../../interfaces/interfaces';
 import './audiocall.sass';
 
-export default class Audiocall implements View {
+export default class AudiocallView implements View {
     html = `<div class="game__progress-range">
                 <div class="progress-point" id="progress_point_1"></div>
                 <div class="progress-point" id="progress_point_2"></div>

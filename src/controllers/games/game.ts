@@ -3,7 +3,7 @@ import { WordData } from '../../interfaces/interfaces';
 import State from '../../models/state';
 import Levels from '../../views/components/dictionary/levels/levels';
 import levelsMap from '../../views/components/dictionary/levels/levelsMap';
-import Audiocall from '../../views/pages/games/audiocall/audiocall';
+import AudiocallView from '../../views/pages/games/audiocall/audiocallView';
 import getRandomIntInclusive from '../helpers/getRandomNumber';
 import shuffle from '../helpers/shuffle';
 
@@ -59,7 +59,7 @@ export default class Game {
         GAME_CONTAINER.innerHTML = '';
 
         if (this.gameType === 'audiocall') {
-            const game = new Audiocall();
+            const game = new AudiocallView();
             game.render();
             this.winsSession = State.games.audiocall.winsSession;
         }
