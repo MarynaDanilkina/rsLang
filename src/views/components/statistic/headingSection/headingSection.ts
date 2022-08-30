@@ -6,13 +6,11 @@ export default class HeadingSection {
     constructor() {
         this.learnedWords = State.games.sprint.learnedwords + State.games.audiocall.learnedwords;
         this.rightAnswersPercent =
-            (<number>(
-                Math.round(
-                    ((State.games.sprint.rightAnswers + State.games.audiocall.rightAnswers) /
-                        (State.games.sprint.learnedwords + State.games.audiocall.learnedwords)) *
-                        100
-                )
-            )) | 0;
+            Math.round(
+                ((State.games.sprint.rightAnswers + State.games.audiocall.rightAnswers) /
+                    (State.games.sprint.learnedwords + State.games.audiocall.learnedwords)) *
+                    100
+            ) | 0;
         this.html = `<section id="statistic-heading" class="statistic-heading">
         <h2>Статистика</h2>
         <div class="results_figures">

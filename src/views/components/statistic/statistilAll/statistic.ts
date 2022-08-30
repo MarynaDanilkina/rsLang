@@ -6,11 +6,11 @@ export default class StatisticAll {
     constructor() {
         this.learnedWordsSprint = State.games.sprint.learnedwords;
         this.rightAnswersPercentSprint =
-            (<number>Math.round((State.games.sprint.rightAnswers / State.games.sprint.learnedwords) * 100)) | 0;
+            Math.round((State.games.sprint.rightAnswers / State.games.sprint.learnedwords) * 100) | 0;
         this.rightAnswersSessionSprint = State.games.sprint.rightAnswersSession;
         this.learnedWordsAudioCall = State.games.audiocall.learnedwords;
         this.rightAnswersPercentAudiocall =
-            (<number>Math.round((State.games.audiocall.rightAnswers / State.games.audiocall.learnedwords) * 100)) | 0;
+            Math.round((State.games.audiocall.rightAnswers / State.games.audiocall.learnedwords) * 100) | 0;
         this.rightAnswersSessionAudiocall = State.games.audiocall.rightAnswersSession;
         this.html = `
           <div class="statistic">
