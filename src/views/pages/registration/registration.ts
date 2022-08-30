@@ -61,13 +61,13 @@ export default class Registration implements View {
             const forms = document.querySelectorAll('form');
 
             if (
-                (target === logInFormButton && signupFormButton.classList.contains('active')) ||
-                (target === signupFormButton && logInFormButton.classList.contains('active'))
+                (target === logInFormButton && signupFormButton.classList.contains('selected_form')) ||
+                (target === signupFormButton && logInFormButton.classList.contains('selected_form'))
             ) {
-                logInFormButton.classList.toggle('active');
-                signupFormButton.classList.toggle('active');
+                logInFormButton.classList.toggle('selected_form');
+                signupFormButton.classList.toggle('selected_form');
                 errorMessage.classList.remove('active');
-                forms.forEach((form) => form.classList.toggle('active'));
+                forms.forEach((form) => form.classList.toggle('selected_form'));
             }
         });
 
