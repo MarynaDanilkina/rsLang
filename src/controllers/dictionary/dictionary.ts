@@ -325,29 +325,27 @@ export default class DictionaryDevelopments {
 
     styleCard() {
         const close = <HTMLElement>document.getElementById('close');
-        const body = <HTMLElement>document.getElementById('app');
+        const main = <HTMLElement>document.querySelector('main');
         if (close) {
             if (close.className === 'A1') {
-                body.style.backgroundImage = 'url(../../assets/backgrounds/levelA1.png)';
-                body.style.backgroundSize = '10%';
+                main.style.backgroundImage = 'url(../../assets/backgrounds/levelA1.png)';
+                main.style.backgroundSize = '10%';
             } else if (close.className === 'A2') {
-                body.style.backgroundImage = 'url(../../assets/backgrounds/levelA2.png)';
-                body.style.backgroundSize = '15%';
+                main.style.backgroundImage = 'url(../../assets/backgrounds/levelA2.png)';
+                main.style.backgroundSize = '15%';
             } else if (close.className === 'B1') {
-                body.style.backgroundImage = 'url(../../assets/backgrounds/levelB1.png)';
-                body.style.backgroundSize = '10%';
+                main.style.backgroundImage = 'url(../../assets/backgrounds/levelB1.png)';
+                main.style.backgroundSize = '10%';
             } else if (close.className === 'B2') {
-                body.style.backgroundImage = 'url(../../assets/backgrounds/levelB2.png)';
-                body.style.backgroundSize = '15%';
+                main.style.backgroundImage = 'url(../../assets/backgrounds/levelB2.png)';
+                main.style.backgroundSize = '15%';
             } else if (close.className === 'C1') {
-                body.style.backgroundImage = 'url(../../assets/backgrounds/levelC1.png)';
-                body.style.backgroundSize = '10%';
+                main.style.backgroundImage = 'url(../../assets/backgrounds/levelC1.png)';
+                main.style.backgroundSize = '10%';
             } else if (close.className === 'C2') {
-                body.style.backgroundImage = 'url(../../assets/backgrounds/levelC2.png)';
-                body.style.backgroundSize = '10%';
+                main.style.backgroundImage = 'url(../../assets/backgrounds/levelC2.png)';
+                main.style.backgroundSize = '10%';
             }
-        } else {
-            body.style.backgroundImage = 'none';
         }
     }
 }

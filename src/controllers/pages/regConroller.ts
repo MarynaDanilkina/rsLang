@@ -1,8 +1,7 @@
 import Authorization from '../../api/authorization';
 import User from '../../api/users';
-import { enableSubmit, equalCheck, testEmail, testLength, showSpinner } from '../../utils/utils';
+import { enableSubmit, equalCheck, testEmail, testLength, showSpinner, saveCurrentUser } from '../../utils/utils';
 import currentUser from '../../models/currentUser';
-import { AuthData } from '../../interfaces/interfaces';
 
 export default class RegController {
     private authorization: Authorization;
@@ -98,7 +97,7 @@ export default class RegController {
         });
 
         if (auth.message === 'Authenticated') {
-            this.saveCurrentUser(auth);
+            saveCurrentUser(auth);
         } else {
             errorMessage.classList.add('active');
             errorMessage.innerHTML = auth.message;
@@ -157,7 +156,7 @@ export default class RegController {
             });
 
             if (auth) {
-                this.saveCurrentUser(auth);
+                saveCurrentUser(auth);
             }
 
             const isSuccess = !!(await this.user.getUser(currentUser.userId, currentUser.token));
@@ -169,12 +168,4 @@ export default class RegController {
 
         showSpinner(false);
     };
-
-    private saveCurrentUser(auth: AuthData) {
-        currentUser.message = auth.message;
-        currentUser.name = auth.name;
-        currentUser.token = auth.token;
-        currentUser.refreshToken = auth.refreshToken;
-        currentUser.userId = auth.userId;
-    }
 }
