@@ -16,8 +16,7 @@ export default class Registration implements View {
     html = `<main id="main" class="registration_page">
               <section id="registration_section" class="registration_section">
                 <div class="registration_owl">
-                  <img class="owl_logo registration_owl_logo" src="../../../assets/images/owl.png" />
-                  <img class="registration_speech_logo" src="../../../assets/images/speech.png" />
+                  <img class="owl_logo registration_owl_logo" src="../../../assets/images/section_owl.png" />
                     <div class="registration_text">
                       Войдите в систему или зарегистрируйтесь, если у вас ещё нет аккаунта
                     </div>
