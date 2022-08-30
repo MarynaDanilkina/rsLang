@@ -2,53 +2,59 @@
 
 .footer 
   background-color: #00093c
-  height: 150px
+  color: rgba(255, 255, 255, 1)
+  height: 130px
   padding-top: 35px
   font-size: 15px
   font-weight: 200
   text-align: center
+  & a 
+    color: rgba(255, 255, 255, 1)
+  &__content 
+    width: fit-content
+    margin: 0 auto
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+  &__info 
+    display: flex
+    flex-direction: column
+  .devs_list 
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    & a 
+      display: flex
+  &__logo__wrapper 
+    display: flex
+    align-items: center
+    width: 90px
+  &__logo 
+    display: block
+    width: 100%
+  .gh_title 
+    padding-left: 10px
+  .devs_list a
+    align-items: center
+    &:not(:last-child) 
+      padding-right: 10px
+  .gh_logo__wrapper 
+    align-self: center
+    .gh_logo
+      height: 25px
+  .dev_year 
+    display: flex
+    align-items: center
+    justify-content: center
+    font-weight: 500
 
-.footer,
-.footer a 
-  color: rgba(255, 255, 255, 1)
-
-.footer__content 
-  width: fit-content
-  margin: 0 auto
-
-.footer__content,
-.devs_list 
-  display: flex
-  flex-direction: row
-  justify-content: space-between
-
-.devs_list a 
-  display: flex
-
-.footer__info 
-  display: flex
-  flex-direction: column
-
-.footer__logo__wrapper 
-  display: flex
-  align-items: center
-  width: 90px
-
-.footer__logo 
-  display: block
-  width: 100%
-
-.gh_title 
-  padding-left: 10px
-
-.devs_list a:not(:last-child) 
-  padding-right: 10px
-
-.gh_logo__wrapper 
-  align-self: center
-
-.dev_year 
-  display: flex
-  align-items: center
-  justify-content: center
-  font-weight: 500
+@media (max-width: 576px)
+  .footer
+    height: fit-content
+    padding-bottom: 10px
+    .devs_list
+      flex-direction: column
+      & a
+        padding-bottom: 15px
+        &:not(:last-child)
+          padding-right: 0
