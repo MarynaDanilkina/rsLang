@@ -227,18 +227,16 @@ export default class DictionaryDevelopments {
                         ok = false;
                         await userWords.updateUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
                         card.classList.remove('activeLearnedCard');
+                        this.learnedWordStyle();
                     }
                 });
                 if (ok) {
                     await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                    this.learnedWordStyle();
                 }
-                const getUserWords1 = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
-                console.log(getUserWords1);
                 card.classList.add('activeDifficultCard');
                 event.setAttribute('disabled', 'disabled');
                 learned.removeAttribute('disabled');
-                this.learnedWordStyle();
-                console.log('+');
             }
         });
     }
@@ -285,18 +283,16 @@ export default class DictionaryDevelopments {
                         ok = false;
                         await userWords.updateUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
                         card.classList.remove('activeDifficultCard');
+                        this.learnedWordStyle();
                     }
                 });
                 if (ok) {
                     await userWords.createUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                    this.learnedWordStyle();
                 }
-                const getUserWords1 = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
-                console.log(getUserWords1);
                 card.classList.add('activeLearnedCard');
                 event.setAttribute('disabled', 'disabled');
                 difficult.removeAttribute('disabled');
-                this.learnedWordStyle();
-                console.log('+');
             }
         });
     }
