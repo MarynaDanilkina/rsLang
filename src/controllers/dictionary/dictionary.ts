@@ -8,7 +8,6 @@ import DictionaryCard from '../../views/pages/dictionary-card/dictionatyCard';
 import Dictionary from '../../views/pages/dictionary/dictionary';
 import UserWords from '../../api/usersWords';
 import Words from '../../api/words';
-import UserArgWords from '../../api/usersAgrWords';
 import DifficultWord from '../../views/pages/difficultWord/difficultWord';
 
 let page = 0;

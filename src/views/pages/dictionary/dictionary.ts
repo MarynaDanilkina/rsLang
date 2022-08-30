@@ -2,7 +2,6 @@ import { View } from '../../../interfaces/interfaces';
 import htmlConsts from '../../../models/htmlElements';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import Levels from '../../components/dictionary/levels/levels';
 import Games from '../../components/dictionary/games/games';
 import './dictionary.sass';
 import levelsMap from '../../components/dictionary/levels/levelsMap';
