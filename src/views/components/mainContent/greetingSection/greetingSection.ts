@@ -16,6 +16,7 @@ export default class GreetingSection implements View {
           <p>Для кого это приложение?</p>
         </div>
       </div>
+      <div class="greeting_section__title">Для кого это приложение?</div>
       <div class="basic_info">
         <div class="basic_info__users">
           <div class="user_kind">

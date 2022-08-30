@@ -3,7 +3,7 @@ import './difficult2.sass';
 export default class DifficultWords {
     html = `
         <div class="difficult">
-            <button>
+            <button disabled='disabled'>
                 <div>
                   <h3>Сложные слова</h3>
                 </div>

@@ -8,6 +8,7 @@ import './dictionary.sass';
 import levelsMap from '../../components/dictionary/levels/levelsMap';
 import DictionaryDevelopments from '../../../controllers/dictionary/dictionary';
 import DifficultWords from '../../components/dictionary/level/difficultWords';
+import LevelsDictionary from '../../components/dictionary/levels/levelsDictionary';
 
 export default class Dictionary implements View {
     html = `<main id="main" class="dictionary_page">
@@ -23,12 +24,16 @@ export default class Dictionary implements View {
         htmlConsts.BODY.insertAdjacentHTML('beforeend', this.html);
 
         const MAIN = <HTMLElement>document.getElementById('main');
-        const levels = new Levels(levelsMap, MAIN);
+        const levels = new LevelsDictionary(levelsMap, MAIN);
         levels.render();
         difficultWords.render();
         game.render();
         footer.render();
         const dictionary = new DictionaryDevelopments();
         dictionary.levels();
+        dictionary.difficultWord();
+        dictionary.onlyAuthorized();
+        dictionary.addDifficultWord();
+        dictionary.learnedWord();
     }
 }

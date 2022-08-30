@@ -28,9 +28,15 @@ export interface AuthData {
     name: string;
 }
 
+// export interface UserWordData {
+//     difficulty: string;
+//     optional: { [key: string]: string };
+// }
+
 export interface UserWordData {
     difficulty: string;
-    optional: { [key: string]: string };
+    wordId: string;
+    id: string;
 }
 
 export interface StatisticsData {

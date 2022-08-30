@@ -3,7 +3,7 @@ import htmlElements from '../../../models/htmlElements';
 import './hiddenNavBlur.sass';
 
 export default class HiddenNavBlur implements View {
-    html = `<div clss="dark-field"></div>`;
+    html = `<div class="dark-field"></div>`;
 
     render() {
         htmlElements.BODY.insertAdjacentHTML('beforeend', this.html);

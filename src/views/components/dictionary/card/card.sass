@@ -5,6 +5,7 @@
   margin-top: 40px
   flex-direction: column
   z-index: 0
+  margin-bottom: 20px
 
 .sound
   width: 47px
@@ -69,6 +70,7 @@
 
 .card-info__buttons
   display: flex
+  margin-bottom: 10px
 
 .card__button
   margin-top: 20px
@@ -77,7 +79,6 @@
   width: 230px
   height: 45px
   display: flex
-  background-color: #fff
   border-radius: 6px
   align-items: center
   justify-content: center
@@ -88,7 +89,44 @@
 
 .card__button:hover
   cursor: pointer
-  background-color: #F3E4F9
+
+.button__difficult
+  background-color: #f0d8d8
+
+.button__delete
+  background-color: #e6e4e6
+
+.button__difficult:hover
+  background-color: #d4b2b2
+
+.button__difficult:disabled
+  background-color: #f0d8d8
+  cursor: default
+
+.button__delete:hover
+  background-color: #c8c8c8
+
+.button__learned
+  background-color: #e9ecb5d8
+
+.button__learned:hover
+  background-color: #edf38ad8
+
+.button__learned:disabled
+  background-color: #e9ecb5d8
+  cursor: default
+
+.notActive
+  display: none
+
+.activeDifficultCard
+  background-color: #f0d8d8
+
+.activeLearnedCard
+  background-color: #faf6d0
+
+.button-delete_difficult
+  width: 300px
 
 @media (max-width: 1400px)
   .cards
