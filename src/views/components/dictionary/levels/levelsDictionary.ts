@@ -1,5 +1,4 @@
 import { LevelsView } from '../../../../interfaces/interfaces';
-import Level from '../level/level';
 import './levels.sass';
 import './gameLevels.sass';
 import LevelDictionary from '../level/levelDictionary';

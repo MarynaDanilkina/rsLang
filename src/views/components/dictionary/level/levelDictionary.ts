@@ -1,4 +1,3 @@
-import DictionaryDevelopments from '../../../../controllers/dictionary/dictionary';
 import { LevelView } from '../../../../interfaces/interfaces';
 import './LevelDictionary.sass';
 

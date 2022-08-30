@@ -1,13 +1,10 @@
 import Games from '../../components/dictionary/games/games';
-import Card from '../../components/dictionary/card/card';
-import LevelDictionaryClose from '../../components/dictionary/level/levelDictionaryClose';
-import DifficultWords from '../../components/dictionary/level/difficultWords';
 import DifficultWordDictionaryClose from '../../components/dictionary/level/difficultWordDictionaryClose';
 import DictionaryDevelopments from '../../../controllers/dictionary/dictionary';
 import currentUser from '../../../models/currentUser';
 import UserWords from '../../../api/usersWords';
 import Words from '../../../api/words';
-import { UserWordData, WordData } from '../../../interfaces/interfaces';
+import { WordData } from '../../../interfaces/interfaces';
 import CardDifficult from '../../components/dictionary/card/cardDifficult';
 
 export default class DifficultWord {

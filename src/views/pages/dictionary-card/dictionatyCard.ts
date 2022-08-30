@@ -3,7 +3,6 @@ import Games from '../../components/dictionary/games/games';
 import Card from '../../components/dictionary/card/card';
 import Pagination from '../../components/dictionary/pagination/pagination';
 import Words from '../../../api/words';
-import LevelDictionary from '../../components/dictionary/level/levelDictionary';
 import DictionaryDevelopments from '../../../controllers/dictionary/dictionary';
 import LevelDictionaryClose from '../../components/dictionary/level/levelDictionaryClose';
 
