@@ -2,26 +2,21 @@
 
 .registration
   &_section
-    height: calc(100vh - 230px)
+    height: calc(100vh - 210px)
   &_owl,
-  &_owl_logo,
-  &_speech_logo,
   &_text 
     position: absolute
   &_owl 
-    top: 30vh
+    top: 27vh
     left: 15vw
     &_logo 
-      z-index: 1
-      width: 6vw
-      top: 18vh
-  &_speech_logo 
-    width: 13.5vw
+      width: 15vw
   &_text 
     width: 13vw
     font-size: 1vw
-    top: 1vh
-    left: 0.7vw
+    line-height: 1.2rem
+    top: 10%
+    left: 8%
 
 .reg-form
   &_wrapper 
@@ -51,7 +46,7 @@
     width: 100%
     height: 4px
     margin-top: 4%
-  &.active 
+  &.selected_form
     &::after
       background: linear-gradient(90deg, #f7941d 0%, #27aae1 100%)
 
@@ -94,7 +89,7 @@
         margin-bottom: 5%
       &[type='submit'] 
         margin-bottom: 3%
-  &.active 
+  &.selected_form 
     display: flex
     flex-direction: column
     width: 30%
@@ -112,7 +107,7 @@
     width: 40%
   
   .form
-    .active
+    .selected_form
       width: 35%
   
 
@@ -122,7 +117,7 @@
     font-size: 80%
   
   .form
-    .active
+    .selected_form
       width: 40%
       font-size: 30%
   
@@ -135,7 +130,7 @@
     width: 50%
   
   .form
-    .active
+    .selected_form
       width: 45%
   
   input 

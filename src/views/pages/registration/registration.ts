@@ -16,19 +16,18 @@ export default class Registration implements View {
     html = `<main id="main" class="registration_page">
               <section id="registration_section" class="registration_section">
                 <div class="registration_owl">
-                  <img class="owl_logo registration_owl_logo" src="../../../assets/images/owl.png" />
-                  <img class="registration_speech_logo" src="../../../assets/images/speech.png" />
+                  <img class="owl_logo registration_owl_logo" src="../../../assets/images/section_owl.png" />
                     <div class="registration_text">
                       Войдите в систему или зарегистрируйтесь, если у вас ещё нет аккаунта
                     </div>
                 </div>
                 <div class="reg-form_wrapper">
                   <div class="reg-form_header" id="reg-buttons">
-                    <div class="page_title active" id="log-in">Вход</div>
+                    <div class="page_title selected_form" id="log-in">Вход</div>
                     <div class="page_title" id="signup">Регистрация</div>
                   </div>
                   <p class="error-message" id="error-message"></p>
-                  <form class="form form_login active" id="login-form">
+                  <form class="form form_login selected_form" id="login-form">
                     <input type="email" placeholder="Введите еmail ..." id="login-email" autocomplete="off" />
                     <input type="password" placeholder="Введите пароль ..." id="login-password" />
                     <button class="form__button" id="login-button"/>Войти</button> 
