@@ -5,6 +5,7 @@ import Pagination from '../../components/dictionary/pagination/pagination';
 import Words from '../../../api/words';
 import LevelDictionary from '../../components/dictionary/level/levelDictionary';
 import DictionaryDevelopments from '../../../controllers/dictionary/dictionary';
+import LevelDictionaryClose from '../../components/dictionary/level/levelDictionaryClose';
 
 export const mapper: Record<string, number> = {
     A1: 0,
@@ -28,7 +29,7 @@ export default class DictionaryCard {
     async render() {
         const MAIN = <HTMLElement>document.getElementById('main');
         MAIN.innerHTML = '';
-        const level = new LevelDictionary(this.levels);
+        const level = new LevelDictionaryClose(this.levels);
         const game = new Games();
         const pagination = new Pagination(this.page);
         const words = new Words();
@@ -43,5 +44,8 @@ export default class DictionaryCard {
         pagination.render();
         game.render();
         dictionary.audio();
+        dictionary.close();
+        dictionary.onlyAuthorized();
+        dictionary.styleCard();
     }
 }
