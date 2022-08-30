@@ -9,19 +9,19 @@ export default class Footer implements View {
         <div class="devs_list">
           <a href="https://github.com/PavelKizhlo">
             <div class="gh_logo__wrapper">
-              <img src="../../../assets/images/gh_logo.png" class="gh_logo" />
+              <img src="../../../assets/images/gh_logo.svg" class="gh_logo" />
             </div>
             <div class="gh_title">@PavelKizhlo</div>
           </a>
           <a href="https://github.com/MarynaDanilkina">
             <div class="gh_logo__wrapper">
-              <img src="../../../assets/images/gh_logo.png" class="gh_logo" />
+              <img src="../../../assets/images/gh_logo.svg" class="gh_logo" />
             </div>
             <div class="gh_title">@MarynaDanilkina</div>
           </a>
           <a href="https://github.com/vzakharenkova">
             <div class="gh_logo__wrapper">
-              <img src="../../../assets/images/gh_logo.png" class="gh_logo" />
+              <img src="../../../assets/images/gh_logo.svg" class="gh_logo" />
             </div>
             <div class="gh_title">@vzakharenkova</div>
           </a>
