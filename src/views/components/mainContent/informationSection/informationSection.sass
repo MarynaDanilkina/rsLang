@@ -144,3 +144,29 @@
       .feature_4  
         & .feature_logo
           height: 100%
+
+@media (max-width: 576px)
+  .information_section
+    &__title
+      font-size: 25px
+
+@media (max-width: 420px)
+  .information_section
+    &__title
+      font-size: 20px
+    .features_figures 
+      &_item p 
+        margin: 0
+        padding: 30px 10px 0 10px
+        font-size: 12px
+      .figure 
+        font-size: 40px
+    .features
+      .feature 
+        h3
+          font-size: 15px
+        & p 
+          font-size: 12px   
+      .feature_4  
+        & .feature_logo
+          height: 50%  
