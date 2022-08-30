@@ -1,4 +1,3 @@
-import { View } from '../../../../interfaces/interfaces';
 import State from '../../../../models/state';
 import './statistic.sass';
 

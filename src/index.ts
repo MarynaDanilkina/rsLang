@@ -13,6 +13,3 @@ mainPageControllers.hiddenMenuListner();
 window.addEventListener('unload', () => {
     window.localStorage.setItem(State.currentUserID, JSON.stringify(State));
 });
-if (window.localStorage.getItem('')) {
-    const storageState = JSON.parse(<string>window.localStorage.getItem(''));
-}

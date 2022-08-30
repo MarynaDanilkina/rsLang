@@ -1,16 +1,14 @@
-import { View } from '../../../../interfaces/interfaces';
 import State from '../../../../models/state';
 import './headingSection.sass';
 
 export default class HeadingSection {
     constructor() {
         this.learnedWords = State.games.sprint.learnedwords + State.games.audiocall.learnedwords;
-        this.rightAnswersPercent =
-            Math.round(
-                ((State.games.sprint.rightAnswers + State.games.audiocall.rightAnswers) /
-                    (State.games.sprint.learnedwords + State.games.audiocall.learnedwords)) *
-                    100
-            ) | 0;
+        this.rightAnswersPercent = Math.round(
+            ((State.games.sprint.rightAnswers + State.games.audiocall.rightAnswers) /
+                (State.games.sprint.learnedwords + State.games.audiocall.learnedwords)) *
+                100
+        );
         this.html = `<section id="statistic-heading" class="statistic-heading">
         <h2>Статистика</h2>
         <div class="results_figures">
