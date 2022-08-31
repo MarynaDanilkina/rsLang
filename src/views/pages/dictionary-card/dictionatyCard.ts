@@ -46,5 +46,7 @@ export default class DictionaryCard {
         dictionary.close();
         dictionary.onlyAuthorized();
         dictionary.styleCard();
+        dictionary.game();
+        await dictionary.pagination();
     }
 }
