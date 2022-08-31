@@ -31,7 +31,16 @@ export default class Sprint extends Game {
 
         setTimeout(function start() {
             if (timeLeft >= 0) {
-                timerContainer.innerHTML = String(timeLeft);
+                if (timeLeft > 45) timerContainer.classList.add('much-time');
+                if (timeLeft < 45 && timeLeft > 15) {
+                    timerContainer.classList.remove('much-time');
+                    timerContainer.classList.add('middle-time');
+                }
+                if (timeLeft < 15) {
+                    timerContainer.classList.remove('middle-time');
+                    timerContainer.classList.add('little-time');
+                }
+                timerContainer.textContent = String(timeLeft);
                 timeLeft -= 1;
                 setTimeout(start, 1000);
             } else {
@@ -73,24 +82,14 @@ export default class Sprint extends Game {
     }
 
     handleAnswerClick() {
-        const answerWrapper = <HTMLDivElement>document.querySelector('.sprint-answers_wrapper');
-        answerWrapper.addEventListener(
-            'click',
-            async (evt) => {
-                const target = <HTMLButtonElement>evt.target;
-                switch (target.id) {
-                    case 'sprint-true':
-                        await this.handleAnswerView(this.handleAnswer(true), target.id);
-                        break;
-                    case 'sprint-false':
-                        await this.handleAnswerView(this.handleAnswer(false), target.id);
-                        break;
-                    default:
-                        break;
-                }
-            },
-            { once: true }
-        );
+        const buttonRight = <HTMLButtonElement>document.getElementById('sprint-true');
+        const buttonWrong = <HTMLButtonElement>document.getElementById('sprint-false');
+        buttonRight.addEventListener('click', async () => {
+            await this.handleAnswerView(this.handleAnswer(true), buttonRight.id);
+        });
+        buttonWrong.addEventListener('click', async () => {
+            await this.handleAnswerView(this.handleAnswer(false), buttonWrong.id);
+        });
     }
 
     highlightQuestion(index: number, isRight: boolean) {
@@ -105,8 +104,6 @@ export default class Sprint extends Game {
         wordWrapper.textContent = `
         ${this.allPairs![this.currentQuestion][0].word} - ${this.allPairs![this.currentQuestion][1]}
         `;
-
-        this.handleAnswerClick();
     }
 
     createPairs() {
@@ -127,5 +124,6 @@ export default class Sprint extends Game {
         this.startTimer();
         this.createPairs();
         this.askQuestion();
+        this.handleAnswerClick();
     }
 }

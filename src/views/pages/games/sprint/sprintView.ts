@@ -24,13 +24,12 @@ export default class SprintView implements View {
               <div class="progress-point" id="progress_point_19"></div>
               <div class="progress-point" id="progress_point_20"></div>
             </div>
-              <div class="timer" id="timer"></div>
+              <div class="timer much-time" id="timer">60</div>
               <div class="word_wrapper"></div>
             <div class="sprint-answers_wrapper">
               <button class="sprint-answer" id="sprint-true">Верно</button>
               <button class="sprint-answer" id="sprint-false">Неверно</button>
             </div>
-            <div class="btn-skip">Не знаю ➜</div>
             <div class="btn-next hidden">Далее ➜</div>`;
 
     render() {
