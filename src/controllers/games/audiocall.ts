@@ -65,6 +65,10 @@ export default class Audiocall extends Game {
         answerBtns[index].classList.add('right');
         this.wrongAnswers.push(this.currentQuestion);
         progressRange.children[this.currentQuestion].classList.add('wrong');
+        if (this.rightAnswersSession < this.currentAnswersSession) {
+            this.rightAnswersSession = this.currentAnswersSession;
+        }
+        this.currentAnswersSession = 0;
     }
 
     async next() {
@@ -74,6 +78,9 @@ export default class Audiocall extends Game {
             this.componentsToggler();
         } else {
             const results = new GameStatisticview(<WordData[]>this.words, this.rightAnswers, this.wrongAnswers);
+            if (this.rightAnswersSession < this.currentAnswersSession) {
+                this.rightAnswersSession = this.currentAnswersSession;
+            }
             results.render();
             await this.updateStatistic();
             this.controlKeyboardKeys = '';
@@ -179,12 +186,17 @@ export default class Audiocall extends Game {
             selectedAnswer.classList.add('right');
             this.rightAnswers.push(this.currentQuestion);
             progressRange.children[this.currentQuestion].classList.add('right');
+            this.currentAnswersSession += 1;
         } else {
             selectedAnswer.classList.add('wrong');
             const index = options.indexOf(this.currentQuestion);
             answerBtns[index].classList.add('right');
             this.wrongAnswers.push(this.currentQuestion);
             progressRange.children[this.currentQuestion].classList.add('wrong');
+            if (this.rightAnswersSession < this.currentAnswersSession) {
+                this.rightAnswersSession = this.currentAnswersSession;
+            }
+            this.currentAnswersSession = 0;
         }
 
         this.componentsToggler();

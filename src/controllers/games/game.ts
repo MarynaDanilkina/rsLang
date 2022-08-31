@@ -22,6 +22,8 @@ export default class Game {
 
     rightAnswersSession = 0;
 
+    currentAnswersSession = 0;
+
     renderLevels() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
         const levels = new Levels(levelsMap, GAME_CONTAINER);
