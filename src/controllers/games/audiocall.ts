@@ -82,7 +82,9 @@ export default class Audiocall extends Game {
                 this.rightAnswersSession = this.currentAnswersSession;
             }
             results.render();
-            await this.updateStatistic();
+            if (currentUser.userId) {
+                await this.updateStatistic();
+            }
             this.controlKeyboardKeys = '';
         }
     }
