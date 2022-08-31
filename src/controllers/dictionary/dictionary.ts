@@ -364,23 +364,23 @@ export default class DictionaryDevelopments {
         State.selectedLevel = mapperLevel[levelDictionary[0]];
         audiocall.addEventListener('click', async () => {
             const userCard = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
-            const arr = userCard?.filter((obj) => obj.difficulty === 'learned');
-            let b: WordData[] = [];
-            const page2 = page;
-            await this.update(page2, arr, b);
-            if (b.length > 20) {
-                b = b.slice(0, 20);
-                console.log(b);
+            const learnedWords = userCard?.filter((obj) => obj.difficulty === 'learned');
+            let wordsForGame: WordData[] = [];
+            const nextPage = page;
+            await this.update(nextPage, learnedWords, wordsForGame);
+            if (wordsForGame.length > 20) {
+                wordsForGame = wordsForGame.slice(0, 20);
+                console.log(wordsForGame);
             }
-            if (b.length === 20) {
-                State.wordsForGame = b;
+            if (wordsForGame.length === 20) {
+                State.wordsForGame = wordsForGame;
             } else {
-                await this.update(page2, arr, b);
+                await this.update(nextPage, learnedWords, wordsForGame);
             }
         });
     }
 
-    async update(pageNew: number, arr: UserWordData[] | undefined, b: WordData[]) {
+    async update(pageNew: number, learnedWords: UserWordData[] | undefined, wordsForGame: WordData[]) {
         const mapperLevel: Record<string, number> = {
             A1: 0,
             A2: 1,
@@ -392,27 +392,26 @@ export default class DictionaryDevelopments {
         const words = new Words();
         const cards: Array<WordData> = await words.getWords(mapperLevel[levelDictionary[0]], pageNew);
         cards.forEach((card) => {
-            if (arr) {
+            if (learnedWords) {
                 let n = 0;
-                for (let i = 0; i < arr.length; i += 1) {
-                    if (card.id === arr[i].wordId) {
+                for (let i = 0; i < learnedWords.length; i += 1) {
+                    if (card.id === learnedWords[i].wordId) {
                         n += 1;
                         break;
                     }
                 }
                 if (n === 0) {
-                    b.push(card);
+                    wordsForGame.push(card);
                 }
             }
         });
-        if (b.length < 20) {
-            if (pageNew !== 29) {
-                pageNew += 1;
-                await this.update(pageNew, arr, b);
-            } else if (pageNew > 0) {
+        if (wordsForGame.length < 20) {
+            if (pageNew === 0) {
+                pageNew = 29;
+            } else {
                 pageNew -= 1;
-                await this.update(pageNew, arr, b);
             }
+            await this.update(pageNew, learnedWords, wordsForGame);
         }
     }
 }
