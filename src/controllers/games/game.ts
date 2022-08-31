@@ -4,6 +4,7 @@ import State from '../../models/state';
 import Levels from '../../views/components/dictionary/levels/levels';
 import levelsMap from '../../views/components/dictionary/levels/levelsMap';
 import Audiocall from '../../views/pages/games/audiocall/audiocall';
+import SprintView from '../../views/pages/games/sprint/sprintView';
 import getRandomIntInclusive from '../helpers/getRandomNumber';
 import shuffle from '../helpers/shuffle';
 
@@ -58,8 +59,8 @@ export default class Game {
             this.winsSession = State.games.audiocall.winsSession;
         }
         if (this.gameType === 'sprint') {
-            // const game = new Sprint();
-            // game.render()
+            const game = new SprintView();
+            game.render();
             this.winsSession = State.games.sprint.winsSession;
         }
     }
