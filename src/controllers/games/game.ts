@@ -50,7 +50,7 @@ export default class Game {
         const pageNumber = getRandomIntInclusive(0, 29);
 
         this.words = await wordsAPI.getWords(<number>this.gameLevel, pageNumber);
-        this.words = <WordData[]>shuffle(this.words);
+        this.words = shuffle(this.words);
         GAME_CONTAINER.innerHTML = '';
 
         if (this.gameType === 'audiocall') {
