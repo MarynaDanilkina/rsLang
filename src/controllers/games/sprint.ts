@@ -2,7 +2,6 @@ import EventEmitter from 'events';
 import { WordData } from '../../interfaces/interfaces';
 import GameStatisticview from '../../views/components/games/gameStatisticSection/gameStatistic';
 import getAnotherWord from '../helpers/getAnotherElement';
-import getRandomIntInclusive from '../helpers/getRandomNumber';
 import shuffle from '../helpers/shuffle';
 import Game from './game';
 
@@ -51,10 +50,12 @@ export default class Sprint extends Game {
 
     handleAnswer(answer: boolean) {
         if (answer === this.allPairs![this.currentQuestion][0].correct) {
+            this.rightAnswers.push(this.currentQuestion);
             this.highlightQuestion(this.currentQuestion, true);
             this.currentQuestion += 1;
             return true;
         }
+        this.wrongAnswers.push(this.currentQuestion);
         this.highlightQuestion(this.currentQuestion, false);
         this.currentQuestion += 1;
         return false;
@@ -99,11 +100,17 @@ export default class Sprint extends Game {
     }
 
     askQuestion() {
-        const wordWrapper = <HTMLDivElement>document.querySelector('.word_wrapper');
+        if (this.currentQuestion <= 19) {
+            const wordWrapper = <HTMLDivElement>document.querySelector('.word_wrapper');
 
-        wordWrapper.textContent = `
-        ${this.allPairs![this.currentQuestion][0].word} - ${this.allPairs![this.currentQuestion][1]}
-        `;
+            wordWrapper.textContent = `
+              ${this.allPairs![this.currentQuestion][0].word} - ${this.allPairs![this.currentQuestion][1]}
+            `;
+        } else {
+            const results = new GameStatisticview(<WordData[]>this.words, this.rightAnswers, this.wrongAnswers);
+            results.render();
+            this.statisticGamePageListners();
+        }
     }
 
     createPairs() {
@@ -117,6 +124,7 @@ export default class Sprint extends Game {
         });
 
         this.allPairs = shuffle([...this.rightPairs!, ...this.wrongPairs!]);
+        this.words = <Array<WordData>>this.allPairs.map((pair) => this.words?.find((word) => word.id === pair[0].id));
     }
 
     async startGame() {
