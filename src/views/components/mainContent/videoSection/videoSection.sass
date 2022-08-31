@@ -8,13 +8,30 @@
   background-color: #00093c
   background-image: url(../../../../assets/backgrounds/space_background.png)
   background-size: cover
+  .player 
+    align-self: center
+    width: 100%
+    & img 
+      height: 80%
+      width: 50%
+      margin: 0 auto
 
-.player 
-  align-self: center
-  width: 100%
+@media (max-width: 1200px)
+  .video_section
+    .player
+      & img
+        width: 70%
 
-.player img 
-  height: 80%
-  width: 50%
-  display: block
-  margin: 0 auto
+@media (max-width: 768px)
+  .video_section
+    height: 500px
+    .player
+      & img
+        width: 70%
+
+@media (max-width: 576px)
+  .video_section
+    height: 450px
+    .player
+      & img
+        width: 80%

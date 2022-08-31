@@ -28,14 +28,35 @@ export interface AuthData {
     name: string;
 }
 
+// export interface UserWordData {
+//     difficulty: string;
+//     optional: { [key: string]: string };
+// }
+
 export interface UserWordData {
     difficulty: string;
-    optional: { [key: string]: string };
+    wordId: string;
+    id: string;
 }
 
+// export interface StatisticsData {
+//     learnedWords: number;
+//     optional: { [key: string]: string | number };
+// }
+
 export interface StatisticsData {
-    learnedWords: 0;
-    optional: { [key: string]: string };
+    learnedWords: number;
+    optional: {
+        day: string; // new Date().toLocaleDateString('en-US')
+        audiocallLearnedWords?: number;
+        sprintLearnedWords?: number;
+        audiocallWrongAnswers?: number;
+        sprintWrongAnswers?: number;
+        audiocallRightAnswers?: number;
+        sprintRightAnswers?: number;
+        audiocallSession?: number;
+        sprintSession?: number;
+    };
 }
 
 export interface SettingsData {
