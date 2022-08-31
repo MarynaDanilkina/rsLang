@@ -35,7 +35,7 @@ class UserStat {
 
     async upsertStatistics(userId: string, statistics: StatisticsData, token: string) {
         try {
-            const response = await fetch(`${this.users}/${userId}/statistics}`, {
+            const response = await fetch(`${this.users}/${userId}/statistics`, {
                 method: 'PUT',
                 body: JSON.stringify(statistics),
                 headers: {

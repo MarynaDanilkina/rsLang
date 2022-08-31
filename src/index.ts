@@ -1,4 +1,5 @@
 import MainPageControllers from './controllers/main/main';
+import State from './models/state';
 import Router from './router/router';
 import { AuthData } from './interfaces/interfaces';
 import './style.sass';
@@ -15,3 +16,7 @@ if (userMemo) {
 router.routWindowHandler();
 router.routClickHandler();
 mainPageControllers.hiddenMenuListner();
+
+window.addEventListener('unload', () => {
+    window.localStorage.setItem(State.currentUserID, JSON.stringify(State));
+});

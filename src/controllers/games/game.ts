@@ -20,7 +20,7 @@ export default class Game {
 
     rightAnswers: Array<number> = [];
 
-    winsSession = 0;
+    rightAnswersSession = 0;
 
     renderLevels() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
@@ -55,12 +55,12 @@ export default class Game {
         if (this.gameType === 'audiocall') {
             const game = new Audiocall();
             game.render();
-            this.winsSession = State.games.audiocall.winsSession;
+            this.rightAnswersSession = State.games.audiocall.rightAnswersSession;
         }
         if (this.gameType === 'sprint') {
             // const game = new Sprint();
             // game.render()
-            this.winsSession = State.games.sprint.winsSession;
+            this.rightAnswersSession = State.games.sprint.rightAnswersSession;
         }
     }
 
@@ -68,7 +68,7 @@ export default class Game {
         State.games[<'audiocall' | 'sprint'>this.gameType].learnedwords += 20;
         State.games[<'audiocall' | 'sprint'>this.gameType].rightAnswers += this.rightAnswers.length;
         State.games[<'audiocall' | 'sprint'>this.gameType].wrongAnswers += this.wrongAnswers.length;
-        State.games[<'audiocall' | 'sprint'>this.gameType].winsSession += this.winsSession;
+        State.games[<'audiocall' | 'sprint'>this.gameType].rightAnswersSession += this.rightAnswersSession;
         console.log(State);
     }
 
