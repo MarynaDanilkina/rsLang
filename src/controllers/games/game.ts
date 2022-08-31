@@ -42,7 +42,7 @@ export default class Game {
         const LEVELS_BTNS = Array.from(document.querySelectorAll('.button__level'));
         const btn = <HTMLButtonElement>document.querySelector('.btn-play');
 
-        LEVELS_BTNS.forEach((btn) => btn.classList.remove('selected'));
+        LEVELS_BTNS.forEach((b) => b.classList.remove('selected'));
         selectedBtn.classList.add('selected');
         this.gameLevel = LEVELS_BTNS.indexOf(selectedBtn);
 
@@ -70,14 +70,6 @@ export default class Game {
         }
     }
 
-    updateStateWithResults() {
-        State.games[<'audiocall' | 'sprint'>this.gameType].learnedwords += 20;
-        State.games[<'audiocall' | 'sprint'>this.gameType].rightAnswers += this.rightAnswers.length;
-        State.games[<'audiocall' | 'sprint'>this.gameType].wrongAnswers += this.wrongAnswers.length;
-        State.games[<'audiocall' | 'sprint'>this.gameType].rightAnswersSession += this.rightAnswersSession;
-        console.log(State);
-    }
-
     discriptionGamePageListners() {
         const PLAY_BTN = <HTMLDivElement>document.querySelector('.btn-play');
 
@@ -91,13 +83,5 @@ export default class Game {
         LEVELS_BTNS.forEach((btn) => btn.addEventListener('click', (e: Event) => this.selectLevel(e)));
 
         PLAY_BTN.addEventListener('click', this.startGame.bind(this));
-    }
-
-    statisticGamePageListners() {
-        const EXIT_BTN = <HTMLDivElement>document.querySelector('.btn-exit');
-        const RESTART_BTN = <HTMLDivElement>document.querySelector('.btn-restart');
-        [EXIT_BTN, RESTART_BTN].forEach((btn) => {
-            btn.addEventListener('click', this.updateStateWithResults.bind(this));
-        });
     }
 }

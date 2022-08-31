@@ -88,48 +88,30 @@ export default class StatisticAll {
         const currentDay = new Date().toLocaleDateString('en-US');
         const currentDayResults = await this.userStatsAPI.getStatistics(currentUser.userId, currentUser.token);
         if (currentDayResults?.optional.day === currentDay) {
-            this.learnedWords = currentDayResults.learnedWords;
-            this.audiocallLearnedWords = <number>currentDayResults.optional.audiocallLearnedWords;
-            this.sprintLearnedWords = <number>currentDayResults.optional.sprintLearnedWords;
-            this.audiocallWrongAnswers = <number>currentDayResults.optional.audiocallWrongAnswers;
-            this.sprintWrongAnswers = <number>currentDayResults.optional.sprintWrongAnswers;
-            this.audiocallRightAnswers = <number>currentDayResults.optional.audiocallRightAnswers;
-            this.sprintRightAnswers = <number>currentDayResults.optional.sprintRightAnswers;
-            this.audiocallSession = <number>currentDayResults.optional.audiocallSession;
-            this.sprintSession = <number>currentDayResults.optional.sprintSession;
+            this.learnedWords = currentDayResults.learnedWords || 0;
+            this.audiocallLearnedWords = <number>currentDayResults.optional.audiocallLearnedWords || 0;
+            this.sprintLearnedWords = <number>currentDayResults.optional.sprintLearnedWords || 0;
+            this.audiocallWrongAnswers = <number>currentDayResults.optional.audiocallWrongAnswers || 0;
+            this.sprintWrongAnswers = <number>currentDayResults.optional.sprintWrongAnswers || 0;
+            this.audiocallRightAnswers = <number>currentDayResults.optional.audiocallRightAnswers || 0;
+            this.sprintRightAnswers = <number>currentDayResults.optional.sprintRightAnswers || 0;
+            this.audiocallSession = <number>currentDayResults.optional.audiocallSession || 0;
+            this.sprintSession = <number>currentDayResults.optional.sprintSession || 0;
             this.allRightAnswers = this.audiocallRightAnswers + this.sprintRightAnswers;
             this.allWrongAnswers = this.audiocallWrongAnswers + this.sprintWrongAnswers;
-            this.rightAnswersPercent = Math.round(
-                (this.allRightAnswers / (this.allRightAnswers + this.allWrongAnswers)) * 100
-            );
-            this.sprintRightAnswersPercent = Math.round(
-                (this.sprintRightAnswers / (this.sprintRightAnswers + this.sprintWrongAnswers)) * 100
-            );
-            this.audiocallRightAnswersPercent = Math.round(
-                (this.audiocallRightAnswers / (this.audiocallRightAnswers + this.audiocallWrongAnswers)) * 100
-            );
+            this.rightAnswersPercent =
+                Math.round((this.allRightAnswers / (this.allRightAnswers + this.allWrongAnswers)) * 100) || 0;
+            this.sprintRightAnswersPercent =
+                Math.round((this.sprintRightAnswers / (this.sprintRightAnswers + this.sprintWrongAnswers)) * 100) || 0;
+            this.audiocallRightAnswersPercent =
+                Math.round(
+                    (this.audiocallRightAnswers / (this.audiocallRightAnswers + this.audiocallWrongAnswers)) * 100
+                ) || 0;
+            console.log(currentDayResults);
+            return currentDayResults;
         }
+        return undefined;
     }
-
-    // async create() {
-    //     const currentDay = new Date().toLocaleDateString('en-US');
-    //     const a = <StatisticsData>await this.getTodayResults();
-    //     const stat = {
-    //         learnedWords: a.learnedWords + 20,
-    //         optional: {
-    //             day: currentDay,
-    //             audiocallLearnedWords: <number>a.optional.audiocallLearnedWords + 14,
-    //             sprintLearnedWords: 6,
-    //             audiocallRightAnswers: 16,
-    //             audiocallWrongAnswers: 4,
-    //             sprintRightAnswers: 10,
-    //             sprintWrongAnswers: 8,
-    //             audiocallSession: 8,
-    //             sprintSession: 3,
-    //         },
-    //     };
-    //     await this.userStatsAPI.upsertStatistics(currentUser.userId, stat, currentUser.token);
-    // }
 
     async render() {
         await this.getTodayResults();

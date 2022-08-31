@@ -1,10 +1,12 @@
-import { UserWordData, WordData } from '../../interfaces/interfaces';
+import { StatisticsData, UserWordData, WordData } from '../../interfaces/interfaces';
 import GameStatisticview from '../../views/components/games/gameStatisticSection/gameStatistic';
 import getRandomIntInclusive from '../../utils/getRandomNumber';
 import shuffle from '../../utils/shuffle';
 import Game from './game';
 import UserWords from '../../api/usersWords';
 import currentUser from '../../models/currentUser';
+import UserStat from '../../api/usersStat';
+import StatisticAll from '../../views/components/statistic/headingSection/statistic';
 
 export default class Audiocall extends Game {
     constructor() {
@@ -21,6 +23,10 @@ export default class Audiocall extends Game {
     controlKeyboardKeys: '' | ' ' | 'Enter' = '';
 
     userWordAPI = new UserWords();
+
+    userStatsAPI = new UserStat();
+
+    userStatistic = new StatisticAll();
 
     learnedWords: UserWordData[] | undefined;
 
@@ -61,7 +67,7 @@ export default class Audiocall extends Game {
         progressRange.children[this.currentQuestion].classList.add('wrong');
     }
 
-    next() {
+    async next() {
         if (this.currentQuestion !== 19) {
             this.currentQuestion += 1;
             this.changeContent();
@@ -69,7 +75,7 @@ export default class Audiocall extends Game {
         } else {
             const results = new GameStatisticview(<WordData[]>this.words, this.rightAnswers, this.wrongAnswers);
             results.render();
-            this.statisticGamePageListners();
+            await this.updateStatistic();
             this.controlKeyboardKeys = '';
         }
     }
@@ -150,7 +156,7 @@ export default class Audiocall extends Game {
         this.keyboardListner();
     }
 
-    async answerHandler(e: Event, currectAnswer: WordData, options: number[], keyboardTarget?: HTMLButtonElement) {
+    answerHandler(e: Event, currectAnswer: WordData, options: number[], keyboardTarget?: HTMLButtonElement) {
         const progressRange = <HTMLDivElement>document.querySelector('.game__progress-range');
         const answerBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.answer');
         let selectedAnswer: HTMLButtonElement;
@@ -185,7 +191,7 @@ export default class Audiocall extends Game {
         this.controlKeyboardKeys = 'Enter';
     }
 
-    keyboardGameHandler(e: KeyboardEvent) {
+    async keyboardGameHandler(e: KeyboardEvent) {
         const answerBtns: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.answer');
 
         if (this.answersKeyboardKeys.includes(e.key)) {
@@ -199,44 +205,64 @@ export default class Audiocall extends Game {
                 this.answersKeyboardKeys = [];
             } else {
                 this.controlKeyboardKeys = ' ';
-                this.next();
+                await this.next();
             }
         }
     }
 
     async startGame() {
         await super.startGame();
-        this.learnedWords = <UserWordData[]>(
-            await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token)
-        );
-        console.log(currentUser.userId);
+        // this.learnedWords = <UserWordData[]>(
+        //     await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token)
+        // );
         this.changeContent();
         this.nextBtnListner();
         this.skipBtnListner();
     }
 
-    async updateStateWithResults() {
-        super.updateStateWithResults();
-        if (currentUser.userId) {
-            const userWords = await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token);
-            let learned: UserWordData[];
-            if (userWords) {
-                learned = userWords?.filter((el) => el.difficulty === 'learned');
-            }
-            const difficultyLearned = { difficulty: 'learned' };
-            this.rightAnswers.forEach(async (el) => {
-                // if (!learned.find((a) => a.optional.id === (<WordData[]>this.words)[el].id)) {
-                await this.userWordAPI.createUserWord(
-                    currentUser.userId,
-                    (<WordData[]>this.words)[el].id,
-                    difficultyLearned,
-                    currentUser.token
-                );
-                // }
-            });
-            const p = await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token);
-            console.log(p);
+    async updateStatistic() {
+        const currentDay = new Date().toLocaleDateString('en-US');
+        const currentStatistic = <StatisticsData>await this.userStatistic.getTodayResults();
+        let session;
+        if (
+            (currentStatistic &&
+                (this.rightAnswersSession > <number>currentStatistic.optional.audiocallSession ||
+                    <undefined>currentStatistic.optional.audiocallSession)) ||
+            !currentStatistic
+        ) {
+            session = this.rightAnswersSession;
+        } else {
+            session = <number>currentStatistic.optional.audiocallSession;
         }
+
+        let stat;
+        if (currentStatistic) {
+            stat = {
+                learnedWords: currentStatistic.learnedWords + (<WordData[]>this.words).length,
+                optional: {
+                    day: currentDay,
+                    audiocallLearnedWords:
+                        <number>currentStatistic.optional.audiocallLearnedWords + (<WordData[]>this.words).length,
+                    audiocallRightAnswers:
+                        <number>currentStatistic.optional.audiocallRightAnswers + this.rightAnswers.length,
+                    audiocallWrongAnswers:
+                        <number>currentStatistic.optional.audiocallWrongAnswers + this.wrongAnswers.length,
+                    audiocallSession: session,
+                },
+            };
+        } else {
+            stat = {
+                learnedWords: (<UserWordData[]>this.learnedWords).length,
+                optional: {
+                    day: currentDay,
+                    audiocallLearnedWords: (<UserWordData[]>this.learnedWords).length,
+                    audiocallRightAnswers: this.rightAnswers.length,
+                    audiocallWrongAnswers: this.wrongAnswers.length,
+                    audiocallSession: session,
+                },
+            };
+        }
+        await this.userStatsAPI.upsertStatistics(currentUser.userId, stat, currentUser.token);
     }
 
     nextBtnListner() {
