@@ -29,15 +29,23 @@ export default class DictionaryDevelopments {
 
     levels() {
         const container = <HTMLElement>document.getElementById('levels__container');
-
         container.addEventListener('click', async (e) => {
             const event = <HTMLElement>e.target;
-            const level = event.classList.value;
-            levelDictionary = mapper[level];
-            const dictionaryCard = new DictionaryCard(levelDictionary, page);
-            await dictionaryCard.render();
-            await this.getWordsUser();
-            this.learnedWordStyle();
+            if (
+                event.classList.contains('A1') ||
+                event.classList.contains('A2') ||
+                event.classList.contains('B1') ||
+                event.classList.contains('B2') ||
+                event.classList.contains('C1') ||
+                event.classList.contains('C2')
+            ) {
+                const level = event.classList.value;
+                levelDictionary = mapper[level];
+                const dictionaryCard = new DictionaryCard(levelDictionary, page);
+                await dictionaryCard.render();
+                await this.getWordsUser();
+                this.learnedWordStyle();
+            }
         });
     }
 

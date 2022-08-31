@@ -11,7 +11,7 @@ import LevelsDictionary from '../../components/dictionary/levels/levelsDictionar
 
 export default class Dictionary implements View {
     html = `<main id="main" class="dictionary_page">
-                <h2>Учебник</h2>
+                <h3>Учебник</h3>
             </main>`;
 
     render() {
