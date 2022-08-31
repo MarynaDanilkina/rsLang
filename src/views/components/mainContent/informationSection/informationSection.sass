@@ -1,29 +1,30 @@
 /* info section */
-
-.information_section 
+$hover-color: #f3e4f9
+$text-white: #fff
+.information_section
   height: 750px
   padding-top: 5%
   margin: 0px 20vw
-  &__title 
+  &__title
     width: 80%
     margin: 0 auto
     text-align: center
-  .features_figures 
+  .features_figures
     display: flex
     flex-direction: row
     justify-content: space-between
     text-align: center
-    &_item p 
+    &_item p
       margin: 0
       padding: 30px 10px 0 10px
-    .figure 
+    .figure
       background: linear-gradient(180deg, #12bcb0, #fabe0e)
       font-size: 50px
       -webkit-background-clip: text
       background-clip: text
       -webkit-text-fill-color: transparent
       font-weight: 800
-  .features 
+  .features
     padding-top: 60px
     margin: 0 auto
     display: grid
@@ -32,13 +33,13 @@
     grid-row-gap: 20px
     grid-auto-rows: 55%
     margin-bottom: 70px
-    .feature 
+    .feature
       position: relative
-      background-color: rgba(255, 255, 255, 1)
+      background-color: $text-white
       border-radius: 10px
       text-align: center
       transition: 0.4s
-      &::before 
+      &::before
         content: ''
         position: absolute
         top: -2px
@@ -52,11 +53,11 @@
         border-radius: 5%
         z-index: -1
       &:hover
-        background: #f3e4f9
-      & h3 
+        background: $hover-color
+      & h3
         margin: 0
         font-weight: 700
-      & p 
+      & p
         font-size: 14px
       & a
         height: 100%
@@ -65,38 +66,38 @@
         flex-direction: column
         justify-content: space-between
         align-items: center
-      &_logo 
+      &_logo
         height: 55px
         width: 55px
-    .feature_1 
+    .feature_1
       grid-row-start: 1
       grid-row-end: 3
-      & .feature_logo 
+      & .feature_logo
         height: 100px
         width: 110px
-      & p 
+      & p
         line-height: 1.5rem
-    .feature_4 
+    .feature_4
       grid-column-start: 2
       grid-column-end: 4
-      & a 
+      & a
         display: grid
         grid-template-columns: 1fr 5fr
-      & .feature_logo 
+      & .feature_logo
         align-self: center
         height: 70%
         width: 100%
         grid-row-start: 1
         grid-row-end: 3
-      & p 
+      & p
         height: fit-content
         margin: 0
         text-align: left
         padding-left: 5px
 
-@media (max-width: 1200px)      
+@media (max-width: 1200px)
   .information_section
-    .features  
+    .features
       grid-auto-rows: 50%
       .feature_4
         & p
@@ -107,7 +108,7 @@
 @media (max-width: 992px)
   .information_section
     height: fit-content
-    .features 
+    .features
       padding-top: 60px
       margin: 0 auto
       display: grid
@@ -116,22 +117,22 @@
       grid-row-gap: 20px
       grid-template-rows: 2fr 1fr 1fr
       margin-bottom: 70px
-      .feature_1 
+      .feature_1
         grid-column-start: 1
         grid-column-end: 3
         grid-row-start: 1
         grid-row-end: 2
-      .feature_2 
+      .feature_2
         grid-column-start: 1
         grid-column-end: 2
         grid-row-start: 2
         grid-row-end: 3
-      .feature_3 
+      .feature_3
         grid-column-start: 2
         grid-column-end: 3
         grid-row-start: 2
         grid-row-end: 3
-      .feature_4 
+      .feature_4
         grid-column-start: 1
         grid-column-end: 3
         grid-row-start: 3
@@ -139,9 +140,9 @@
 
 @media (max-width: 768px)
   .information_section
-    margin: 0 10vw     
+    margin: 0 10vw
     .features
-      .feature_4  
+      .feature_4
         & .feature_logo
           height: 100%
 
@@ -154,19 +155,19 @@
   .information_section
     &__title
       font-size: 20px
-    .features_figures 
-      &_item p 
+    .features_figures
+      &_item p
         margin: 0
         padding: 30px 10px 0 10px
         font-size: 12px
-      .figure 
+      .figure
         font-size: 40px
     .features
-      .feature 
+      .feature
         h3
           font-size: 15px
-        & p 
-          font-size: 12px   
-      .feature_4  
+        & p
+          font-size: 12px
+      .feature_4
         & .feature_logo
-          height: 50%  
+          height: 50%

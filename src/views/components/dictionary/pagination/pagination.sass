@@ -1,3 +1,4 @@
+$background-body: #FDF8FF
 .pogination__container
   display: flex
   justify-content: center
@@ -24,7 +25,7 @@
   border-radius: 40px
   border: none
   outline: none
-  background: #fdf8ff
+  background: $background-body
 
 .pogination__button::before
   content: ''
@@ -50,7 +51,7 @@
   border: 2px solid #CDCDCD
   cursor: default
   color: #CDCDCD
-  background: #fdf8ff
+  background: $background-body
 
 .active
   width: 80px
@@ -63,11 +64,11 @@
 
 #button_page
   cursor: default
-  background: #fdf8ff
+  background: $background-body
 
 #button_page:hover
   cursor: default
-  background: #fdf8ff
+  background: $background-body
 
 @media (max-width: 420px)
   .pogination__button
