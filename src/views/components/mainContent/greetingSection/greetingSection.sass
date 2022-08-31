@@ -1,7 +1,8 @@
 /* greeting section */
-
-.greeting_section 
-  height: 500px
+$hover-color: #f3e4f9
+$text-white: #fff
+.greeting_section
+  height: 460px
   &__content
     display: flex
     flex-direction: row
@@ -11,22 +12,14 @@
     justify-content: space-between
   &__title
     display: none
-  .greeting_owl 
-    position: relative
-    flex-basis: 35%
-    &_logo
-      position: absolute
-      display: block
-      height: 180px
-      top: 195px
-    .greeting_text 
+    .greeting_text
       position: absolute
       align-self: center
       top: 7%
       left: 9%
       font-size: 100%
       margin: 0 auto
-    .greeting_speech_logo 
+    .greeting_speech_logo
       display: block
       width: 300px
   .basic_info
@@ -46,62 +39,60 @@
       justify-content: space-between
       width: 100%
       font-size: 14px
-      border-bottom: rgba(224, 224, 224, 1) solid 2px
+      border-bottom: $text-white solid 2px
       .user_kind
         display: flex
         flex-direction: row
-      .user_title 
+      .user_title
         font-weight: 700
-      .user_logo 
+      .user_logo
         display: block
-        width: fit-content
-      .user_age 
+      .user_age
         padding-top: 5px
-      .user_info 
+      .user_info
         padding-left: 10px
-    &__functionality 
+    &__functionality
       display: grid
       width: 100%
       grid-template-columns: repeat(11, 1fr)
-      grid-row-gap: 70%
-      padding-top: 5%
-      .functionality_kind 
+      grid-row-gap: 45%
+      padding-top: 10%
+      .functionality_kind
         position: relative
         text-align: center
-        background-color: rgba(255, 255, 255, 1)
+        background-color: $text-white
         border-radius: 6px
         transition: 0.4s
-        height: fit-content
-        &_book 
+        &_book
           grid-column-start: 3
           grid-column-end: 6
-        &_statistic 
+        &_statistic
           grid-column-start: 7
           grid-column-end: 10
-        &_team 
+        &_team
           grid-column-start: 1
           grid-column-end: 4
           grid-row-start: 2
           grid-row-end: 3
-        &_games 
+        &_games
           grid-column-start: 5
           grid-column-end: 8
           grid-row-start: 2
           grid-row-end: 3
-        &_login 
+        &_login
           grid-column-start: 9
           grid-column-end: 12
           grid-row-start: 2
           grid-row-end: 3
-        & a 
+        & a
           display: block
           height: 100%
           padding: 10px 8%
         &:hover,
         .feature:hover:not(:first-child),
-        .feature_1:hover .feature_btn 
-          background-color: #f3e4f9
-        &::before 
+        .feature_1:hover .feature_btn
+          background-color: $hover-color
+        &::before
           content: ''
           position: absolute
           top: -2px
@@ -114,75 +105,138 @@
           filter: blur(10px)
           border-radius: 10%
           z-index: -1
+.greeting_section
+  height: 460px
+
+@media (max-width: 1750px)
+  .owl_logo
+    width: 100%
+    height: 100%
+  .greeting_section
+    height: 360px
+
 @media (max-width: 1400px)
-    .greeting_section
-      .basic_info__users 
-        text-align: center
-        .user_kind 
-          flex-direction: column
-          height: 100%
-          width: fit-content
-        .user_logo 
+  .greeting_section
+    .basic_info__users
+      text-align: center
+      .user_kind
+        flex-direction: column
+        .user_logo
           display: block
           margin: 0 auto
-      .basic_info__functionality 
+      .basic_info__functionality
         grid-template-columns: repeat(4, 1fr)
         grid-row-gap: 10%
         padding-bottom: 10%
         .functionality_kind
-          &:nth-child(odd) 
+          &:nth-child(odd)
             grid-column-start: 1
             grid-column-end: 4
-          &:nth-child(even) 
+          &:nth-child(even)
             grid-column-start: 2
             grid-column-end: 5
-          &_book 
+          &_book
             grid-row-start: 1
             grid-row-end: 2
-          &_statistic 
+          &_statistic
             grid-row-start: 2
             grid-row-end: 3
-          &_team 
+          &_team
             grid-row-start: 3
             grid-row-end: 4
-          &_games 
+          &_games
             grid-row-start: 4
             grid-row-end: 5
-          &_login 
+          &_login
             grid-row-start: 5
             grid-row-end: 6
+  .user_logo
+    width: 97%
+    height: 97%
 
-@media (max-width: 992px) 
-  .greeting_section 
-    height: 800px
-    &__content 
-      flex-direction: column
-      .greeting_owl 
-        .greeting_speech_logo 
-          position: absolute
-          left: 168px
-          width: 250px
-        .greeting_text 
-          left: 195px
-          top: 13%
-          font-size: 14px
-        &_logo 
-          height: 140px
-          top: 155px
-          left: 160px
-          z-index: 2
-      .basic_info 
-        padding-left: 0
-        padding-top: 10%      
-
-@media (max-width: 768px)          
+@media (max-width: 1200px)
   .greeting_section
-    height: 550px
-    &__content 
-      justify-content: flex-start
-      .greeting_owl
-        display: none
-    &__title
-      display: block
-      text-align: center
-      font-weight: 700
+    display: flex
+    justify-content: center
+
+  .greeting_section__content
+    margin: 0px 0vw
+    max-width: 700px
+  .user_logo
+    width: 90%
+    height: 90%
+  .functionality_kind
+    width: 125px
+  .owl_logo
+    width: 95%
+    height: 95%
+  .greeting_section
+    height: 310px
+
+@media (max-width: 992px)
+  .greeting_section
+    height: 230px
+    &__content
+      .basic_info
+        padding-left: 0
+        padding-top: 0%
+  .owl_logo
+    width: 80%
+    height: 80%
+  .greeting_owl
+    width: 200px
+    height: 200px
+  .greeting_section .basic_info__functionality
+    padding-top: 3%
+  .functionality_kind
+    width: 101px
+    font-size: 14px
+
+@media (max-width: 768px)
+  .greeting_section__content
+    flex-direction: column
+    justify-content: center
+    align-items: center
+  .greeting_section
+    height: 430px
+
+@media (max-width: 576px)
+  .owl_logo
+    display: none
+  .greeting_owl
+    display: none
+  .greeting_section__content
+    padding-top: 0
+  .greeting_section
+    height: 260px
+  .functionality_kind
+    width: 120px
+
+@media (max-width: 500px)
+  .functionality_kind
+    width: 80px
+    font-size: 10px
+    height: 20px
+    margin: 5px
+  .greeting_section .basic_info__functionality .functionality_kind a
+    padding: 5px 4%
+  .greeting_section .basic_info__functionality
+    display: flex
+    width: 70%
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
+  .greeting_section .basic_info__users
+    width: 70%
+  .greeting_section
+    height: 200px
+  .user_logo
+    width: 95%
+    height: 95%
+  .greeting_section .basic_info__users
+    width: 100%
+    width: 300px
+
+@media (max-width: 390px)
+  .greeting_section .basic_info__functionality
+    width: 300px

@@ -1,4 +1,5 @@
-$blue-color: #00093C
+$background-blue: #00093c
+$background-body: #FDF8FF
 html,
 body
   height: 100%
@@ -11,7 +12,7 @@ body
 .wrapper
   flex: 1 1 auto
   margin: 0 auto
-  background-color: #FDF8FF
+  background-color: $background-body
   background-position: center top
   min-height: 100%
   overflow: hidden
@@ -27,7 +28,7 @@ body
   font-size: 36px
 
 .team__header
-  color: $blue-color
+  color: $background-blue
   font-family: Montserrat
   font-weight: 700
   display: flex
@@ -40,7 +41,7 @@ body
   background-size: 100%
   background-repeat: no-repeat
   background-image: url(../../../assets/backgrounds/space_background.png)
-  background-color: $blue-color
+  background-color: $background-blue
   max-width: 100%
   width: 1920px
   height: 600px
