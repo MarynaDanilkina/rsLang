@@ -42,9 +42,11 @@ export default class Sprint extends Game {
 
     handleAnswer(answer: boolean) {
         if (answer === this.allPairs![this.currentQuestion][0].correct) {
+            this.highlightQuestion(this.currentQuestion, true);
             this.currentQuestion += 1;
             return true;
         }
+        this.highlightQuestion(this.currentQuestion, false);
         this.currentQuestion += 1;
         return false;
     }
@@ -89,6 +91,12 @@ export default class Sprint extends Game {
             },
             { once: true }
         );
+    }
+
+    highlightQuestion(index: number, isRight: boolean) {
+        const progressPoints = document.querySelectorAll('.progress-point');
+        const point = progressPoints[index];
+        point.classList.add(isRight ? 'right' : 'wrong');
     }
 
     askQuestion() {
