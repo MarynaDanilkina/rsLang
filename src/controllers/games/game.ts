@@ -36,6 +36,10 @@ export default class Game {
         const btn = <HTMLButtonElement>document.querySelector('.btn-play');
         btn.disabled = true;
 
+        if (State.selectedLevel === -1 && State.wordsForGame.length > 0) {
+            State.wordsForGame = [];
+        }
+
         if (State.selectedLevel > -1) {
             const LEVELS_BTNS: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.button__level');
             LEVELS_BTNS.forEach((b, index) => {
@@ -46,7 +50,6 @@ export default class Game {
         }
         this.levelsGamePageListners();
         State.selectedLevel = -1;
-        State.wordsForGame = [];
     }
 
     selectLevel(e: Event) {
@@ -70,7 +73,8 @@ export default class Game {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
         const wordsAPI = new Words();
         const pageNumber = getRandomIntInclusive(0, 29);
-        if (State.wordsForGame) {
+
+        if (State.wordsForGame.length > 0) {
             this.words = State.wordsForGame;
             State.wordsForGame = [];
         } else {

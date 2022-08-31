@@ -359,25 +359,27 @@ export default class DictionaryDevelopments {
             C1: 4,
             C2: 5,
         };
-        const audiocall = <HTMLElement>document.getElementById('game_audiocall');
+        const games = document.querySelectorAll('.dictionary_page .games_item__container');
         const userWords = new UserWords();
         State.selectedLevel = mapperLevel[levelDictionary[0]];
-        audiocall.addEventListener('click', async () => {
-            const userCard = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
-            const learnedWords = userCard?.filter((obj) => obj.difficulty === 'learned');
-            let wordsForGame: WordData[] = [];
-            const nextPage = page;
-            await this.update(nextPage, learnedWords, wordsForGame);
-            if (wordsForGame.length > 20) {
-                wordsForGame = wordsForGame.slice(0, 20);
-                console.log(wordsForGame);
-            }
-            if (wordsForGame.length === 20) {
-                State.wordsForGame = wordsForGame;
-            } else {
+        games.forEach((game) =>
+            game.addEventListener('click', async () => {
+                const userCard = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
+                const learnedWords = userCard?.filter((obj) => obj.difficulty === 'learned');
+                let wordsForGame: WordData[] = [];
+                const nextPage = page;
                 await this.update(nextPage, learnedWords, wordsForGame);
-            }
-        });
+                if (wordsForGame.length > 20) {
+                    wordsForGame = wordsForGame.slice(0, 20);
+                    console.log(wordsForGame);
+                }
+                if (wordsForGame.length === 20) {
+                    State.wordsForGame = wordsForGame;
+                } else {
+                    await this.update(nextPage, learnedWords, wordsForGame);
+                }
+            })
+        );
     }
 
     async update(pageNew: number, learnedWords: UserWordData[] | undefined, wordsForGame: WordData[]) {

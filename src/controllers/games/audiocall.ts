@@ -143,7 +143,6 @@ export default class Audiocall extends Game {
         this.optionsBtnsReset();
 
         const answer = (<WordData[]>this.words)[this.currentQuestion];
-
         const cardImg = <HTMLImageElement>document.querySelector('.card_img');
         cardImg.src = `${this.baseURL}/${answer.image}`;
 
