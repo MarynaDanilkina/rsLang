@@ -372,7 +372,11 @@ export default class DictionaryDevelopments {
                 b = b.slice(0, 20);
                 console.log(b);
             }
-            State.wordsForGame = b;
+            if (b.length === 20) {
+                State.wordsForGame = b;
+            } else {
+                await this.update(page2, arr, b);
+            }
         });
     }
 
