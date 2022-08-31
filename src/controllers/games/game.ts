@@ -36,19 +36,33 @@ export default class Game {
         const btn = <HTMLButtonElement>document.querySelector('.btn-play');
         btn.disabled = true;
 
+        if (State.selectedLevel > -1) {
+            const LEVELS_BTNS: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.button__level');
+            LEVELS_BTNS.forEach((btn, index) => {
+                if (State.selectedLevel !== index) {
+                    btn.disabled = true;
+                }
+            });
+        }
         this.levelsGamePageListners();
+        State.selectedLevel = -1;
     }
 
     selectLevel(e: Event) {
         const selectedBtn = <HTMLButtonElement>e.currentTarget;
-        const LEVELS_BTNS = Array.from(document.querySelectorAll('.button__level'));
+        const LEVELS_BTNS: HTMLButtonElement[] = Array.from(document.querySelectorAll('.button__level'));
         const btn = <HTMLButtonElement>document.querySelector('.btn-play');
 
-        LEVELS_BTNS.forEach((b) => b.classList.remove('selected'));
-        selectedBtn.classList.add('selected');
-        this.gameLevel = LEVELS_BTNS.indexOf(selectedBtn);
-
-        btn.disabled = false;
+        LEVELS_BTNS.forEach((b) => {
+            if (!b.disabled) {
+                b.classList.remove('selected');
+            }
+        });
+        if (!selectedBtn.disabled) {
+            selectedBtn.classList.add('selected');
+            this.gameLevel = LEVELS_BTNS.indexOf(selectedBtn);
+            btn.disabled = false;
+        }
     }
 
     async startGame() {
@@ -56,7 +70,14 @@ export default class Game {
         const wordsAPI = new Words();
         const pageNumber = getRandomIntInclusive(0, 29);
 
-        this.words = await wordsAPI.getWords(<number>this.gameLevel, pageNumber);
+        if (State.wordsForGame && State.selectedLevel > -1) {
+            this.words = State.wordsForGame;
+            State.wordsForGame = [];
+        } else {
+            this.words = await wordsAPI.getWords(<number>this.gameLevel, pageNumber);
+            State.wordsForGame = [];
+        }
+
         this.words = <WordData[]>shuffle(this.words);
         GAME_CONTAINER.innerHTML = '';
 
