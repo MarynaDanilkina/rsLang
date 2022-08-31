@@ -1,11 +1,13 @@
 $background-blue: #00093c
 $background-body: #FDF8FF
+$text-black: #000000
+$text-white: #fff
 html,
 body
   height: 100%
   line-height: 1
   font-size: 18px
-  color: rgb(6, 6, 6)
+  color: $text-black
   font-weight: 400
   margin: 0px
 
@@ -30,18 +32,17 @@ body
 .team__header
   color: $background-blue
   font-family: Montserrat
-  font-weight: 700
+  font-weight: 600
   display: flex
   justify-content: center
-  width: 452px
+  width: 500px
 
 .teams
-  margin-top: 80px
+  margin-top: 30px
   background-position: center center
   background-size: 100%
   background-repeat: no-repeat
   background-image: url(../../../assets/backgrounds/space_background.png)
-  background-color: $background-blue
   max-width: 100%
   width: 1920px
   height: 600px
@@ -57,7 +58,7 @@ body
 .team__member
   width: 280px
   height: 360px
-  background-color: #FFFFFF
+  background-color: $background-body
   border-radius: 20px
   display: flex
   flex-direction: column
@@ -74,7 +75,7 @@ body
   justify-content: center
   align-items: center
   margin-top: 20px
-  background-color: #fff
+  background-color: $background-body
 
 .team__img-bg:before
   content: ''
@@ -94,30 +95,36 @@ body
   width: 120px
   height: 120px
   border-radius: 70px
-  background-color: #fff
+  background-color: $background-body
   background-position: center center
   background-size: 100%
   background-repeat: no-repeat
-  background-image: url(../../../assets/images/team.jpg)
-
+#Pavel
+  background-image: url(https://avatars.githubusercontent.com/u/94741768?v=4)
+#Maryna
+  background-image: url(https://avatars.githubusercontent.com/u/95652563?v=4)
+#Victoria
+  background-image: url(https://avatars.githubusercontent.com/u/94629690?v=4)
 .team__name
   margin-top: 25px
-  color: #000000
+  color: $text-black
   font-family: Montserrat
   font-weight: 700
   font-size: 18px
 
 .team__talent
-  margin-top: 25px
-  color: #4F4F4F
+  margin-top: 4px
+  color: $text-black
   font-family: Montserrat
-  font-weight: 500
-  font-size: 14px
+  font-weight: 600
+  font-size: 23px
+  width: 220px
+  text-align: center
 
 @media (max-width: 1400px)
   .teams
     margin-top: 20px
-    margin-bottom: 0px
+    margin-bottom: 100px
     height: 450px
 
   .team__member
@@ -130,6 +137,7 @@ body
 
   .team__talent
     margin-top: 10px
+    font-size: 21px
 
 @media (max-width: 1200px)
   .team__member
@@ -154,6 +162,7 @@ body
 
   .team__talent
     font-size: 13px
+    width: 180px
 
   .teams
     height: 400px
@@ -177,13 +186,18 @@ body
   .teams
     height: 340px
 
+  .team__talent
+    font-size: 12px
+    width: 150px
+
 @media (max-width: 768px)
   .teams
-    margin-top: 10px
     height: 275px
+    margin-bottom: 70px
 
   .team__header
     font-size: 18px
+    width: 280px
 
   .team__img-bg
     margin-top: 5px
@@ -207,8 +221,8 @@ body
     font-size: 10px
 
 @media (max-width: 576px)
-  .team__header
-    font-size: 16px
+  .team-wrapper
+    margin-top: 10px
 
   .team
     column-gap: 10px
@@ -230,10 +244,14 @@ body
 
   .team__name
     margin-top: 5px
-    font-size: 9px
-  .team__talent
-    margin-top: 3px
     font-size: 8px
+
+  .team__talent
+    font-size: 8px
+    width: 80px
+
+  .teams
+    margin-bottom: 50px
 
 @media (max-width: 420px)
   .team
@@ -253,12 +271,12 @@ body
   .team__img
     width: 30px
     height: 30px
-
   .team__header
+    width: 300px
     font-size: 14px
   .team__name
     margin-top: 3px
-    font-size: 8px
+    font-size: 7px
   .team__talent
     margin-top: 2px
     font-size: 6px
