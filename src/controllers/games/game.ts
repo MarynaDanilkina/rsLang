@@ -46,6 +46,7 @@ export default class Game {
         }
         this.levelsGamePageListners();
         State.selectedLevel = -1;
+        State.wordsForGame = [];
     }
 
     selectLevel(e: Event) {
@@ -69,12 +70,9 @@ export default class Game {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
         const wordsAPI = new Words();
         const pageNumber = getRandomIntInclusive(0, 29);
-        console.log(State.wordsForGame);
-        console.log(State.wordsForGame, State.selectedLevel);
         if (State.wordsForGame) {
             this.words = State.wordsForGame;
             State.wordsForGame = [];
-            console.log(this.words);
         } else {
             this.words = await wordsAPI.getWords(<number>this.gameLevel, pageNumber);
             State.wordsForGame = [];
