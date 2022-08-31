@@ -11,7 +11,7 @@ import CommonGamesPage from '../views/pages/games/commonGamesPage/commonGamesPag
 import Audiocall from '../controllers/games/audiocall';
 
 export default class Router {
-    locationResolver(location: string) {
+    async locationResolver(location: string) {
         const hiddenNavBlur = new HiddenNavBlur();
         switch (location) {
             case '#/': {
@@ -74,7 +74,7 @@ export default class Router {
                 const statistic = new Statistic();
 
                 htmlElements.BODY.innerHTML = '';
-                statistic.render();
+                await statistic.render();
                 hiddenNavBlur.render();
 
                 break;
@@ -94,22 +94,22 @@ export default class Router {
         }
     }
 
-    windowUpdate() {
+    async windowUpdate() {
         const location = window.location.hash;
 
         if (location) {
-            this.locationResolver(location);
+            await this.locationResolver(location);
         } else {
             window.location.href += '#/';
         }
     }
 
     routClickHandler() {
-        document.body.addEventListener('click', (e) => {
+        document.body.addEventListener('click', async (e) => {
             const link = e.target as HTMLLinkElement;
             if (link.matches('[data-link]')) {
                 const hashIndex = link.href.indexOf('#');
-                this.locationResolver(link.href.slice(hashIndex));
+                await this.locationResolver(link.href.slice(hashIndex));
             }
         });
     }
