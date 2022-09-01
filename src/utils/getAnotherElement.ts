@@ -1,4 +1,4 @@
-import { WordData } from '../../interfaces/interfaces';
+import { WordData } from '../interfaces/interfaces';
 import getRandomIntInclusive from './getRandomNumber';
 
 export default function getAnotherWord(arr: Array<WordData>, excludeIndex: number) {

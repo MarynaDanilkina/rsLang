@@ -1,8 +1,8 @@
 import EventEmitter from 'events';
 import { WordData } from '../../interfaces/interfaces';
 import GameStatisticview from '../../views/components/games/gameStatisticSection/gameStatistic';
-import getAnotherWord from '../helpers/getAnotherElement';
-import shuffle from '../helpers/shuffle';
+import getAnotherWord from '../../utils/getAnotherElement';
+import shuffle from '../../utils/shuffle';
 import Game from './game';
 
 export default class Sprint extends Game {
