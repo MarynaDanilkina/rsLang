@@ -4,6 +4,7 @@ import State from '../../models/state';
 import Levels from '../../views/components/dictionary/levels/levels';
 import levelsMap from '../../views/components/dictionary/levels/levelsMap';
 import Audiocall from '../../views/pages/games/audiocall/audiocall';
+import SprintView from '../../views/pages/games/sprint/sprintView';
 import getRandomIntInclusive from '../helpers/getRandomNumber';
 import shuffle from '../helpers/shuffle';
 
@@ -49,7 +50,7 @@ export default class Game {
         const pageNumber = getRandomIntInclusive(0, 29);
 
         this.words = await wordsAPI.getWords(<number>this.gameLevel, pageNumber);
-        this.words = <WordData[]>shuffle(this.words);
+        this.words = shuffle(this.words);
         GAME_CONTAINER.innerHTML = '';
 
         if (this.gameType === 'audiocall') {
@@ -58,8 +59,8 @@ export default class Game {
             this.rightAnswersSession = State.games.audiocall.rightAnswersSession;
         }
         if (this.gameType === 'sprint') {
-            // const game = new Sprint();
-            // game.render()
+            const game = new SprintView();
+            game.render();
             this.rightAnswersSession = State.games.sprint.rightAnswersSession;
         }
     }
