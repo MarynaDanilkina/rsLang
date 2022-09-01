@@ -8,24 +8,24 @@ export default class Team implements View {
                 <div class="team">
                   <div class="team__member">
                     <div class="team__img-bg">
-                      <div class="team__img"></div>
+                      <div id="Pavel" class="team__img"></div>
                     </div>
-                    <p class="team__name">Имя Фамилия</p>
-                    <p class="team__talent">Что сделал</p>
+                    <p class="team__name">Pavel Kizhlo</p>
+                    <p class="team__talent">Авторизация, игра 'Аудиовызов'</p>
                   </div>
                   <div class="team__member">
                     <div class="team__img-bg">
-                      <div class="team__img"></div>
+                      <div id="Maryna" class="team__img"></div>
                     </div>
-                    <p class="team__name">Имя Фамилия</p>
-                    <p class="team__talent">Что сделал</p>
+                    <p class="team__name">Maryna Danilkina</p>
+                    <p class="team__talent">Электронный учебник, словарь, карточка слова</p>
                   </div>
                   <div class="team__member">
                     <div class="team__img-bg">
-                      <div class="team__img"></div>
+                      <div id="Victoria" class="team__img"></div>
                     </div>
-                    <p class="team__name">Имя Фамилия</p>
-                    <p class="team__talent">Что сделал</p>
+                    <p class="team__name">Victoria Zakharenkova</p>
+                    <p class="team__talent">Главная страница, игра 'Спринт', статистика</p>
                   </div>
                 </div>
               </div>

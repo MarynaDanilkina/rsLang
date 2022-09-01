@@ -99,7 +99,7 @@ export default class Audiocall extends Game {
             }
         }
 
-        options = <Array<number>>shuffle(options);
+        options = shuffle(options);
         this.currentOptions = options;
         const answerBtns: NodeListOf<HTMLDivElement> = document.querySelectorAll('.answer');
 

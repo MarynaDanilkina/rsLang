@@ -9,6 +9,7 @@ import Registration from '../views/pages/registration/registration';
 import Statistic from '../views/pages/statistic/statistic';
 import CommonGamesPage from '../views/pages/games/commonGamesPage/commonGamesPage';
 import Audiocall from '../controllers/games/audiocall';
+import Sprint from '../controllers/games/sprint';
 
 export default class Router {
     async locationResolver(location: string) {
@@ -52,10 +53,12 @@ export default class Router {
             }
             case '#/games/sprint/': {
                 const sprint = new GameDiscriptionPage(gameMap[0]);
+                const game = new Sprint();
 
                 htmlElements.BODY.innerHTML = '';
                 sprint.render();
                 hiddenNavBlur.render();
+                game.discriptionGamePageListners();
 
                 break;
             }

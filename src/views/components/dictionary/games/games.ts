@@ -43,15 +43,6 @@ export default class Games implements View {
     </symbol>
 	</svg>
     <div class="games_item-wrapper">
-        <div class="levels-wrapper">
-          <div class="owl__img">
-            <div class="diagol">
-              <h3>Игры</h3>
-              <p>Закрепи новые слова при помощи игр</p>
-            </div>
-            <img class="owl" src="../../../../assets/images/owl.png" alt="Owl">
-          </div>
-        </div>
           <div class="games">
             <div class="games_item">
               <a href="#/games/sprint/" data-link class="games_item__container" id="game_sprint">

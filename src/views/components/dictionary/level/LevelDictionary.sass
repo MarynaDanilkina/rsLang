@@ -1,3 +1,5 @@
+$hover-color: #f3e4f9
+$text-white: #fff
 .levels__difficulty
   margin-top: 40px
   display: flex
@@ -19,13 +21,13 @@
 .button
   button
     position: relative
-    margin-top: 20px
-    width: 1180px
+    margin-top: 30px
+    width: 1150px
     height: 70px
     display: flex
     border: none
     outline: none
-    background-color: #fff
+    background-color: $text-white
     border-radius: 6px
     align-items: center
     justify-content: space-between
@@ -46,7 +48,7 @@
 
   button:hover
     cursor: pointer
-    background-color: #F3E4F9
+    background-color: $hover-color
 
   button
     div
@@ -83,42 +85,50 @@
 #closeDifficultImg
   transform: rotate(45deg)
 
-@media (max-width: 1400px)
-  .button
-    width: 1100px
-
+@media (max-width: 1600px)
   .button
     button
       width: 950px
 
-@media (max-width: 1200px)
+@media (max-width: 1400px)
   .button
-    margin-top: 0px
+    width: 1100px
+    margin: 0 auto
 
   .button
     button
       width: 850px
 
-@media (max-width: 992px)
+@media (max-width: 1200px)
+
   .button
-    width: 800px
+    margin-top: 0px
+    width: 300px
 
   .button
     button
-      width: 625px
+      width: 750px
+
+@media (max-width: 992px)
+  .button
+    width: 500px
+
+  .button
+    button
+      width: 600px
 
     button
       h3
-        font-size: 32px
+        font-size: 28px
 
       p
-        font-size: 30px
+        font-size: 26px
 
 @media (max-width: 768px)
 
   .button
     button
-      width: 475px
+      width: 520px
 
     button
       p
@@ -130,6 +140,7 @@
 
 @media (max-width: 576px)
   .button
+    width: 400px
     button
       width: 350px
       height: 54px
@@ -139,6 +150,7 @@
 
 @media (max-width: 420px)
   .button
+    width: 300px
     button
       width: 295px
       height: 50px
