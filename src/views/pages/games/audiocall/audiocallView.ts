@@ -1,7 +1,7 @@
 import { View } from '../../../../interfaces/interfaces';
 import './audiocall.sass';
 
-export default class Audiocall implements View {
+export default class AudiocallView implements View {
     html = `<div class="game__progress-range">
                 <div class="progress-point" id="progress_point_1"></div>
                 <div class="progress-point" id="progress_point_2"></div>
@@ -53,8 +53,8 @@ export default class Audiocall implements View {
                 <button class="answer answer_4">Ответ</button>
                 <button class="answer answer_5">Ответ</button>
             </div>
-            <div class="btn-skip">Не знаю ➜</div>
-            <div class="btn-next hidden">Далее ➜</div>`;
+            <button class="btn-skip">Не знаю ➜</button>
+            <button class="btn-next hidden">Далее ➜</button>`;
 
     render() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
