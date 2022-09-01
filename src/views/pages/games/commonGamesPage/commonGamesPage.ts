@@ -6,7 +6,7 @@ import Games from '../../../components/dictionary/games/games';
 
 export default class СommonGamesPage implements View {
     html = `<main id="main" class="games_page">
-                <h2>Игры</h2>
+                <h3>Игры</h3>
             </main>`;
 
     render() {
