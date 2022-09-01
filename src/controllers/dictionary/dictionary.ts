@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { WordData } from '../../interfaces/interfaces';
+import { UserWordData, WordData } from '../../interfaces/interfaces';
 import currentUser from '../../models/currentUser';
 import htmlElements from '../../models/htmlElements';
 import '../../views/components/dictionary/card/card.sass';
@@ -9,6 +9,7 @@ import Dictionary from '../../views/pages/dictionary/dictionary';
 import UserWords from '../../api/usersWords';
 import Words from '../../api/words';
 import DifficultWord from '../../views/pages/difficultWord/difficultWord';
+import State from '../../models/state';
 
 let page = 0;
 const link = 'https://rs-lang-kdz.herokuapp.com';
@@ -354,6 +355,73 @@ export default class DictionaryDevelopments {
                 main.style.backgroundImage = 'url(../../assets/backgrounds/levelC2.png)';
                 main.style.backgroundSize = '10%';
             }
+        }
+    }
+
+    game() {
+        const mapperLevel: Record<string, number> = {
+            A1: 0,
+            A2: 1,
+            B1: 2,
+            B2: 3,
+            C1: 4,
+            C2: 5,
+        };
+        const games = document.querySelectorAll('.dictionary_page .games_item__container');
+        const userWords = new UserWords();
+        State.selectedLevel = mapperLevel[levelDictionary[0]];
+        games.forEach((game) =>
+            game.addEventListener('click', async () => {
+                const userCard = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
+                const learnedWords = userCard?.filter((obj) => obj.difficulty === 'learned');
+                let wordsForGame: WordData[] = [];
+                const nextPage = page;
+                await this.update(nextPage, learnedWords, wordsForGame);
+                if (wordsForGame.length > 20) {
+                    wordsForGame = wordsForGame.slice(0, 20);
+                    console.log(wordsForGame);
+                }
+                if (wordsForGame.length === 20) {
+                    State.wordsForGame = wordsForGame;
+                } else {
+                    await this.update(nextPage, learnedWords, wordsForGame);
+                }
+            })
+        );
+    }
+
+    async update(pageNew: number, learnedWords: UserWordData[] | undefined, wordsForGame: WordData[]) {
+        const mapperLevel: Record<string, number> = {
+            A1: 0,
+            A2: 1,
+            B1: 2,
+            B2: 3,
+            C1: 4,
+            C2: 5,
+        };
+        const words = new Words();
+        const cards: Array<WordData> = await words.getWords(mapperLevel[levelDictionary[0]], pageNew);
+        cards.forEach((card) => {
+            if (learnedWords) {
+                let n = 0;
+                for (let i = 0; i < learnedWords.length; i += 1) {
+                    if (card.id === learnedWords[i].wordId) {
+                        n += 1;
+                        break;
+                    }
+                }
+                if (n === 0) {
+                    wordsForGame.push(card);
+                }
+            }
+        });
+        if (wordsForGame.length < 20) {
+            if (pageNew === 0) {
+                pageNew = 29;
+            } else {
+                pageNew -= 1;
+            }
+            await this.update(pageNew, learnedWords, wordsForGame);
         }
     }
 }

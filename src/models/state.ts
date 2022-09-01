@@ -1,3 +1,4 @@
+import { WordData } from '../interfaces/interfaces';
 import currentUser from './currentUser';
 
 const State = {
@@ -16,6 +17,8 @@ const State = {
             rightAnswersSession: 0,
         },
     },
+    selectedLevel: -1,
+    wordsForGame: <WordData[]>[],
 };
 
 export default State;

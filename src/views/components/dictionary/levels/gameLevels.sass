@@ -6,5 +6,8 @@
             width: 100%
             h3, p 
                 font-size: 100%
-        .button__level.selected
-            background-color: #F3E4F9        
+            &.selected
+                background-color: #F3E4F9
+            &:disabled:hover
+                background: inherit
+
