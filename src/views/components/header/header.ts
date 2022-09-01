@@ -1,9 +1,14 @@
 import { View } from '../../../interfaces/interfaces';
 import htmlConsts from '../../../models/htmlElements';
 import currentUser from '../../../models/currentUser';
+import logout from '../../../controllers/pages/logoutController';
 import './header.sass';
 
 export default class Header implements View {
+    loginIcon = '../../../assets/images/login_logo.png';
+
+    logoutIcon = '../../../assets/images/logout.svg';
+
     html = `
       <header class="header">
         <div class="header__content_wrapper">
@@ -14,15 +19,15 @@ export default class Header implements View {
           </div>
         <nav id="navigation" class="navigation">
           <div id="navItemMain" class="nav__item">
-            <a href="#/" data-link>Главная</a>
+            <a href="#/" class="nav__link" data-link>Главная</a>
           </div>
           <div id="navItemTeam" class="nav__item">
-            <a href="#/team/" data-link>О команде</a>
+            <a href="#/team/" class="nav__link" data-link>О команде</a>
           </div>
           <div id="navItemLogin" class="nav__item">
-            <a href="#/login/" data-link>
+            <a href=${currentUser.name ? '#/' : '#/login/'} class="nav__link" data-link>
               <div class="login__logo">
-                <img src="../../../assets/images/login_logo.png" class="login__logo" />
+                <img src=${currentUser.name ? this.logoutIcon : this.loginIcon} class="login__logo" />
               </div>
               <div class="login__title" id="login-title"></div>
             </a>
@@ -49,6 +54,12 @@ export default class Header implements View {
     render() {
         htmlConsts.BODY.insertAdjacentHTML('beforeend', this.html);
         const loginTitle = <HTMLDivElement>document.getElementById('login-title');
+        const icon = <HTMLImageElement>document.querySelector('.login__logo');
+
         loginTitle.innerHTML = currentUser.name ? currentUser.name : 'Войти | Регистрация';
+
+        if (currentUser.name) {
+            icon.addEventListener('click', logout, { once: true });
+        }
     }
 }

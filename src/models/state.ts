@@ -7,13 +7,13 @@ const State = {
             learnedwords: 0,
             rightAnswers: 0,
             wrongAnswers: 0,
-            winsSession: 0,
+            rightAnswersSession: 0,
         },
         sprint: {
             learnedwords: 0,
             rightAnswers: 0,
             wrongAnswers: 0,
-            winsSession: 0,
+            rightAnswersSession: 0,
         },
     },
 };

@@ -5,38 +5,23 @@ export default class GreetingSection implements View {
     html = `<section id="greetingSection" class="greeting_section">
     <div class="greeting_section__content">
       <div class="greeting_owl">
-        <img class="owl_logo greeting_owl_logo" src="../../../assets/images/owl.png" />
-        <img class="greeting_speech_logo" src="../../../assets/images/speech.png" />
-        <div class="greeting_text">
-          <p>Привет друг!</p>
-          <p>
-            Пора уже наконец выучить<br />
-            язык, я тебе помогу в этом.
-          </p>
-          <p>Для кого это приложение?</p>
-        </div>
+        <img class="owl_logo greeting_owl_logo" src="../../../assets/images/owlMain.svg" />
       </div>
       <div class="basic_info">
         <div class="basic_info__users">
           <div class="user_kind">
-            <img class="user_logo" src="../../../assets/images/children.png" />
+            <img class="user_logo" src="../../../assets/images/children.svg" />
             <div class="user_info">
-              <p class="user_title">Дети</p>
-              <p class="user_age">8 — 14 лет</p>
             </div>
           </div>
           <div class="user_kind">
-            <img class="user_logo" src="../../../assets/images/teenagers.png" />
+            <img class="user_logo" src="../../../assets/images/teenagers.svg" />
             <div class="user_info">
-              <p class="user_title">Подростки</p>
-              <p class="user_age">14 — 18 лет</p>
             </div>
           </div>
           <div class="user_kind">
-            <img class="user_logo" src="../../../assets/images/adults.png" />
+            <img class="user_logo" src="../../../assets/images/adults.svg" />
             <div class="user_info">
-              <p class="user_title">Взрослые</p>
-              <p class="user_age">18 — ∞</p>
             </div>
           </div>
         </div>

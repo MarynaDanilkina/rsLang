@@ -1,3 +1,6 @@
+import { AuthData } from '../interfaces/interfaces';
+import currentUser from '../models/currentUser';
+
 export function testEmail(this: HTMLInputElement) {
     this.classList.add('warning');
     const emailRegExp = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -56,4 +59,14 @@ export function showSpinner(isShown: boolean) {
     } else {
         spinner.classList.remove('active');
     }
+}
+
+export function saveCurrentUser(auth: AuthData) {
+    currentUser.message = auth.message;
+    currentUser.name = auth.name;
+    currentUser.token = auth.token;
+    currentUser.refreshToken = auth.refreshToken;
+    currentUser.userId = auth.userId;
+
+    localStorage.setItem('authData', JSON.stringify(currentUser));
 }
