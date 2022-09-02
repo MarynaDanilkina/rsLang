@@ -1,26 +1,44 @@
 import EventEmitter from 'events';
-import { WordData } from '../../interfaces/interfaces';
+import { StatisticsData, UserWordData, WordData } from '../../interfaces/interfaces';
+import UserStat from '../../api/usersStat';
 import GameStatisticview from '../../views/components/games/gameStatisticSection/gameStatistic';
+import StatisticAll from '../../views/components/statistic/headingSection/statistic';
 import getAnotherWord from '../../utils/getAnotherElement';
+import currentUser from '../../models/currentUser';
 import shuffle from '../../utils/shuffle';
 import Game from './game';
+
+type WordPair = Array<[Pick<WordData, 'word' | 'id'> & { correct: boolean }, string]>;
 
 export default class Sprint extends Game {
     eventEmitter: EventEmitter;
 
     currentQuestion: number;
 
-    rightPairs: Array<[Pick<WordData, 'word' | 'id'> & { correct: boolean }, string]> | undefined;
+    allPairs: WordPair | undefined;
 
-    wrongPairs: Array<[Pick<WordData, 'word' | 'id'> & { correct: boolean }, string]> | undefined;
+    userStatistic: StatisticAll;
 
-    allPairs: Array<[Pick<WordData, 'word' | 'id'> & { correct: boolean }, string]> | undefined;
+    userStatsAPI: UserStat;
+
+    learnedWords: UserWordData[] | undefined;
 
     constructor() {
         super();
         this.gameType = 'sprint';
         this.eventEmitter = new EventEmitter();
         this.currentQuestion = 0;
+        this.userStatistic = new StatisticAll();
+        this.userStatsAPI = new UserStat();
+    }
+
+    async startGame() {
+        await super.startGame();
+        this.startTimer();
+        this.createPairs();
+        await this.askQuestion();
+        this.handleAnswerClick();
+        this.handleAnswerKeys();
     }
 
     startTimer() {
@@ -49,14 +67,16 @@ export default class Sprint extends Game {
     }
 
     handleAnswer(answer: boolean) {
-        if (answer === this.allPairs![this.currentQuestion][0].correct) {
-            this.rightAnswers.push(this.currentQuestion);
+        if (answer === (<WordPair>this.allPairs)[this.currentQuestion][0].correct) {
             this.highlightQuestion(this.currentQuestion, true);
+            this.rightAnswers.push(this.currentQuestion);
+            this.currentAnswersSession += 1;
             this.currentQuestion += 1;
             return true;
         }
-        this.wrongAnswers.push(this.currentQuestion);
         this.highlightQuestion(this.currentQuestion, false);
+        this.wrongAnswers.push(this.currentQuestion);
+        this.currentAnswersSession = 0;
         this.currentQuestion += 1;
         return false;
     }
@@ -70,7 +90,7 @@ export default class Sprint extends Game {
                     clickedButton.classList.remove('right');
                 }, 200)
             );
-            this.askQuestion();
+            await this.askQuestion();
         } else {
             clickedButton.classList.add('wrong');
             await Promise.resolve(
@@ -78,7 +98,7 @@ export default class Sprint extends Game {
                     clickedButton.classList.remove('wrong');
                 }, 200)
             );
-            this.askQuestion();
+            await this.askQuestion();
         }
     }
 
@@ -93,45 +113,109 @@ export default class Sprint extends Game {
         });
     }
 
+    handleAnswerKeys() {
+        window.addEventListener('keydown', this.keyboardListener);
+    }
+
+    keyboardListener = async (evt: KeyboardEvent) => {
+        switch (evt.code) {
+            case 'ArrowLeft':
+                await this.handleAnswerView(this.handleAnswer(true), 'sprint-true');
+                break;
+            case 'ArrowRight':
+                await this.handleAnswerView(this.handleAnswer(false), 'sprint-false');
+                break;
+            default:
+                break;
+        }
+    };
+
     highlightQuestion(index: number, isRight: boolean) {
         const progressPoints = document.querySelectorAll('.progress-point');
         const point = progressPoints[index];
         point.classList.add(isRight ? 'right' : 'wrong');
     }
 
-    askQuestion() {
+    async askQuestion() {
         if (this.currentQuestion <= 19) {
             const wordWrapper = <HTMLDivElement>document.querySelector('.word_wrapper');
 
             wordWrapper.textContent = `
-              ${this.allPairs![this.currentQuestion][0].word} - ${this.allPairs![this.currentQuestion][1]}
+              ${(<WordPair>this.allPairs)[this.currentQuestion][0].word} - 
+              ${(<WordPair>this.allPairs)[this.currentQuestion][1]}
             `;
         } else {
+            window.removeEventListener('keydown', this.keyboardListener);
             const results = new GameStatisticview(<WordData[]>this.words, this.rightAnswers, this.wrongAnswers);
+
+            if (this.rightAnswersSession < this.currentAnswersSession) {
+                this.rightAnswersSession = this.currentAnswersSession;
+            }
+
             results.render();
-            this.statisticGamePageListners();
+
+            if (currentUser.userId) {
+                await this.updateStatistic();
+            }
         }
     }
 
     createPairs() {
-        this.rightPairs = this.words
-            ?.slice(0, 10)
-            .map((wordData) => [{ word: wordData.word, id: wordData.id, correct: true }, wordData.wordTranslate]);
+        const rightPairs = <WordPair>(
+            this.words
+                ?.slice(0, 10)
+                .map((wordData) => [{ word: wordData.word, id: wordData.id, correct: true }, wordData.wordTranslate])
+        );
 
-        this.wrongPairs = this.words?.slice(10).map((wordData, index, arr) => {
+        const wrongPairs = <WordPair>this.words?.slice(10).map((wordData, index, arr) => {
             const otherWordData = getAnotherWord(arr, index);
             return [{ word: wordData.word, id: wordData.id, correct: false }, otherWordData.wordTranslate];
         });
 
-        this.allPairs = shuffle([...this.rightPairs!, ...this.wrongPairs!]);
+        this.allPairs = shuffle([...rightPairs, ...wrongPairs]);
         this.words = <Array<WordData>>this.allPairs.map((pair) => this.words?.find((word) => word.id === pair[0].id));
     }
 
-    async startGame() {
-        await super.startGame();
-        this.startTimer();
-        this.createPairs();
-        this.askQuestion();
-        this.handleAnswerClick();
+    async updateStatistic() {
+        const currentDay = new Date().toLocaleDateString('en-US');
+        const currentStatistic = <StatisticsData>await this.userStatistic.getTodayResults();
+        let session;
+        if (
+            (currentStatistic &&
+                (this.rightAnswersSession > <number>currentStatistic.optional.sprintSession ||
+                    <undefined>currentStatistic.optional.sprintSession)) ||
+            !currentStatistic
+        ) {
+            session = this.rightAnswersSession;
+        } else {
+            session = <number>currentStatistic.optional.sprintSession;
+        }
+
+        let stat;
+        if (currentStatistic) {
+            stat = {
+                learnedWords: currentStatistic.learnedWords + (<WordData[]>this.words).length,
+                optional: {
+                    day: currentDay,
+                    sprintLearnedWords:
+                        <number>currentStatistic.optional.sprintLearnedWords + (<WordData[]>this.words).length,
+                    sprintRightAnswers: <number>currentStatistic.optional.sprintRightAnswers + this.rightAnswers.length,
+                    sprintWrongAnswers: <number>currentStatistic.optional.sprintWrongAnswers + this.wrongAnswers.length,
+                    sprintSession: session,
+                },
+            };
+        } else {
+            stat = {
+                learnedWords: (<UserWordData[]>this.learnedWords).length,
+                optional: {
+                    day: currentDay,
+                    sprintLearnedWords: (<UserWordData[]>this.learnedWords).length,
+                    sprintRightAnswers: this.rightAnswers.length,
+                    sprintWrongAnswers: this.wrongAnswers.length,
+                    sprintSession: session,
+                },
+            };
+        }
+        await this.userStatsAPI.upsertStatistics(currentUser.userId, stat, currentUser.token);
     }
 }

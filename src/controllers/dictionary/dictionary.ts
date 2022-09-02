@@ -75,7 +75,7 @@ export default class DictionaryDevelopments {
     close() {
         const close = <HTMLElement>document.getElementById('close');
 
-        close.addEventListener('click', (e) => {
+        close.addEventListener('click', () => {
             const book = new Dictionary();
             const hiddenNavBlur = new HiddenNavBlur();
 

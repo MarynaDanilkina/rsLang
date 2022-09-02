@@ -45,7 +45,8 @@ export default class Game {
             const LEVELS_BTNS: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.button__level');
             LEVELS_BTNS.forEach((b, index) => {
                 if (State.selectedLevel !== index) {
-                    b.disabled = true;
+                    const btnLevel = b;
+                    btnLevel.disabled = true;
                 }
             });
         }

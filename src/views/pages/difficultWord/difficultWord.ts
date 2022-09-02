@@ -13,7 +13,7 @@ export default class DifficultWord {
         MAIN.innerHTML = '';
         const dictionary = new DictionaryDevelopments();
         const difficultWordDictionaryClose = new DifficultWordDictionaryClose();
-        const game = new Games();
+        // const game = new Games();
         const userWords = new UserWords();
         const words = new Words();
         const getAllWords = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
