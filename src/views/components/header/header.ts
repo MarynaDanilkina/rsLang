@@ -3,6 +3,7 @@ import htmlConsts from '../../../models/htmlElements';
 import currentUser from '../../../models/currentUser';
 import logout from '../../../controllers/pages/logoutController';
 import './header.sass';
+import Theme from './theme';
 
 export default class Header implements View {
     loginIcon = '../../../assets/images/login_logo.svg';
@@ -17,6 +18,8 @@ export default class Header implements View {
               <img src="../../../assets/images/header_logo.png" class="header__logo" />
             </a>
           </div>
+          <button class="header__icon header__moon">
+          </button>
         <nav id="navigation" class="navigation">
           <div id="navItemMain" class="nav__item">
             <a href="#/" class="nav__link" data-link>Главная</a>
@@ -61,5 +64,7 @@ export default class Header implements View {
         if (currentUser.name) {
             icon.addEventListener('click', logout, { once: true });
         }
+        const theme = new Theme();
+        theme.start();
     }
 }
