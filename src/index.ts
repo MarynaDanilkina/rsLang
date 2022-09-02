@@ -14,7 +14,7 @@ if (userMemo) {
 }
 
 router.routWindowHandler();
-router.routClickHandler();
+async () => router.routClickHandler();
 mainPageControllers.hiddenMenuListner();
 
 window.addEventListener('unload', () => {
