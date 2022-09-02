@@ -5,6 +5,7 @@ import Pagination from '../../components/dictionary/pagination/pagination';
 import Words from '../../../api/words';
 import DictionaryDevelopments from '../../../controllers/dictionary/dictionary';
 import LevelDictionaryClose from '../../components/dictionary/level/levelDictionaryClose';
+import { showSpinner } from '../../../utils/utils';
 
 export const mapper: Record<string, number> = {
     A1: 0,
@@ -27,7 +28,9 @@ export default class DictionaryCard {
 
     async render() {
         const MAIN = <HTMLElement>document.getElementById('main');
-        MAIN.innerHTML = '';
+        MAIN.innerHTML =
+            '<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
+        showSpinner(true);
         const level = new LevelDictionaryClose(this.levels);
         const game = new Games();
         const pagination = new Pagination(this.page);

@@ -55,9 +55,9 @@ export function enableSubmit(this: HTMLButtonElement, inputs: Array<HTMLInputEle
 export function showSpinner(isShown: boolean) {
     const spinner = <HTMLDivElement>document.querySelector('.lds-roller');
     if (isShown) {
-        spinner.classList.add('active');
+        spinner.classList.add('spinner-active');
     } else {
-        spinner.classList.remove('active');
+        spinner.classList.remove('spinner-active');
     }
 }
 

@@ -11,8 +11,8 @@ export default class Levels implements LevelsView {
 
     html = `<div class="levels__difficulty">
                 <h2 class="levels__title">Выберите уровень сложности:</h2>
-                <div class="levels__container" id="levels__container">
-                </div>
+                <div class="levels__container" id="levels__container"></div>
+                <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
             </div>`;
 
     levels;

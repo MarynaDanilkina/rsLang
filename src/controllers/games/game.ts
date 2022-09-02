@@ -7,6 +7,7 @@ import AudiocallView from '../../views/pages/games/audiocall/audiocallView';
 import SprintView from '../../views/pages/games/sprint/sprintView';
 import getRandomIntInclusive from '../../utils/getRandomNumber';
 import shuffle from '../../utils/shuffle';
+import { showSpinner } from '../../utils/utils';
 
 export default class Game {
     baseURL = 'https://rs-lang-kdz.herokuapp.com';
@@ -72,6 +73,8 @@ export default class Game {
     }
 
     async startGame() {
+        showSpinner(true);
+
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
         const wordsAPI = new Words();
         const pageNumber = getRandomIntInclusive(0, 29);
