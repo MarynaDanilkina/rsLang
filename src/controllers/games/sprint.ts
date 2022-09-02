@@ -81,12 +81,14 @@ export default class Sprint extends Game {
         if (answer === (<WordPair>this.allPairs)[this.currentQuestion][0].correct) {
             this.highlightQuestion(this.currentQuestion, true);
             this.rightAnswers.push(this.currentQuestion);
+            this.changeOwl();
             this.currentAnswersSession += 1;
             this.currentQuestion += 1;
             return true;
         }
         this.highlightQuestion(this.currentQuestion, false);
         this.wrongAnswers.push(this.currentQuestion);
+        this.changeOwl();
         this.currentAnswersSession = 0;
         this.currentQuestion += 1;
         return false;
@@ -145,6 +147,33 @@ export default class Sprint extends Game {
         const progressPoints = document.querySelectorAll('.progress-point');
         const point = progressPoints[index];
         point.classList.add(isRight ? 'right' : 'wrong');
+    }
+
+    changeOwl() {
+        const owlImg = <HTMLImageElement>document.getElementById('sprint-owl');
+        const srcPath = '../../../assets/images/';
+        switch (Math.floor(this.currentAnswersSession / 3)) {
+            case 1:
+                console.log('case 1', this.currentAnswersSession);
+                owlImg.src = `${srcPath}owl_2.svg`;
+                break;
+            case 2:
+                console.log('case 2', this.currentAnswersSession);
+                owlImg.src = `${srcPath}owl_3.svg`;
+                break;
+            case 3:
+                console.log('case 3', this.currentAnswersSession);
+                owlImg.src = `${srcPath}owl_4.svg`;
+                break;
+            case 4:
+                console.log('case 4', this.currentAnswersSession);
+                owlImg.src = `${srcPath}owl_5.svg`;
+                break;
+            case 0:
+            default:
+                console.log('case 0', this.currentAnswersSession);
+                break;
+        }
     }
 
     async askQuestion() {

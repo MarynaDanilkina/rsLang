@@ -25,6 +25,9 @@ export default class SprintView implements View {
               <div class="progress-point" id="progress_point_20"></div>
             </div>
               <div class="timer much-time" id="timer">60</div>
+              <div class="owl-container">
+                <img class="sprint-owl" id="sprint-owl" src="../../../assets/images/owl_1.svg">
+              </div>
               <div class="word_wrapper"></div>
             <div class="sprint-answers_wrapper">
               <button class="sprint-answer" id="sprint-true">Верно</button>

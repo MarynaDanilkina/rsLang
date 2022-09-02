@@ -17,32 +17,34 @@
   &.wrong
     background-color: #fcd5d5
 
-.sprint-answers_wrapper 
-  display: flex
-  justify-content: center
-  gap: 2vw
-  width: 100%
-  margin-top: 10%
-  height: 20%
-
-.sprint-answer 
-  position: relative
-  min-width: 18%
-  height: fit-content
-  padding: 10px 15px
-  border: solid 1px rgba(0, 0, 0, 0.192)
-  text-align: center
-  background-color: #f3e4f9
-  border-radius: 6px
-  transition: 0.4s
-  font-size: 70%
-  cursor: pointer
-  &.right
-    background-color: #e1fad1
-  &.wrong
-    background-color: #fcd5d5
-  &:disabled
-    color: black
+.sprint
+  &-answers_wrapper 
+    display: flex
+    justify-content: center
+    gap: 2vw
+    width: 100%
+    margin-top: 10%
+    height: 20%
+  &-answer 
+    position: relative
+    min-width: 18%
+    height: fit-content
+    padding: 10px 15px
+    border: solid 1px rgba(0, 0, 0, 0.192)
+    text-align: center
+    background-color: #f3e4f9
+    border-radius: 6px
+    transition: 0.4s
+    font-size: 70%
+    cursor: pointer
+    &.right
+      background-color: #e1fad1
+    &.wrong
+      background-color: #fcd5d5
+    &:disabled
+      color: black
+  &-owl
+    width: 150px
 
 .btn
   &-skip,
@@ -74,6 +76,8 @@
     color: #b2ad00
   &.little-time
     color: #ff0000
+
+.sprint
 
 .hidden 
   display: none
