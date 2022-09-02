@@ -4,14 +4,14 @@
   &_section
     height: calc(100vh - 210px)
   &_owl,
-  &_text 
+  &_text
     position: absolute
-  &_owl 
+  &_owl
     top: 27vh
     left: 15vw
-    &_logo 
+    &_logo
       width: 15vw
-  &_text 
+  &_text
     width: 13vw
     font-size: 1vw
     line-height: 1.2rem
@@ -19,13 +19,13 @@
     left: 8%
 
 .reg-form
-  &_wrapper 
+  &_wrapper
     justify-content: center
     align-items: center
     height: 100%
     display: flex
     flex-direction: column
-  &_header 
+  &_header
     display: flex
     flex-direction: row
     align-items: center
@@ -34,7 +34,7 @@
     margin: 0 auto
     margin-bottom: 2%
 
-.page_title 
+.page_title
   width: 50%
   text-align: center
   border-bottom: 1px solid #e0e0e0
@@ -57,7 +57,7 @@
     border: none
     &[type='text'],
     &[type='password'],
-    &[type='email'] 
+    &[type='email']
       display: block
       padding: 4%
       background: #dddfe6
@@ -80,16 +80,16 @@
     &:disabled
       opacity: 0.5
       cursor: default
-  &_signup 
+  &_signup
     input
       &[type='text'],
       &[type='password'],
-      &[type='email'] 
+      &[type='email']
         padding: 3%
         margin-bottom: 5%
-      &[type='submit'] 
+      &[type='submit']
         margin-bottom: 3%
-  &.selected_form 
+  &.selected_form
     display: flex
     flex-direction: column
     width: 30%
@@ -102,44 +102,64 @@
   &.active
     display: block
 
-@media (max-width: 992px) 
-  .registration
-    &_section
-      height: calc(100vh - 180px)
-  .reg-form_header 
-    width: 40%
-  
+@media (max-width: 1600px)
+  .registration_owl
+    display: none
+  .page_title
+    font-size: 13px
+
+@media (max-width: 992px)
+  .form__button
+    width: 70%
+  .reg-form_header
+    width: 35%
+
   .form
     .selected_form
       width: 35%
-  
 
-@media (max-width: 768px) 
-  .reg-form_header 
+  .registration
+    &_section
+      height: calc(100vh - 180px)
+
+@media (max-width: 768px)
+  .reg-form_header
     width: 45%
     font-size: 80%
-  
+
   .form
     .selected_form
       width: 40%
       font-size: 30%
-  
-  input 
+
+  input
     font-size: 10px
-  
+
+  .reg-form_header
+    margin-bottom: 3%
+
+  .form.selected_form
+    width: 40%
+
+@media (max-width: 576px)
+  .form__button
+    width: 85%
+    font-size: 8px
+  .registration
+    &_section
+      height: calc(100vh - 160px)
+
+  .reg-form_header
+    width: 55%
+
+  .form
+    .selected_form
+      width: 50%
+
+  input
+    font-size: 8px
+
 @media (max-width: 500px)
   .registration
     &_section
-      height: calc(100vh - 160px) 
-    .reg-form_header 
-    width: 50%
-    .form
-      .selected_form
-        width: 45%
-    input 
-      font-size: 8px
-
-
-
-  
-
+      height: calc(100vh - 160px)
