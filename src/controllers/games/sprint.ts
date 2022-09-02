@@ -154,24 +154,20 @@ export default class Sprint extends Game {
         const srcPath = '../../../assets/images/';
         switch (Math.floor(this.currentAnswersSession / 3)) {
             case 1:
-                console.log('case 1', this.currentAnswersSession);
                 owlImg.src = `${srcPath}owl_2.svg`;
                 break;
             case 2:
-                console.log('case 2', this.currentAnswersSession);
                 owlImg.src = `${srcPath}owl_3.svg`;
                 break;
             case 3:
-                console.log('case 3', this.currentAnswersSession);
                 owlImg.src = `${srcPath}owl_4.svg`;
                 break;
             case 4:
-                console.log('case 4', this.currentAnswersSession);
                 owlImg.src = `${srcPath}owl_5.svg`;
                 break;
             case 0:
             default:
-                console.log('case 0', this.currentAnswersSession);
+                owlImg.src = `${srcPath}owl_1.svg`;
                 break;
         }
     }
