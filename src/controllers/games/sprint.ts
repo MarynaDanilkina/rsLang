@@ -1,4 +1,3 @@
-import EventEmitter from 'events';
 import { StatisticsData, UserWordData, WordData } from '../../interfaces/interfaces';
 import UserStat from '../../api/usersStat';
 import GameStatisticview from '../../views/components/games/gameStatisticSection/gameStatistic';
@@ -11,8 +10,6 @@ import Game from './game';
 type WordPair = Array<[Pick<WordData, 'word' | 'id'> & { correct: boolean }, string]>;
 
 export default class Sprint extends Game {
-    eventEmitter: EventEmitter;
-
     currentQuestion: number;
 
     allPairs: WordPair | undefined;
@@ -26,7 +23,6 @@ export default class Sprint extends Game {
     constructor() {
         super();
         this.gameType = 'sprint';
-        this.eventEmitter = new EventEmitter();
         this.currentQuestion = 0;
         this.userStatistic = new StatisticAll();
         this.userStatsAPI = new UserStat();
@@ -41,12 +37,27 @@ export default class Sprint extends Game {
         this.handleAnswerKeys();
     }
 
+    async endGame() {
+        window.removeEventListener('keydown', this.keyboardListener);
+        const results = new GameStatisticview(<WordData[]>this.words, this.rightAnswers, this.wrongAnswers);
+
+        if (this.rightAnswersSession < this.currentAnswersSession) {
+            this.rightAnswersSession = this.currentAnswersSession;
+        }
+
+        results.render();
+
+        if (currentUser.userId) {
+            await this.updateStatistic();
+        }
+    }
+
     startTimer() {
         const timerContainer = <HTMLDivElement>document.getElementById('timer');
-        const emit = this.eventEmitter.emit.bind(this);
+        const endGame = this.endGame.bind(this);
         let timeLeft = 60;
 
-        setTimeout(function start() {
+        setTimeout(async function start() {
             if (timeLeft >= 0) {
                 if (timeLeft > 45) timerContainer.classList.add('much-time');
                 if (timeLeft < 45 && timeLeft > 15) {
@@ -61,7 +72,7 @@ export default class Sprint extends Game {
                 timeLeft -= 1;
                 setTimeout(start, 1000);
             } else {
-                emit('gameEnd');
+                await endGame();
             }
         }, 1000);
     }
@@ -145,18 +156,7 @@ export default class Sprint extends Game {
               ${(<WordPair>this.allPairs)[this.currentQuestion][1]}
             `;
         } else {
-            window.removeEventListener('keydown', this.keyboardListener);
-            const results = new GameStatisticview(<WordData[]>this.words, this.rightAnswers, this.wrongAnswers);
-
-            if (this.rightAnswersSession < this.currentAnswersSession) {
-                this.rightAnswersSession = this.currentAnswersSession;
-            }
-
-            results.render();
-
-            if (currentUser.userId) {
-                await this.updateStatistic();
-            }
+            await this.endGame();
         }
     }
 
