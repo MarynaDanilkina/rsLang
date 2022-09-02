@@ -225,9 +225,9 @@ export default class Audiocall extends Game {
 
     async startGame() {
         await super.startGame();
-        // this.learnedWords = <UserWordData[]>(
-        //     await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token)
-        // );
+        this.learnedWords = <UserWordData[]>(
+            await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token)
+        );
         this.changeContent();
         this.nextBtnListner();
         this.skipBtnListner();

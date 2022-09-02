@@ -109,12 +109,18 @@
     font-size: 13px
 
 @media (max-width: 992px)
+  .form__button
+    width: 70%
   .reg-form_header
     width: 35%
 
   .form
     .selected_form
       width: 35%
+
+  .registration
+    &_section
+      height: calc(100vh - 180px)
 
 @media (max-width: 768px)
   .reg-form_header
@@ -136,16 +142,24 @@
     width: 40%
 
 @media (max-width: 576px)
+  .form__button
+    width: 85%
+    font-size: 8px
   .registration
     &_section
-      height: calc(100vh - 290px)
+      height: calc(100vh - 160px)
 
   .reg-form_header
-    width: 70%
+    width: 55%
 
   .form
     .selected_form
-      width: 55%
+      width: 50%
 
   input
     font-size: 8px
+
+@media (max-width: 500px)
+  .registration
+    &_section
+      height: calc(100vh - 160px)
