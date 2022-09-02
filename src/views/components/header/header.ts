@@ -5,7 +5,7 @@ import logout from '../../../controllers/pages/logoutController';
 import './header.sass';
 
 export default class Header implements View {
-    loginIcon = '../../../assets/images/login_logo.png';
+    loginIcon = '../../../assets/images/login_logo.svg';
 
     logoutIcon = '../../../assets/images/logout.svg';
 
