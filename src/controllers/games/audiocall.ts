@@ -237,10 +237,11 @@ export default class Audiocall extends Game {
         const currentDay = new Date().toLocaleDateString('en-US');
         const currentStatistic = <StatisticsData>await this.userStatistic.getTodayResults();
         let session;
+        console.log(this.rightAnswersSession, currentStatistic.optional.audiocallSession);
         if (
             (currentStatistic &&
                 (this.rightAnswersSession > <number>currentStatistic.optional.audiocallSession ||
-                    <undefined>currentStatistic.optional.audiocallSession)) ||
+                    <undefined>currentStatistic.optional.audiocallSession === undefined)) ||
             !currentStatistic
         ) {
             session = this.rightAnswersSession;
