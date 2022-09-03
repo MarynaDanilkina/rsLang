@@ -8,22 +8,36 @@ import TitleSection from '../../components/mainContent/titleSection/titleSection
 import VideoSection from '../../components/mainContent/videoSection/videoSection';
 
 export default class Main implements View {
+    constructor() {
+        this.header = new Header();
+        this.footer = new Footer();
+        this.titleSection = new TitleSection();
+        this.greetingSection = new GreetingSection();
+        this.videoSection = new VideoSection();
+        this.informationSection = new InformationSection();
+    }
+
+    header;
+
+    footer;
+
+    titleSection;
+
+    greetingSection;
+
+    videoSection;
+
+    informationSection;
+
     html = `<main id="main" class="main_page"></main>`;
 
     render() {
-        const header = new Header();
-        const footer = new Footer();
-        const tilteSection = new TitleSection();
-        const greetingSection = new GreetingSection();
-        const videoSection = new VideoSection();
-        const informationSection = new InformationSection();
-
-        header.render();
+        this.header.render();
         htmlConsts.BODY.insertAdjacentHTML('beforeend', this.html);
-        tilteSection.render();
-        greetingSection.render();
-        videoSection.render();
-        informationSection.render();
-        footer.render();
+        this.titleSection.render();
+        this.greetingSection.render();
+        this.videoSection.render();
+        this.informationSection.render();
+        this.footer.render();
     }
 }

@@ -19,6 +19,7 @@ export default class GameField implements View {
 
     render() {
         const MAIN = <HTMLElement>document.getElementById('main');
+
         MAIN.insertAdjacentHTML('beforeend', this.html);
     }
 }

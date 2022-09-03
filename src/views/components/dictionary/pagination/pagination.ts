@@ -9,6 +9,7 @@ export default class Pagination implements View {
 
     constructor(page: number) {
         this.page = page;
+
         this.html = `<div class="pogination__container">
           <div class="pogination">
             <button class="pogination__button" id='full_back' disabled='disabled'>&lt;&lt;</button>
@@ -18,15 +19,19 @@ export default class Pagination implements View {
             <button class="pogination__button" id='full_next'>&gt;&gt;</button>
           </div>
         </div>`;
+
+        this.dictionary = new DictionaryDevelopments();
     }
+
+    dictionary;
 
     render() {
         const MAIN = <HTMLElement>document.getElementById('main');
         MAIN.insertAdjacentHTML('beforeend', this.html);
-        const dictionary = new DictionaryDevelopments();
-        dictionary.next();
-        dictionary.back();
-        dictionary.fullNext();
-        dictionary.fullBack();
+
+        this.dictionary.next();
+        this.dictionary.back();
+        this.dictionary.fullNext();
+        this.dictionary.fullBack();
     }
 }

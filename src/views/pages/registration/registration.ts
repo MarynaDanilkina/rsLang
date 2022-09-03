@@ -9,8 +9,14 @@ import '../spinner.sass';
 export default class Registration implements View {
     private controller: RegController;
 
+    header;
+
+    footer;
+
     constructor() {
         this.controller = new RegController();
+        this.header = new Header();
+        this.footer = new Footer();
     }
 
     html = `<main id="main" class="registration_page">
@@ -42,12 +48,9 @@ export default class Registration implements View {
             </main>`;
 
     render() {
-        const header = new Header();
-        const footer = new Footer();
-
-        header.render();
+        this.header.render();
         htmlConsts.BODY.insertAdjacentHTML('beforeend', this.html);
-        footer.render();
+        this.footer.render();
 
         const regButtons = <HTMLDivElement>document.getElementById('reg-buttons');
         regButtons.addEventListener('click', (evt) => {

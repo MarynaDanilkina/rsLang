@@ -16,16 +16,19 @@ export default class LevelDictionaryClose implements LevelView {
           </button>
         </div>
         `;
+
+        this.dictionary = new DictionaryDevelopments();
     }
 
     type;
 
     html;
 
+    dictionary;
+
     render() {
         const MAIN = <HTMLElement>document.getElementById('main');
         MAIN.insertAdjacentHTML('beforeend', this.html);
-        const dictionary = new DictionaryDevelopments();
-        dictionary.close();
+        this.dictionary.close();
     }
 }

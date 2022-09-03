@@ -21,35 +21,48 @@ export default class DictionaryCard {
 
     page: number;
 
+    level;
+
+    game;
+
+    pagination;
+
+    words;
+
+    dictionary;
+
     constructor(levels: [string, string, string], page: number) {
         this.levels = levels;
         this.page = page;
+        this.level = new LevelDictionaryClose(levels);
+        this.game = new Games();
+        this.pagination = new Pagination(page);
+        this.words = new Words();
+        this.dictionary = new DictionaryDevelopments();
     }
 
     async render() {
         const MAIN = <HTMLElement>document.getElementById('main');
+
         MAIN.innerHTML =
             '<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
         showSpinner(true);
-        const level = new LevelDictionaryClose(this.levels);
-        const game = new Games();
-        const pagination = new Pagination(this.page);
-        const words = new Words();
-        const cards: Array<WordData> = await words.getWords(mapper[this.levels[0]], this.page);
-        const dictionary = new DictionaryDevelopments();
-        dictionary.setCards(cards);
-        level.render();
+
+        const cards: Array<WordData> = await this.words.getWords(mapper[this.levels[0]], this.page);
+
+        this.dictionary.setCards(cards);
+        this.level.render();
         cards.forEach((element) => {
             const card = new Card(element, 'https://rs-lang-kdz.herokuapp.com');
             card.render();
         });
-        pagination.render();
-        game.render();
-        dictionary.audio();
-        dictionary.close();
-        dictionary.onlyAuthorized();
-        dictionary.styleCard();
-        dictionary.game();
-        await dictionary.pagination();
+        this.pagination.render();
+        this.game.render();
+        this.dictionary.audio();
+        this.dictionary.close();
+        this.dictionary.onlyAuthorized();
+        this.dictionary.styleCard();
+        this.dictionary.game();
+        await this.dictionary.pagination();
     }
 }

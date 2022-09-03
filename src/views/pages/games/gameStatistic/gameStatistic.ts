@@ -10,7 +10,16 @@ export default class GameStatisticPage implements GameStatistic {
         this.gameWords = gameWords;
         this.rightAnswers = rightAnswers;
         this.wrongAnswers = wrongAnswers;
+        this.header = new Header();
+        this.gameField = new GameField();
+        this.gameStatistic = new GameStatisticview(gameWords, rightAnswers, wrongAnswers);
     }
+
+    header;
+
+    gameField;
+
+    gameStatistic;
 
     gameWords;
 
@@ -21,15 +30,11 @@ export default class GameStatisticPage implements GameStatistic {
     html = `<main id="main" class="game_statistic_page"></main>`;
 
     render() {
-        const header = new Header();
-        const gameField = new GameField();
-        const gameStatistic = new GameStatisticview(this.gameWords, this.rightAnswers, this.wrongAnswers);
-
         htmlElements.BODY.innerHTML = '';
 
-        header.render();
+        this.header.render();
         htmlElements.BODY.insertAdjacentHTML('beforeend', this.html);
-        gameField.render();
-        gameStatistic.render();
+        this.gameField.render();
+        this.gameStatistic.render();
     }
 }

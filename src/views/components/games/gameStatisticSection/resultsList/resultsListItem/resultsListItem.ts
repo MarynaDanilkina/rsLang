@@ -25,11 +25,13 @@ export default class ResultsListItem implements GameStatisticItem {
     addAudio() {
         const wordAudio = new Audio(`${this.baseURL}/${this.word.audio}`);
         const audioBtn = <HTMLDivElement>document.querySelector(`.${this.word.word}`);
+
         audioBtn.onclick = async () => wordAudio.play();
     }
 
     render() {
         const LIST = <HTMLElement>document.getElementById(`list-${this.type}`);
+
         LIST.insertAdjacentHTML('beforeend', this.html);
         this.addAudio();
     }

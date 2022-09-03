@@ -20,7 +20,6 @@ export default class Levels implements LevelsView {
     container;
 
     render() {
-        // const MAIN = <HTMLElement>document.getElementById('main');
         this.container.insertAdjacentHTML('beforeend', this.html);
         this.levels.forEach((level) => {
             const selectedlevel = new Level(level);

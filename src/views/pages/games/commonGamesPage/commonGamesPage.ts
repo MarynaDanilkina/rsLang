@@ -5,18 +5,26 @@ import Header from '../../../components/header/header';
 import Games from '../../../components/dictionary/games/games';
 
 export default class СommonGamesPage implements View {
+    constructor() {
+        this.header = new Header();
+        this.footer = new Footer();
+        this.game = new Games();
+    }
+
+    header;
+
+    footer;
+
+    game;
+
     html = `<main id="main" class="games_page">
                 <h3>Игры</h3>
             </main>`;
 
     render() {
-        const header = new Header();
-        const footer = new Footer();
-        const game = new Games();
-
-        header.render();
+        this.header.render();
         htmlConsts.BODY.insertAdjacentHTML('beforeend', this.html);
-        game.render();
-        footer.render();
+        this.game.render();
+        this.footer.render();
     }
 }

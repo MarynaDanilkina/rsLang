@@ -8,20 +8,25 @@ import './gameDiscription.sass';
 export default class GameDiscriptionPage implements GameDiscription {
     constructor(gameParams: [name: string, imgSrc: string, rules: string]) {
         this.gameParams = gameParams;
+        this.header = new Header();
+        this.gameField = new GameField();
+        this.gameDiscription = new GameDiscriptionView(gameParams);
     }
+
+    header;
+
+    gameField;
+
+    gameDiscription;
 
     gameParams;
 
     html = `<main id="main" class="game_discription_page"></main>`;
 
     render() {
-        const header = new Header();
-        const gameField = new GameField();
-        const gameDiscription = new GameDiscriptionView(this.gameParams);
-
-        header.render();
+        this.header.render();
         htmlElements.BODY.insertAdjacentHTML('beforeend', this.html);
-        gameField.render();
-        gameDiscription.render();
+        this.gameField.render();
+        this.gameDiscription.render();
     }
 }

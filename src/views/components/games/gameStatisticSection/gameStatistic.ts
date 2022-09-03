@@ -7,6 +7,8 @@ export default class GameStatisticview implements GameStatistic {
         this.gameWords = gameWords;
         this.rightAnswers = rightAnswers;
         this.wrongAnswers = wrongAnswers;
+        this.resultsListRight = new ResultsList('right', gameWords, rightAnswers);
+        this.resultsListWrong = new ResultsList('wrong', gameWords, wrongAnswers);
     }
 
     gameWords;
@@ -14,6 +16,10 @@ export default class GameStatisticview implements GameStatistic {
     rightAnswers;
 
     wrongAnswers;
+
+    resultsListRight;
+
+    resultsListWrong;
 
     html = `<div class="result_header">
                 <div class="result_owl">
@@ -37,13 +43,13 @@ export default class GameStatisticview implements GameStatistic {
 
     render() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
-        const resultsListRight = new ResultsList('right', this.gameWords, this.rightAnswers);
-        const resultsListWrong = new ResultsList('wrong', this.gameWords, this.wrongAnswers);
+        // const resultsListRight = new ResultsList('right', this.gameWords, this.rightAnswers);
+        // const resultsListWrong = new ResultsList('wrong', this.gameWords, this.wrongAnswers);
 
         GAME_CONTAINER.innerHTML = '';
 
         GAME_CONTAINER.insertAdjacentHTML('beforeend', this.html);
-        resultsListRight.render();
-        resultsListWrong.render();
+        this.resultsListRight.render();
+        this.resultsListWrong.render();
     }
 }

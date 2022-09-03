@@ -6,16 +6,23 @@ import GameField from '../../../components/games/gameField/gameField';
 import Header from '../../../components/header/header';
 
 export default class gameDifficulties implements View {
+    constructor() {
+        this.header = new Header();
+        this.gameField = new GameField();
+    }
+
+    header;
+
+    gameField;
+
     html = `<main id="main" class="game_difficulties_page"></main>`;
 
     render() {
         const btn = `<div class="btn-play">Играть</div>`;
-        const header = new Header();
-        const gameField = new GameField();
 
-        header.render();
+        this.header.render();
         htmlElements.BODY.insertAdjacentHTML('beforeend', this.html);
-        gameField.render();
+        this.gameField.render();
 
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
         const difficulties = new Levels(levelsMap, GAME_CONTAINER);

@@ -7,23 +7,33 @@ import StatisticAll from '../../components/statistic/headingSection/statistic';
 import UnauthorizedStatistic from '../../components/statistic/unauthorizedStatistic/unauthorizedStatistic';
 
 export default class Statistic implements View {
+    constructor() {
+        this.header = new Header();
+        this.footer = new Footer();
+        this.statisticAll = new StatisticAll();
+        this.unauthorizedWarning = new UnauthorizedStatistic();
+    }
+
+    header;
+
+    footer;
+
+    statisticAll;
+
+    unauthorizedWarning;
+
     html = `<main id="main" class="statistic_page"></main>`;
 
     async render() {
-        const header = new Header();
-        const footer = new Footer();
-        const statisticAll = new StatisticAll();
-        const unauthorizedWarning = new UnauthorizedStatistic();
-
-        header.render();
+        this.header.render();
         htmlElements.BODY.insertAdjacentHTML('beforeend', this.html);
 
         if (currentUser.userId) {
-            await statisticAll.render();
+            await this.statisticAll.render();
         } else {
-            unauthorizedWarning.render();
+            this.unauthorizedWarning.render();
         }
 
-        footer.render();
+        this.footer.render();
     }
 }

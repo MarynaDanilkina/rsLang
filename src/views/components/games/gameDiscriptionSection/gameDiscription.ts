@@ -19,9 +19,7 @@ export default class GameDiscriptionView implements GameDiscription {
 
     render() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
-        // const levels = new Levels(levelsMap, GAME_CONTAINER);
 
-        // levels.render();
         GAME_CONTAINER.insertAdjacentHTML('beforeend', this.html);
     }
 }
