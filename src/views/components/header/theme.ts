@@ -1,6 +1,8 @@
 /* eslint-disable no-param-reassign */
 
+import currentUser from '../../../models/currentUser';
 import htmlElements from '../../../models/htmlElements';
+import State from '../../../models/state';
 
 export default class Theme {
     themeListner() {
@@ -10,5 +12,16 @@ export default class Theme {
 
     toggleTheme() {
         htmlElements.BODY.classList.toggle('dark');
+        if (htmlElements.BODY.classList.contains('dark')) {
+            State.theme = 'dark';
+        } else {
+            State.theme = '';
+        }
+    }
+
+    updateTheme() {
+        if (State.theme === 'dark') {
+            htmlElements.BODY.classList.add('dark');
+        }
     }
 }

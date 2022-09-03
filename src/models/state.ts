@@ -1,7 +1,7 @@
 import { WordData } from '../interfaces/interfaces';
 import currentUser from './currentUser';
 
-const State = {
+let State = {
     currentUserID: currentUser.userId,
     games: {
         audiocall: {
@@ -19,6 +19,7 @@ const State = {
     },
     selectedLevel: -1,
     wordsForGame: <WordData[]>[],
+    theme: '',
 };
 
 export default State;
