@@ -247,7 +247,6 @@ export default class Audiocall extends Game {
         } else {
             session = <number>currentStatistic.optional.audiocallSession;
         }
-        console.log(this.rightAnswersSession, currentStatistic.optional.audiocallSession);
         let stat;
         if (currentStatistic) {
             stat = {
