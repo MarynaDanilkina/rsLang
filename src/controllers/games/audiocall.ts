@@ -239,10 +239,10 @@ export default class Audiocall extends Game {
         let session;
         console.log(this.rightAnswersSession, currentStatistic.optional.audiocallSession);
         if (
+            !currentStatistic ||
             (currentStatistic &&
                 (this.rightAnswersSession > <number>currentStatistic.optional.audiocallSession ||
-                    <undefined>currentStatistic.optional.audiocallSession === undefined)) ||
-            !currentStatistic
+                    <undefined>currentStatistic.optional.audiocallSession === undefined))
         ) {
             session = this.rightAnswersSession;
         } else {
