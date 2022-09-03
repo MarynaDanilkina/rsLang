@@ -3,6 +3,7 @@ import currentUser from '../../../models/currentUser';
 import htmlElements from '../../../models/htmlElements';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import Theme from '../../components/header/theme';
 import StatisticAll from '../../components/statistic/headingSection/statistic';
 import UnauthorizedStatistic from '../../components/statistic/unauthorizedStatistic/unauthorizedStatistic';
 

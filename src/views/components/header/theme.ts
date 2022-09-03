@@ -9,7 +9,6 @@ export default class Theme {
         if (icon.classList.contains('header__sun')) {
             this.dark();
         }
-
         icon.addEventListener('click', (e) => {
             const event = <HTMLElement>e.target;
             icon.classList.toggle('header__moon');
@@ -24,7 +23,14 @@ export default class Theme {
     }
 
     dark() {
-        body.style.backgroundColor = '#00093c';
+        const close = <HTMLImageElement>document.getElementById('close');
+        if (window.location.hash === '#/book/' && close) {
+            const header = <HTMLImageElement>document.querySelector('.header');
+            header.style.backgroundColor = '#00093c';
+            body.style.backgroundColor = '#FDF8FF';
+        } else {
+            body.style.backgroundColor = '#00093c';
+        }
         const headerLogo = <HTMLImageElement>document.querySelector('.header__logo');
         headerLogo.src = '../../../assets/images/header_logo2.svg';
         const navigation = document.querySelectorAll<HTMLElement>('.nav__link');
@@ -124,10 +130,19 @@ export default class Theme {
             levelsTitle.style.color = '#fff';
         }
 
-        // cards
+        // reg
+        const regHeader = <HTMLElement>document.querySelector('.reg-form_header');
+        if (regHeader) {
+            regHeader.style.color = '#fff';
+        }
     }
 
     light() {
+        const close = <HTMLImageElement>document.getElementById('close');
+        if (window.location.hash === '#/book/' && close) {
+            const header = <HTMLImageElement>document.querySelector('.header');
+            header.style.backgroundColor = '#FDF8FF';
+        }
         body.style.backgroundColor = '#FDF8FF';
         const headerLogo = <HTMLImageElement>document.querySelector('.header__logo');
         headerLogo.src = '../../../assets/images/header_logo.svg';
@@ -227,6 +242,10 @@ export default class Theme {
             levelsTitle.style.color = '#000';
         }
 
-        // cards
+        // reg
+        const regHeader = <HTMLElement>document.querySelector('.reg-form_header');
+        if (regHeader) {
+            regHeader.style.color = '#000';
+        }
     }
 }

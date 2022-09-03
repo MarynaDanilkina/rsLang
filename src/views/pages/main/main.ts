@@ -2,6 +2,7 @@ import { View } from '../../../interfaces/interfaces';
 import htmlConsts from '../../../models/htmlElements';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import Theme from '../../components/header/theme';
 import GreetingSection from '../../components/mainContent/greetingSection/greetingSection';
 import InformationSection from '../../components/mainContent/informationSection/informationSection';
 import TitleSection from '../../components/mainContent/titleSection/titleSection';
