@@ -5,7 +5,6 @@ import Header from '../../components/header/header';
 import RegController from '../../../controllers/pages/regConroller';
 import './registration.sass';
 import '../spinner.sass';
-import Theme from '../../components/header/theme';
 
 export default class Registration implements View {
     private controller: RegController;

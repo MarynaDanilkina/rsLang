@@ -3,9 +3,16 @@ import htmlConsts from '../../../models/htmlElements';
 import currentUser from '../../../models/currentUser';
 import logout from '../../../controllers/pages/logoutController';
 import './header.sass';
+import '../../pages/darkTheme.sass';
 import Theme from './theme';
 
 export default class Header implements View {
+    constructor() {
+        this.theme = new Theme();
+    }
+
+    theme;
+
     loginIcon = '../../../assets/images/login_logo.svg';
 
     logoutIcon = '../../../assets/images/logout.svg';
@@ -64,7 +71,7 @@ export default class Header implements View {
         if (currentUser.name) {
             icon.addEventListener('click', logout, { once: true });
         }
-        const theme = new Theme();
-        theme.start();
+
+        this.theme.themeListner();
     }
 }

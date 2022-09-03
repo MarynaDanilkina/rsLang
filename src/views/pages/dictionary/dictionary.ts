@@ -8,7 +8,6 @@ import levelsMap from '../../components/dictionary/levels/levelsMap';
 import DictionaryDevelopments from '../../../controllers/dictionary/dictionary';
 import DifficultWords from '../../components/dictionary/level/difficultWords';
 import LevelsDictionary from '../../components/dictionary/levels/levelsDictionary';
-import Theme from '../../components/header/theme';
 
 export default class Dictionary implements View {
     html = `<main id="main" class="dictionary_page">
