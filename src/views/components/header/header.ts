@@ -15,7 +15,7 @@ export default class Header implements View {
         <div class="header__content_wrapper">
           <div class="header__logo_wrapper">
             <a href="#/">
-              <img src="../../../assets/images/header_logo.png" class="header__logo" />
+              <img src="../../../assets/images/header_logo.svg" class="header__logo" />
             </a>
           </div>
           <button class="header__icon header__moon">

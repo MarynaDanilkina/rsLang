@@ -10,17 +10,17 @@ export default class GreetingSection implements View {
       <div class="basic_info">
         <div class="basic_info__users">
           <div class="user_kind">
-            <img class="user_logo" src="../../../assets/images/children.svg" />
+            <img class="user_logo" id='children' src="../../../assets/images/children.svg" />
             <div class="user_info">
             </div>
           </div>
           <div class="user_kind">
-            <img class="user_logo" src="../../../assets/images/teenagers.svg" />
+            <img class="user_logo" id='teenagers' src="../../../assets/images/teenagers.svg" />
             <div class="user_info">
             </div>
           </div>
           <div class="user_kind">
-            <img class="user_logo" src="../../../assets/images/adults.svg" />
+            <img class="user_logo" id='adults' src="../../../assets/images/adults.svg" />
             <div class="user_info">
             </div>
           </div>
