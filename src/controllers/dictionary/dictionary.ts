@@ -322,7 +322,7 @@ export default class DictionaryDevelopments {
                 buttonPage.style.backgroundColor = '#e9ecfd';
             }
         } else {
-            htmlElements.BODY.style.backgroundColor = '#ffffff';
+            // htmlElements.BODY.style.backgroundColor = '#ffffff';
             sprint.style.backgroundColor = '#ffffff';
             audiocall.style.backgroundColor = '#ffffff';
             audiocall.style.pointerEvents = 'auto';
@@ -338,22 +338,22 @@ export default class DictionaryDevelopments {
         const main = <HTMLElement>document.querySelector('main');
         if (close) {
             if (close.className === 'A1') {
-                main.style.setProperty('background', 'url(../../assets/backgrounds/levelA1.png)', 'important');
+                main.style.setProperty('background', 'url(../../assets/backgrounds/levelA1.png), #ffffff', 'important');
                 main.style.backgroundSize = '10%';
             } else if (close.className === 'A2') {
-                main.style.setProperty('background', 'url(../../assets/backgrounds/levelA2.png)', 'important');
+                main.style.setProperty('background', 'url(../../assets/backgrounds/levelA2.png), #ffffff', 'important');
                 main.style.backgroundSize = '15%';
             } else if (close.className === 'B1') {
-                main.style.setProperty('background', 'url(../../assets/backgrounds/levelB1.png)', 'important');
+                main.style.setProperty('background', 'url(../../assets/backgrounds/levelB1.png), #ffffff', 'important');
                 main.style.backgroundSize = '10%';
             } else if (close.className === 'B2') {
-                main.style.setProperty('background', 'url(../../assets/backgrounds/levelB2.png)', 'important');
+                main.style.setProperty('background', 'url(../../assets/backgrounds/levelB2.png), #ffffff', 'important');
                 main.style.backgroundSize = '15%';
             } else if (close.className === 'C1') {
-                main.style.setProperty('background', 'url(../../assets/backgrounds/levelC1.png)', 'important');
+                main.style.setProperty('background', 'url(../../assets/backgrounds/levelC1.png), #ffffff', 'important');
                 main.style.backgroundSize = '10%';
             } else if (close.className === 'C2') {
-                main.style.setProperty('background', 'url(../../assets/backgrounds/levelC2.png)', 'important');
+                main.style.setProperty('background', 'url(../../assets/backgrounds/levelC2.png), #ffffff', 'important');
                 main.style.backgroundSize = '10%';
             }
         }
