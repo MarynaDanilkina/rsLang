@@ -102,7 +102,6 @@ class UserWords {
             console.log(err);
         }
     }
-    // Удаление из сложных или изученных слов
 
     async deleteUserWord(userId: string, wordId: string, token: string) {
         try {

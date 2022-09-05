@@ -107,7 +107,6 @@ export default class StatisticAll {
                 Math.round(
                     (this.audiocallRightAnswers / (this.audiocallRightAnswers + this.audiocallWrongAnswers)) * 100
                 ) || 0;
-            console.log(currentDayResults);
             return currentDayResults;
         }
         return undefined;

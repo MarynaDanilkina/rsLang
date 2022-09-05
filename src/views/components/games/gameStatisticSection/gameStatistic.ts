@@ -37,8 +37,6 @@ export default class GameStatisticview implements GameStatistic {
 
     render() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
-        // const resultsListRight = new ResultsList('right', this.gameWords, this.rightAnswers);
-        // const resultsListWrong = new ResultsList('wrong', this.gameWords, this.wrongAnswers);
 
         GAME_CONTAINER.innerHTML = '';
 

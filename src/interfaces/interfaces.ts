@@ -62,8 +62,6 @@ export interface SettingsData {
     optional: { [key: string]: string };
 }
 
-// export interface FilterParams {}
-
 export interface View {
     html: string;
     render(): void;
