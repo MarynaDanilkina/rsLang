@@ -307,13 +307,14 @@ export default class DictionaryDevelopments {
     }
 
     learnedWordStyle() {
+        const main = <HTMLElement>document.querySelector('main');
         const cards = document.querySelectorAll('.activeLearnedCard');
         const buttonPage = <HTMLElement>document.getElementById('button_page');
         const sprint = <HTMLElement>document.getElementById('game_sprint');
         const audiocall = <HTMLElement>document.getElementById('game_audiocall');
         if (cards.length === 20) {
             // htmlElements.BODY.style.backgroundColor = '#e9ecfd';
-            htmlElements.BODY.style.setProperty('background-color', '#e9ecfd', 'important');
+            main.style.setProperty('background-color', '#e9ecfd', 'important');
             sprint.style.backgroundColor = '#e9ecfd';
             audiocall.style.backgroundColor = '#e9ecfd';
             audiocall.style.pointerEvents = 'none';
