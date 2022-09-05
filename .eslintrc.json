@@ -28,6 +28,8 @@
         "import/no-unresolved": "off", // To avoid conflict between Typescript and EsLint
         "import/extensions": "off", // To avoid conflict between Typescript and EsLint
         "no-restricted-globals": "off",
+        "no-continue": "off",
+        "no-await-in-loop": "off",
         "@typescript-eslint/no-misused-promises": [
             "error",
             {

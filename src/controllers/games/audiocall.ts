@@ -1,11 +1,9 @@
-import { optionalOfUserWord, StatisticsData, UserWordData, WordData } from '../../interfaces/interfaces';
+import { StatisticsData, UserWordData, WordData } from '../../interfaces/interfaces';
 import GameStatisticview from '../../views/components/games/gameStatisticSection/gameStatistic';
 import getRandomIntInclusive from '../../utils/getRandomNumber';
 import shuffle from '../../utils/shuffle';
 import Game from './game';
-import UserWords from '../../api/usersWords';
 import currentUser from '../../models/currentUser';
-import UserStat from '../../api/usersStat';
 import StatisticAll from '../../views/components/statistic/headingSection/statistic';
 
 export default class Audiocall extends Game {

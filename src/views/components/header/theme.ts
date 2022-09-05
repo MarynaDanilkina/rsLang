@@ -1,13 +1,12 @@
 /* eslint-disable no-param-reassign */
 
-import currentUser from '../../../models/currentUser';
 import htmlElements from '../../../models/htmlElements';
 import State from '../../../models/state';
 
 export default class Theme {
     themeListner() {
         const themeIcon = <HTMLElement>document.querySelector('.header__icon');
-        themeIcon.addEventListener('click', this.toggleTheme);
+        themeIcon.addEventListener('click', this.toggleTheme.bind(this));
     }
 
     toggleTheme() {

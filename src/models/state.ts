@@ -1,7 +1,7 @@
-import { WordData } from '../interfaces/interfaces';
+import { StateType, WordData } from '../interfaces/interfaces';
 import currentUser from './currentUser';
 
-let State = {
+const State: StateType = {
     currentUserID: currentUser.userId,
     games: {
         audiocall: {

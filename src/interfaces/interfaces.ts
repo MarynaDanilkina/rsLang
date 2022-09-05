@@ -99,3 +99,24 @@ export interface LevelsView extends View {
 export interface GamesDictionaryView extends View {
     page: 'Игры' | 'Учебник';
 }
+
+export type StateType = {
+    currentUserID: string;
+    games: {
+        audiocall: {
+            learnedwords: number;
+            rightAnswers: number;
+            wrongAnswers: number;
+            rightAnswersSession: number;
+        };
+        sprint: {
+            learnedwords: number;
+            rightAnswers: number;
+            wrongAnswers: number;
+            rightAnswersSession: number;
+        };
+    };
+    selectedLevel: number;
+    wordsForGame: WordData[];
+    theme: string;
+};

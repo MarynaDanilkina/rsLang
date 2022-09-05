@@ -1,5 +1,5 @@
 import Words from '../../api/words';
-import { optionalOfUserWord, StatisticsData, UserWordData, WordData } from '../../interfaces/interfaces';
+import { optionalOfUserWord, UserWordData, WordData } from '../../interfaces/interfaces';
 import UserWords from '../../api/usersWords';
 import currentUser from '../../models/currentUser';
 import UserStat from '../../api/usersStat';
@@ -119,7 +119,7 @@ export default class Game {
             const difficultWords = allUserWord?.filter((word) => word.difficulty === 'hard');
             const inProgresstWords = allUserWord?.filter((word) => word.difficulty === 'inProgress');
 
-            for (let i = 0; i < this.rightAnswers.length; i++) {
+            for (let i = 0; i < this.rightAnswers.length; i += 1) {
                 const wordIndex = this.rightAnswers[i];
                 const word = (<WordData[]>this.words)[wordIndex];
                 const wordInDifficult = <UserWordData>difficultWords?.find((w) => w.wordId === word.id) || undefined;
@@ -151,7 +151,7 @@ export default class Game {
                 };
                 await this.userWordAPI.createUserWord(currentUser.userId, word.id, newUserWord, currentUser.token);
             }
-            for (let i = 0; i < this.wrongAnswers.length; i++) {
+            for (let i = 0; i < this.wrongAnswers.length; i += 1) {
                 const wordIndex = this.wrongAnswers[i];
                 const word = (<WordData[]>this.words)[wordIndex];
 
@@ -200,18 +200,19 @@ export default class Game {
 
     async wordPropsUpdate(word: UserWordData, limit: number, group: string) {
         if (word) {
+            let wordToUpdate: UserWordData = word;
             switch (group) {
                 case 'learned': {
                     if (<optionalOfUserWord>word.optional) {
-                        (<optionalOfUserWord>word.optional).counter += 1;
-                        (<optionalOfUserWord>word.optional).rightCounter += 1;
-                        if ((<optionalOfUserWord>word.optional).counter >= limit) {
-                            word.difficulty = group;
+                        (<optionalOfUserWord>wordToUpdate.optional).counter += 1;
+                        (<optionalOfUserWord>wordToUpdate.optional).rightCounter += 1;
+                        if ((<optionalOfUserWord>wordToUpdate.optional).counter >= limit) {
+                            wordToUpdate.difficulty = group;
                             this.newLearnedCounter += 1;
                         }
                     } else {
-                        word = {
-                            difficulty: word.difficulty,
+                        wordToUpdate = {
+                            difficulty: wordToUpdate.difficulty,
                             optional: {
                                 counter: 1,
                                 wrongCounter: 0,
@@ -223,12 +224,12 @@ export default class Game {
                 }
 
                 case 'inProgress': {
-                    if (<optionalOfUserWord>word.optional) {
-                        (<optionalOfUserWord>word.optional).wrongCounter += 1;
-                        (<optionalOfUserWord>word.optional).counter = 0;
+                    if (<optionalOfUserWord>wordToUpdate.optional) {
+                        (<optionalOfUserWord>wordToUpdate.optional).wrongCounter += 1;
+                        (<optionalOfUserWord>wordToUpdate.optional).counter = 0;
                     } else {
-                        word = {
-                            difficulty: word.difficulty,
+                        wordToUpdate = {
+                            difficulty: wordToUpdate.difficulty,
                             optional: {
                                 counter: 0,
                                 wrongCounter: 1,
@@ -237,18 +238,18 @@ export default class Game {
                         };
                     }
 
-                    if ((<optionalOfUserWord>word.optional).counter >= limit) {
-                        word.difficulty = group;
+                    if ((<optionalOfUserWord>wordToUpdate.optional).counter >= limit) {
+                        wordToUpdate.difficulty = group;
                     }
                     break;
                 }
 
                 case 'hard': {
-                    if (<optionalOfUserWord>word.optional) {
-                        (<optionalOfUserWord>word.optional).wrongCounter += 1;
+                    if (<optionalOfUserWord>wordToUpdate.optional) {
+                        (<optionalOfUserWord>wordToUpdate.optional).wrongCounter += 1;
                     } else {
-                        word = {
-                            difficulty: word.difficulty,
+                        wordToUpdate = {
+                            difficulty: wordToUpdate.difficulty,
                             optional: {
                                 counter: 0,
                                 wrongCounter: 1,
@@ -258,14 +259,19 @@ export default class Game {
                     }
                     break;
                 }
+
+                default: {
+                    break;
+                }
             }
             const body: UserWordData = {
-                difficulty: word.difficulty,
-                optional: word.optional,
+                difficulty: wordToUpdate.difficulty,
+                optional: wordToUpdate.optional,
             };
             await this.userWordAPI.updateUserWord(currentUser.userId, <string>word.wordId, body, currentUser.token);
             return true;
-        } else return false;
+        }
+        return false;
     }
 
     discriptionGamePageListners() {

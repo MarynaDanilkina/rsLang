@@ -1,7 +1,7 @@
 import MainPageControllers from './controllers/main/main';
 import State from './models/state';
 import Router from './router/router';
-import { AuthData } from './interfaces/interfaces';
+import { AuthData, StateType } from './interfaces/interfaces';
 import './style.sass';
 import { saveCurrentUser } from './utils/utils';
 import Theme from './views/components/header/theme';
@@ -16,7 +16,7 @@ if (userMemo) {
 }
 
 if (window.localStorage.getItem(State.currentUserID)) {
-    State.theme = JSON.parse(window.localStorage.getItem(State.currentUserID) as string).theme;
+    State.theme = (JSON.parse(window.localStorage.getItem(State.currentUserID) as string) as StateType).theme;
 }
 
 router.routWindowHandler();
