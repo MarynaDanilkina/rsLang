@@ -269,7 +269,7 @@ export default class DictionaryDevelopments {
                 const userWords = new UserWords();
                 const card = <HTMLElement>document.getElementById(`cardWrapper-${buttonId}`);
 
-                await userWords.deleteUser(currentUser.userId, buttonId, currentUser.token);
+                await userWords.deleteUserWord(currentUser.userId, buttonId, currentUser.token);
                 card.remove();
             }
         });
