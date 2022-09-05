@@ -263,17 +263,25 @@ export default class Audiocall extends Game {
                     audiocallWrongAnswers:
                         <number>currentStatistic.optional.audiocallWrongAnswers + this.wrongAnswers.length,
                     audiocallSession: session,
+                    sprintLearnedWords: <number>currentStatistic.optional.sprintLearnedWords,
+                    sprintRightAnswers: <number>currentStatistic.optional.sprintRightAnswers,
+                    sprintWrongAnswers: <number>currentStatistic.optional.sprintWrongAnswers,
+                    sprintSession: <number>currentStatistic.optional.sprintSession,
                 },
             };
         } else {
             stat = {
-                learnedWords: (<UserWordData[]>this.learnedWords).length,
+                learnedWords: this.newLearnedCounter,
                 optional: {
                     day: currentDay,
-                    audiocallLearnedWords: (<UserWordData[]>this.learnedWords).length,
+                    audiocallLearnedWords: this.newLearnedCounter,
                     audiocallRightAnswers: this.rightAnswers.length,
                     audiocallWrongAnswers: this.wrongAnswers.length,
                     audiocallSession: session,
+                    sprintLearnedWords: 0,
+                    sprintRightAnswers: 0,
+                    sprintWrongAnswers: 0,
+                    sprintSession: 0,
                 },
             };
         }
