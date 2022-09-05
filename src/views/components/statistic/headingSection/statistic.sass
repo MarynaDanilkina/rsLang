@@ -1,0 +1,143 @@
+$background-blue: #00093c
+.statistic_item-wrapper
+  width: 100%
+
+.statistic
+  background-position: center center
+  background-size: cover
+  background-repeat: no-repeat
+  background-image: url(../../../../assets/backgrounds/space_background.png)
+  background-color: $background-blue
+  width: 100%
+  height: 600px
+  margin-bottom: 209px
+  display: flex
+  justify-content: center
+  align-items: center
+
+.statistic_item
+  display: flex
+  column-gap: 320px
+
+.statistic_item__container
+  width: 280px
+  height: 360px
+  background-color: #FFFFFF
+  border-radius: 20px
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.statistic_item__img-bg
+  width: 140px
+  height: 140px
+  background: linear-gradient(70deg, #F7941D,#27AAE1)
+  border-radius: 70px
+  border: 3px
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 20px
+
+.statistic_item__img
+  width: 136px
+  height: 136px
+  border-radius: 70px
+  background-color: #fff
+  display: flex
+  align-items: center
+  justify-content: center
+
+.statistic__name
+  margin-top: 25px
+  color: #000000
+  font-family: Montserrat
+  font-weight: 700
+  font-size: 18px
+
+.statistic__info
+  color: #4F4F4F
+  font-family: Montserrat
+  font-weight: 500
+  font-size: 20px
+  text-align: center
+  width: 270px
+  margin-top: 20px
+  padding: 0px 10px
+
+@media (max-width: 1400px)
+  .statistic_item
+    column-gap: 135px
+
+@media (max-width: 992px)
+  .statistic_item
+    column-gap: 45px
+
+@media (max-width: 768px)
+  .statistic_item-wrapper
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+  .statistic_item__container
+    width: 232px
+    height: 326px
+
+  .statistic_item__img-bg
+    width: 50%
+    height: 33%
+
+  .statistic_item__img
+    width: 93%
+    height: 93%
+
+  .statistic
+    background-size: 250%
+
+  .statistic__info
+    width: 245px
+
+@media (max-width: 576px)
+  .statistic
+    height: 458px
+    margin-bottom: 82px
+
+  .statistic_item
+    column-gap: 20px
+
+  .statistic_item__container
+    width: 180px
+    height: 220px
+
+  .statistic_item__img-bg
+    width: 42%
+    height: 33%
+    margin-top: 10px
+
+  .statistic__name
+    margin-top: 10px
+    font-size: 15px
+
+  .statistic__info
+    margin-top: 0
+    width: 175px
+    font-size: 16px
+
+@media (max-width: 420px)
+  .statistic_item
+    column-gap: 10px
+
+  .statistic_item__container
+    width: 134px
+    height: 189px
+
+  .statistic_item__img-bg
+    height: 28%
+
+  .statistic__info
+    font-size: 12px
+    width: 130px
+
+  .statistic
+    height: 316px
+    margin-bottom: 20px

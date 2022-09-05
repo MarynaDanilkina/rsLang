@@ -1,0 +1,364 @@
+$background-blue: #00093c
+.card-wrapper
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 40px
+  flex-direction: column
+  z-index: 0
+  margin-bottom: 20px
+
+.sound
+  width: 47px
+  height: 41px
+  margin-right: 10px
+  position: relative
+  top: -103px
+  right: 7px
+
+.sound:hover
+  fill: #91a6ba
+  cursor: pointer
+
+.cards
+  margin-top: 20px
+  position: relative
+  width: 1150px
+  height: 281px
+  display: flex
+  border: none
+  outline: none
+  background-color: #f6f6f6
+  border-radius: 6px
+  align-items: center
+  justify-content: space-between
+  border: 3px solid $background-blue
+
+.cards::before
+  content: ''
+  position: absolute
+  top: -2px
+  bottom: -2px
+  left: -2px
+  right: -2px
+  background: linear-gradient(90deg, #f7941d 0%, #27aae1 100%)
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+  opacity: 0.3
+  filter: blur(10px)
+  border-radius: 5%
+  z-index: -1
+
+.cards__img
+  object-fit: contain
+  width: 308px
+  height: 217px
+  margin-left: 35px
+
+.card__info
+  margin-left: 20px
+
+.card-info__name
+  height: 29px
+  font-weight: 500
+  font-size: 22px
+  line-height: 26px
+  align-items: center
+  color: #000000
+
+.card-info__examples
+  width: 680px
+  font-weight: 400
+  font-size: 16px
+  line-height: 24px
+  align-items: center
+  color: #000000
+  margin-bottom: 0
+
+.card-info__buttons
+  display: flex
+  margin-bottom: 10px
+
+.card__button
+  margin-top: 20px
+  margin-right: 20px
+  position: relative
+  width: 230px
+  height: 45px
+  display: flex
+  border-radius: 6px
+  align-items: center
+  justify-content: center
+  font-weight: 500
+  font-size: 19px
+  line-height: 26px
+  color: #000000
+  margin-bottom: 20px
+  border: 1px solid $background-blue
+
+.card__button:hover
+  cursor: pointer
+
+.button__difficult
+  background-color: #ebd8f0
+
+.button__delete
+  background-color: #e6e4e6
+
+.button__difficult:hover
+  background-color: #d8c0de
+
+.button__difficult:disabled
+  background-color: #f7ebfa
+  cursor: default
+
+.button__delete:hover
+  background-color: #c8c8c8
+
+.button__learned
+  background-color: rgb(209 231 244)
+
+.button__learned:hover
+  background-color: rgb(191 216 231)
+
+.button__learned:disabled
+  background-color: #e9f5fc
+  cursor: default
+.studied__card
+  display: none
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  width: 50px
+  position: absolute
+  top: 67px
+  right: 16px
+
+.right__card
+  background-color: #d1ffbe
+  width: 100%
+  text-align: center
+  border: 2px solid #8bed62
+
+.wrong__card
+  border: 2px solid #f79797
+  background-color: #ffc0c0
+  width: 100%
+  text-align: center
+
+.notActive
+  display: none
+
+.activeDifficultCard
+  background-color: #f7ebfa
+
+.activeLearnedCard
+  background-color: #e9f5fc
+
+.button-delete_difficult
+  width: 300px
+  background-color: #f4cd9d
+
+.button-delete_difficult:hover
+  background-color: #f9be7d
+
+@media (max-width: 1600px)
+  .cards
+    width: 950px
+    height: 390px
+  .card-info__examples
+    width: 500px
+  .sound
+    top: -140px
+  .studied__card
+    top: 88px
+    right: 14px
+
+@media (max-width: 1400px)
+  .cards
+    width: 850px
+    height: 330px
+
+  .card-info__examples
+    width: 390px
+
+  .card__button
+    margin-top: 0px
+    height: 50px
+  .cards__img
+    margin-top: -50px
+  .sound
+    width: 47px
+    height: 41px
+    margin-right: 10px
+    position: relative
+    top: 110px
+    right: 676px
+  .card__button
+    width: 215px
+    margin-top: 5px
+  .card-info__examples
+    font-size: 14px
+  .studied__card
+    top: 9px
+    right: 8px
+
+@media (max-width: 1200px)
+  .cards
+    width: 750px
+    height: 370px
+
+  .cards__img
+    width: 287px
+    height: 191px
+    margin-left: 20px
+
+  .card-info__name
+    margin-top: 0px
+
+  .card-info__examples
+    width: 365px
+
+  .card__button
+    width: 185px
+    height: 45px
+    font-size: 17px
+
+  .card-info__name
+    font-size: 21px
+
+@media (max-width: 992px)
+  .cards
+    width: 80%
+    align-items: flex-end
+    height: 400px
+
+  .cards__img
+    width: 230px
+    height: 152px
+    align-self: center
+
+  .card__info
+    width: 380px
+    height: fit-content
+    align-self: center
+
+  .card-info__name
+    font-size: 16px
+
+  .card-info__examples
+    margin: 20px 0px
+    width: 305px
+
+  .card__button
+    margin-top: 0px
+    width: 140px
+    height: 39px
+    font-size: 12px
+    margin-bottom: 0
+
+  .sound
+    width: 47px
+    height: 41px
+    margin-right: 10px
+    position: relative
+    top: -340px
+    right: 570px
+
+  .studied__card
+    top: 8px
+    right: 460px
+
+@media (max-width: 768px)
+
+  .cards
+    align-items: flex-start
+    width: 530px
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    height: 575px
+
+  .card-info__name
+    width: 330px
+    font-size: 17px
+
+    margin: 0 auto
+    margin-bottom: 20px
+    text-align: center
+
+  .card-info__examples
+    margin: 10px 0px
+    width: 450px
+    font-size: 12px
+    margin: 0 auto
+    margin-bottom: 10px
+    text-align: center
+  .cards__img
+    width: 50%
+    height: 50%
+  .card-info__buttons
+    align-items: center
+    justify-content: center
+    margin-top: 20px
+  .sound
+    top: -430px
+    right: -233px
+  .card__info
+    width: 430px
+    margin-left: 0
+  .studied__card
+    top: 11px
+    right: 12px
+
+@media (max-width: 576px)
+  .cards
+    width: 380px
+    height: 560px
+
+  .cards__img
+    margin-top: 30px
+
+  .card-info__examples
+    width: 320px
+
+  .sound
+    top: -447px
+    right: -155px
+  .studied__card
+    top: 10px
+    right: 8px
+
+@media (max-width: 420px)
+  .cards
+    width: 300px
+    height: 580px
+    flex-direction: column
+  .card-info__name
+    width: 300px
+  .cards__img
+    margin-top: 19px
+
+  .card-info__name
+    font-size: 16px
+
+  .card-info__examples
+    width: 266px
+
+  .card-info__buttons
+    top: 0px
+    right: 0px
+
+  .card__button
+    margin-top: 20px
+    width: 120px
+    height: 29px
+    font-size: 10px
+
+  .sound
+    top: -447px
+    right: -125px
+  .card__info
+    width: 300px
+  .studied__card
+    top: 18px
+    right: 7px

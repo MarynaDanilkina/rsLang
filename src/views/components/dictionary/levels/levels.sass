@@ -1,0 +1,112 @@
+$background-body: #FDF8FF
+
+html,
+body
+  height: 100%
+  line-height: 1
+  font-size: 18px
+  color: rgb(6, 6, 6)
+  font-weight: 400
+  font-family: Montserrat
+  margin: 0px
+
+.wrapper
+  flex: 1 1 auto
+  margin: 0 auto
+  background-color: $background-body
+  background-position: center top
+  min-height: 100%
+  overflow: hidden
+  display: flex
+  flex-direction: column
+
+.levels-wrapper
+  width: 100%
+
+.levels__title
+  font-weight: 700
+  display: flex
+  align-items: center
+  color: #000000
+  justify-content: center
+
+.levels__difficulty
+  display: flex
+  justify-content: center
+  flex-direction: column
+  align-items: center
+  width: 70%
+  margin: 0 auto
+
+.levels__container
+  width: 100%
+  height: fit-content
+  display: flex
+  justify-content: center
+  flex-direction: column
+  align-items: center
+  z-index: 0
+
+.button__level
+  position: relative
+  margin-top: 20px
+  width: 100%
+  height: fit-content
+  display: flex
+  border: none !important
+  outline: none
+  background-color: #fff
+  border-radius: 6px
+  align-items: center
+  justify-content: space-between
+
+.button__level::before
+  content: ''
+  position: absolute
+  top: -2px
+  bottom: -2px
+  left: -2px
+  right: -2px
+  background: linear-gradient(90deg, #f7941d 0%, #27aae1 100%)
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+  opacity: 0.3
+  filter: blur(10px)
+  border-radius: 5%
+  z-index: -1
+
+.button__level:hover
+  cursor: pointer
+  background-color: #F3E4F9
+
+.button__level
+  h3
+    margin-top: 0
+    margin-bottom: 0
+    margin-left: 30px
+    font-weight: 500
+    font-size: 100%
+    display: flex
+    align-items: center
+    color: #000000
+
+  p
+    margin-top: 0
+    margin-bottom: 0
+    margin-left: 15px
+    font-weight: 500
+    font-size: 100%
+    display: flex
+    color: #000000
+
+.name__level
+  display: flex
+  align-items: center
+
+.button__add
+  margin-right: 30px
+
+.level-wrapper
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column

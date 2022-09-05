@@ -1,0 +1,121 @@
+.game__container
+  .levels__difficulty
+    .levels__container
+      width: 100%
+  .sound_wrapper
+    height: 38%
+    width: 37%
+    display: flex
+    margin: 0 auto
+    margin-top: 3vh
+    padding: 4%
+    border-radius: 50%
+    box-shadow: 0px 5px 10px 0px #2028556d
+    &.hidden 
+      display: none
+    .games__audio
+      display: flex
+      justify-content: right
+      .sound
+        position: initial
+        width: 100%
+        height: 100%
+        &:hover
+          filter: invert(70%) sepia(55%) saturate(5761%) hue-rotate(207deg) brightness(93%) contrast(86%)
+  .game__progress-range 
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    width: 80%
+    justify-content: space-between
+    margin: 0 auto
+    margin-top: 5%
+    .progress-point 
+      border: solid 1px black
+      border-radius: 50%
+      width: 15px
+      height: 15px
+      &.right
+        background-color: #e1fad1
+      &.wrong
+        background-color: #fcd5d5
+  .answers_wrapper 
+    display: grid
+    width: 100%
+    grid-template-columns: repeat(11, 1fr)
+    grid-auto-rows: 1fr
+    grid-row-gap: 10px
+    margin-top: 10%
+    .answer 
+      position: relative
+      text-align: center
+      background-color: #f3e4f9
+      padding: 8% 15%
+      border-radius: 6px
+      transition: 0.4s
+      height: 100%
+      font-size: 65%
+      border: solid 1px rgba(0, 0, 0, 0.192)
+      &.right 
+        background-color: #e1fad1
+      &.wrong 
+        background-color: #fcd5d5
+      &_1 
+        grid-column-start: 3
+        grid-column-end: 6
+      &_2 
+        grid-column-start: 7
+        grid-column-end: 10
+      &_3 
+        grid-column-start: 1
+        grid-column-end: 4
+        grid-row-start: 2
+        grid-row-end: 3
+      &_4 
+        grid-column-start: 5
+        grid-column-end: 8
+        grid-row-start: 2
+        grid-row-end: 3
+      &_5 
+        grid-column-start: 9
+        grid-column-end: 12
+        grid-row-start: 2
+        grid-row-end: 3
+      &:disabled 
+        color: black
+  .answer-card 
+    justify-content: space-between
+    margin-top: 3vh
+    display: flex
+    flex-direction: row
+    font-size: 65%
+    height: 38%
+    text-align: left
+    &.hidden 
+      display: none
+    & img 
+      display: block
+      padding-right: 3%
+      width: 100%
+    .answer_transcription 
+      font-weight: 700
+    .answer_sound .sound 
+      width: 1.8vw
+      height: 1.8vw
+      position: initial
+  .btn-skip,
+  .btn-next 
+    text-align: center
+    padding: 2% 7%
+    border-radius: 6px
+    transition: 0.4s
+    height: fit-content
+    width: fit-content
+    margin: 0 auto
+    margin-top: 5%
+    font-size: 68%
+    border: none
+    background-color: #f7941d
+    color: white
+    &.hidden 
+      display: none

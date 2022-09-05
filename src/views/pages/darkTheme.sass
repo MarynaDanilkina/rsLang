@@ -1,0 +1,71 @@
+$light: invert(100%) sepia(0%) saturate(0%) hue-rotate(276deg) brightness(109%) contrast(101%)
+$background-blue: #00093c
+$white: rgb(255, 255, 255)
+$light-blue: rgb(225, 240, 253)
+
+#app.dark
+    background: $background-blue
+    .header
+        background: $background-blue
+        .header__logo, img.login__logo, .bar
+            filter: $light
+        .header__icon
+            background-image: url('../../assets/images/sun.svg')
+        .nav__item a
+            color: $white
+        .hidden_nav
+           background: $background-blue
+           .hidden_nav_item 
+               color: $white
+    #main
+        background-color: $background-blue
+        .user_logo
+            filter: $light
+        .title_section
+            filter: brightness(0.7)
+        .greeting_section
+            .functionality_kind
+                background-color: $light-blue
+        .information_section__content
+            h2, .features_figures_item p:last-child
+                filter: $light
+            .feature
+                background-color: $light-blue
+        .team-wrapper
+            .team__header
+               color: $white
+            .team__member
+               background-color: $light-blue  
+        > h3 
+            margin-top: 0
+            padding-top: 30px
+            color: $white
+        .levels__title
+            color: $white
+        .game__container
+            .levels__title
+                color: initial
+        .levels__container .button button, .difficult button
+            background-color: $light-blue  
+        .games
+            background-color: $background-blue 
+        .games_item__container
+            background-color: $light-blue
+        .statistic-heading
+            > h2
+                margin-top: 0
+                padding-top: 35px
+                color: $white 
+            .figure + p
+                color: $white
+        .statistic
+            .statistic_item__container
+                background-color: $light-blue
+        .statistic-unauthorized
+            h3, .statistic-unauthorized-warning
+                color: $white
+        .game-wrapper
+            background-color: $background-blue 
+        .reg-form_header
+            .page_title
+                color: $white
