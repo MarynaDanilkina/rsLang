@@ -35,7 +35,7 @@ export default class Header implements View {
             <a href="#/team/" class="nav__link" data-link>О команде</a>
           </div>
           <div id="navItemLogin" class="nav__item">
-            <a href=${currentUser.name ? '#/' : '#/login/'} class="nav__link" data-link>
+            <a href=${currentUser.name ? '#/' : '?#/login/'} class="nav__link" data-link>
               <div class="login__logo">
                 <img src=${currentUser.name ? this.logoutIcon : this.loginIcon} class="login__logo" />
               </div>
