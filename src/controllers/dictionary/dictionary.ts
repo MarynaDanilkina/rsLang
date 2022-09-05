@@ -425,4 +425,18 @@ export default class DictionaryDevelopments {
             await this.update(pageNew, learnedWords, wordsForGame);
         }
     }
+
+    getNewWords() {
+        const studied = document.querySelectorAll('.studied');
+
+        if (currentUser.userId.length === 0) {
+            studied.forEach((but) => {
+                but.classList.add('notActive');
+            });
+        } else {
+            studied.forEach((but) => {
+                but.classList.remove('notActive');
+            });
+        }
+    }
 }
