@@ -20,7 +20,7 @@ if (window.localStorage.getItem(State.currentUserID)) {
 }
 
 router.routWindowHandler();
-async () => router.routClickHandler();
+
 mainPageControllers.hiddenMenuListner();
 theme.updateTheme();
 
