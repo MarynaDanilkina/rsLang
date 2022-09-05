@@ -28,11 +28,6 @@ export interface AuthData {
     name: string;
 }
 
-// export interface UserWordData {
-//     difficulty: string;
-//     optional: { [key: string]: string };
-// }
-
 export type optionalOfUserWord = {
     [key: string]: string | number;
     counter: number;
@@ -47,15 +42,10 @@ export interface UserWordData {
     optional?: optionalOfUserWord;
 }
 
-// export interface StatisticsData {
-//     learnedWords: number;
-//     optional: { [key: string]: string | number };
-// }
-
 export interface StatisticsData {
     learnedWords: number;
     optional: {
-        day: string; // new Date().toLocaleDateString('en-US')
+        day: string;
         audiocallLearnedWords?: number;
         sprintLearnedWords?: number;
         audiocallWrongAnswers?: number;

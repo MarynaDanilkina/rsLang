@@ -32,8 +32,8 @@ export default class Card {
                     </div>
                   </div>
                   <div class='studied__card'>
-                      <div class='right__card'>0</div>
-                      <div class='wrong__card'>0</div>
+                      <div class='right__card' id="studied__right-${element.id}" title="Количество правильных ответов">0</div>
+                      <div class='wrong__card' id="studied__wrong-${element.id}" title="Количество не правильных ответов">0</div>
                     </div>
                 </div>
 	        </div>`;

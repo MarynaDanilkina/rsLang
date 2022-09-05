@@ -55,7 +55,7 @@ export default class Games implements View {
                 </div>
                 <p class="games_item__name">Спринт</p>
                 <p class="games_item__about">
-                  Тренировка Саванна развивает словарный запас. Чем больше слов ты знаешь, тем больше очков опыта получишь
+                  Тренирует навык быстрого перевода с английского языка на русский. Вам нужно выбрать соответствует ли перевод предложенному слову.
                 </p>
               </a>
               <a href="#/games/audiocall/" data-link class="games_item__container" id="game_audiocall">

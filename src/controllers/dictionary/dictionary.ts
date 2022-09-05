@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable no-param-reassign */
 import { UserWordData, WordData } from '../../interfaces/interfaces';
 import currentUser from '../../models/currentUser';
@@ -61,11 +62,16 @@ export default class DictionaryDevelopments {
                         card.classList.add('activeDifficultCard');
                         const button = <HTMLElement>document.getElementById(`difficult-${el.wordId}`);
                         button.setAttribute('disabled', 'disabled');
-                    }
-                    if (card && el.difficulty === 'learned') {
+                    } else if (card && el.difficulty === 'learned') {
                         card.classList.add('activeLearnedCard');
                         const button = <HTMLElement>document.getElementById(`learned-${el.wordId}`);
                         button.setAttribute('disabled', 'disabled');
+                    }
+                    if (card && el.difficulty === 'inProgress') {
+                        const right = <HTMLElement>document.getElementById(`studied__right-${el.wordId}`);
+                        const wrong = <HTMLElement>document.getElementById(`studied__wrong-${el.wordId}`);
+                        right.innerText = `${el.optional?.rightCounter}`;
+                        wrong.innerText = `${el.optional?.wrongCounter}`;
                     }
                 });
             }
@@ -232,7 +238,10 @@ export default class DictionaryDevelopments {
                 let ok = true;
                 const getUserWords = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
                 getUserWords?.forEach(async (word) => {
-                    if (word.wordId === buttonId && word.difficulty === 'learned') {
+                    if (
+                        word.wordId === buttonId &&
+                        (word.difficulty === 'learned' || word.difficulty === 'inProgress')
+                    ) {
                         ok = false;
                         await userWords.updateUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
                         card.classList.remove('activeLearnedCard');
@@ -268,8 +277,16 @@ export default class DictionaryDevelopments {
                 const buttonId = event.id.split('-')[1];
                 const userWords = new UserWords();
                 const card = <HTMLElement>document.getElementById(`cardWrapper-${buttonId}`);
-
-                await userWords.deleteUserWord(currentUser.userId, buttonId, currentUser.token);
+                const word = await userWords.getUserWord(currentUser.userId, buttonId, currentUser.token);
+                if (word?.optional) {
+                    const currentWord = {
+                        difficulty: 'inProgress',
+                        optional: word.optional,
+                    };
+                    await userWords.updateUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
+                } else {
+                    await userWords.deleteUserWord(currentUser.userId, buttonId, currentUser.token);
+                }
                 card.remove();
             }
         });
@@ -288,7 +305,7 @@ export default class DictionaryDevelopments {
                 const getUserWords = await userWords.getAllUserWords(currentUser.userId, currentUser.token);
                 let ok = true;
                 getUserWords?.forEach(async (word) => {
-                    if (word.wordId === buttonId && word.difficulty === 'hard') {
+                    if (word.wordId === buttonId && (word.difficulty === 'hard' || word.difficulty === 'inProgress')) {
                         ok = false;
                         await userWords.updateUserWord(currentUser.userId, buttonId, currentWord, currentUser.token);
                         card.classList.remove('activeDifficultCard');
@@ -313,7 +330,6 @@ export default class DictionaryDevelopments {
         const sprint = <HTMLElement>document.getElementById('game_sprint');
         const audiocall = <HTMLElement>document.getElementById('game_audiocall');
         if (cards.length === 20) {
-            // htmlElements.BODY.style.backgroundColor = '#e9ecfd';
             main.style.setProperty('background-color', '#e9ecfd', 'important');
             sprint.style.backgroundColor = '#e9ecfd';
             audiocall.style.backgroundColor = '#e9ecfd';
@@ -324,7 +340,6 @@ export default class DictionaryDevelopments {
             }
         } else {
             main.style.setProperty('background-color', '#ffffff', 'important');
-            // htmlElements.BODY.style.backgroundColor = '#ffffff';
             sprint.style.backgroundColor = '#ffffff';
             audiocall.style.backgroundColor = '#ffffff';
             audiocall.style.pointerEvents = 'auto';
@@ -382,7 +397,6 @@ export default class DictionaryDevelopments {
                 await this.update(nextPage, learnedWords, wordsForGame);
                 if (wordsForGame.length > 20) {
                     wordsForGame = wordsForGame.slice(0, 20);
-                    console.log(wordsForGame);
                 }
                 if (wordsForGame.length === 20) {
                     State.wordsForGame = wordsForGame;
