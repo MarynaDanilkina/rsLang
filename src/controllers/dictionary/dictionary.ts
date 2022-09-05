@@ -344,7 +344,6 @@ export default class DictionaryDevelopments {
                 buttonPage.style.backgroundColor = '#e9ecfd';
             }
         } else {
-            main.style.setProperty('background-color', '#ffffff', 'important');
             sprint.style.backgroundColor = '#ffffff';
             audiocall.style.backgroundColor = '#ffffff';
             audiocall.style.pointerEvents = 'auto';
