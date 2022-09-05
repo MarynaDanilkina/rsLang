@@ -22,22 +22,16 @@ export default class GameStatisticview implements GameStatistic {
     resultsListWrong;
 
     html = `<div class="result_header">
-                <div class="result_owl">
-                    <img class="owl_logo result_owl_logo" src="../../../../assets/images/owl.png" />
-                    <img class="resultspeech_logo" src="../../../../assets/images/speech.png" />
-                    <div class="result_text">
-                        <h3>Результаты</h3>
-                        <p>Отличная игра, попробуй еще раз!</p>
-                    </div>
-                </div>
+                <h3>Результаты</h3>
+                <p>Отличная игра, попробуй еще раз!</p>
             </div>
             <div class="game_results" id="gameResults"></div>
             <div class="btns_field">
                 <div class="btn-exit">
-                    <a href="#/games/">Играть</a>
+                    <a href="#/games/" class="btns_field-link">Играть</a>
                 </div>
                 <div class="btn-restart">
-                    <a href="#/games/">Главная</a>
+                    <a href="#/games/" class="btns_field-link">Главная</a>
                 </div>
             </div>`;
 
