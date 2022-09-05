@@ -1,4 +1,5 @@
 import { View } from '../../../../interfaces/interfaces';
+import currentUser from '../../../../models/currentUser';
 import './greetingSection.sass';
 
 export default class GreetingSection implements View {
@@ -49,5 +50,9 @@ export default class GreetingSection implements View {
     render() {
         const MAIN = <HTMLElement>document.getElementById('main');
         MAIN.insertAdjacentHTML('beforeend', this.html);
+        if (currentUser.userId) {
+            const loginBtn = <HTMLLinkElement>document.querySelector('.functionality_kind_login')?.firstElementChild;
+            loginBtn.href = '';
+        }
     }
 }
