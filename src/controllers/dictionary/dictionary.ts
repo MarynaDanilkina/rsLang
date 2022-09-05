@@ -67,11 +67,16 @@ export default class DictionaryDevelopments {
                         const button = <HTMLElement>document.getElementById(`learned-${el.wordId}`);
                         button.setAttribute('disabled', 'disabled');
                     }
-                    if (card && el.difficulty === 'inProgress') {
+                    if (card && el.optional) {
                         const right = <HTMLElement>document.getElementById(`studied__right-${el.wordId}`);
                         const wrong = <HTMLElement>document.getElementById(`studied__wrong-${el.wordId}`);
-                        right.innerText = `${el.optional?.rightCounter}`;
-                        wrong.innerText = `${el.optional?.wrongCounter}`;
+                        const counter = <HTMLElement>right.parentElement;
+
+                        if (el.optional?.rightCounter >= 0 || el.optional?.wrongCounter >= 0) {
+                            counter.style.display = 'flex';
+                            right.innerText = `${el.optional?.rightCounter}`;
+                            wrong.innerText = `${el.optional?.wrongCounter}`;
+                        }
                     }
                 });
             }
