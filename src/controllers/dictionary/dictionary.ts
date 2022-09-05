@@ -427,7 +427,7 @@ export default class DictionaryDevelopments {
     }
 
     getNewWords() {
-        const studied = document.querySelectorAll('.studied');
+        const studied = document.querySelectorAll('.studied__card');
 
         if (currentUser.userId.length === 0) {
             studied.forEach((but) => {
