@@ -88,6 +88,11 @@ export default class Sprint extends Game {
         }
         this.highlightQuestion(this.currentQuestion, false);
         this.wrongAnswers.push(this.currentQuestion);
+
+        if (this.rightAnswersSession < this.currentAnswersSession) {
+            this.rightAnswersSession = this.currentAnswersSession;
+        }
+
         this.currentAnswersSession = 0;
         this.currentQuestion += 1;
         this.changeOwl();
@@ -202,6 +207,7 @@ export default class Sprint extends Game {
     }
 
     async updateStatistic() {
+        await this.learnedWordsUpdate();
         const currentDay = new Date().toLocaleDateString('en-US');
         const currentStatistic = <StatisticsData>await this.userStatistic.getTodayResults();
         let session;
@@ -219,11 +225,14 @@ export default class Sprint extends Game {
         let stat;
         if (currentStatistic) {
             stat = {
-                learnedWords: currentStatistic.learnedWords + (<WordData[]>this.words).length,
+                learnedWords: currentStatistic.learnedWords + this.newLearnedCounter,
                 optional: {
                     day: currentDay,
-                    sprintLearnedWords:
-                        <number>currentStatistic.optional.sprintLearnedWords + (<WordData[]>this.words).length,
+                    audiocallLearnedWords: <number>currentStatistic.optional.audiocallLearnedWords,
+                    audiocallRightAnswers: <number>currentStatistic.optional.audiocallRightAnswers,
+                    audiocallWrongAnswers: <number>currentStatistic.optional.audiocallWrongAnswers,
+                    audiocallSession: currentStatistic.optional.audiocallSession,
+                    sprintLearnedWords: <number>currentStatistic.optional.sprintLearnedWords + this.newLearnedCounter,
                     sprintRightAnswers: <number>currentStatistic.optional.sprintRightAnswers + this.rightAnswers.length,
                     sprintWrongAnswers: <number>currentStatistic.optional.sprintWrongAnswers + this.wrongAnswers.length,
                     sprintSession: session,
@@ -231,10 +240,14 @@ export default class Sprint extends Game {
             };
         } else {
             stat = {
-                learnedWords: (<UserWordData[]>this.learnedWords).length,
+                learnedWords: this.newLearnedCounter,
                 optional: {
                     day: currentDay,
-                    sprintLearnedWords: (<UserWordData[]>this.learnedWords).length,
+                    audiocallLearnedWords: 0,
+                    audiocallRightAnswers: 0,
+                    audiocallWrongAnswers: 0,
+                    audiocallSession: 0,
+                    sprintLearnedWords: this.newLearnedCounter,
                     sprintRightAnswers: this.rightAnswers.length,
                     sprintWrongAnswers: this.wrongAnswers.length,
                     sprintSession: session,

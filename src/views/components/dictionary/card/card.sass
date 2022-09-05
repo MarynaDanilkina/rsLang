@@ -119,6 +119,26 @@
 .button__learned:disabled
   background-color: #e9ecb5d8
   cursor: default
+.studied
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  width: 50px
+  position: absolute
+  top: 209px
+  right: 184px
+
+.right
+  background-color: #bbf39f
+  width: 100%
+  text-align: center
+
+.wrong
+
+  background-color: #f39f9f
+  width: 100%
+  text-align: center
 
 .notActive
   display: none
@@ -139,6 +159,9 @@
     width: 500px
   .sound
     top: -140px
+  .studied
+    top: 289px
+    right: 15px
 
 @media (max-width: 1400px)
   .cards
@@ -165,6 +188,9 @@
     margin-top: 5px
   .card-info__examples
     font-size: 14px
+  .studied
+    top: 191px
+    right: 8px
 
 @media (max-width: 1200px)
   .cards
@@ -226,6 +252,9 @@
     position: relative
     top: -180px
     right: 390px
+  .studied
+    top: 179px
+    right: 425px
 
 @media (max-width: 768px)
 
@@ -265,6 +294,9 @@
   .card__info
     width: 430px
     margin-left: 0
+  .studied
+    top: 179px
+    right: 12px
 
 @media (max-width: 576px)
   .cards
@@ -280,6 +312,9 @@
   .sound
     top: -447px
     right: -155px
+  .studied
+    top: 147px
+    right: 15px
 
 @media (max-width: 420px)
   .cards
@@ -312,3 +347,6 @@
     right: -125px
   .card__info
     width: 300px
+  .studied
+    top: 40px
+    right: 5px

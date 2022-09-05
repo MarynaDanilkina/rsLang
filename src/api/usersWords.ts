@@ -104,7 +104,7 @@ class UserWords {
     }
     // Удаление из сложных или изученных слов
 
-    async deleteUser(userId: string, wordId: string, token: string) {
+    async deleteUserWord(userId: string, wordId: string, token: string) {
         try {
             const response = await fetch(`${this.users}/${userId}/words/${wordId}`, {
                 method: 'DELETE',

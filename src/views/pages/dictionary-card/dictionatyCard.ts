@@ -61,6 +61,7 @@ export default class DictionaryCard {
         this.dictionary.audio();
         this.dictionary.close();
         this.dictionary.onlyAuthorized();
+        this.dictionary.getNewWords();
         this.dictionary.styleCard();
         this.dictionary.game();
         await this.dictionary.pagination();

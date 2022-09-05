@@ -35,7 +35,7 @@ export default class DifficultWord {
         if (getAllWords) {
             getAllWords.forEach(async (el) => {
                 if (el.difficulty === 'hard') {
-                    const getWord = await this.words.getWord(el.wordId);
+                    const getWord = await this.words.getWord(<string>el.wordId);
                     getWords.push(getWord);
                     const card = new CardDifficult(getWord, 'https://rs-lang-kdz.herokuapp.com');
                     card.render();

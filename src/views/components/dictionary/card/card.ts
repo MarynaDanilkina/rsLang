@@ -31,6 +31,10 @@ export default class Card {
                       <audio src="" class="${element.word}"></audio>
                     </div>
                   </div>
+                  <div class='studied'>
+                      <div class='right'>0</div>
+                      <div class='wrong'>0</div>
+                    </div>
                 </div>
 	        </div>`;
     }

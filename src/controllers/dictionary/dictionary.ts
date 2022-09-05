@@ -269,7 +269,7 @@ export default class DictionaryDevelopments {
                 const userWords = new UserWords();
                 const card = <HTMLElement>document.getElementById(`cardWrapper-${buttonId}`);
 
-                await userWords.deleteUser(currentUser.userId, buttonId, currentUser.token);
+                await userWords.deleteUserWord(currentUser.userId, buttonId, currentUser.token);
                 card.remove();
             }
         });
@@ -423,6 +423,20 @@ export default class DictionaryDevelopments {
                 pageNew -= 1;
             }
             await this.update(pageNew, learnedWords, wordsForGame);
+        }
+    }
+
+    getNewWords() {
+        const studied = document.querySelectorAll('.studied');
+
+        if (currentUser.userId.length === 0) {
+            studied.forEach((but) => {
+                but.classList.add('notActive');
+            });
+        } else {
+            studied.forEach((but) => {
+                but.classList.remove('notActive');
+            });
         }
     }
 }

@@ -33,10 +33,18 @@ export interface AuthData {
 //     optional: { [key: string]: string };
 // }
 
+export type optionalOfUserWord = {
+    [key: string]: string | number;
+    counter: number;
+    wrongCounter: number;
+    rightCounter: number;
+};
+
 export interface UserWordData {
     difficulty: string;
-    wordId: string;
-    id: string;
+    wordId?: string;
+    id?: string;
+    optional?: optionalOfUserWord;
 }
 
 // export interface StatisticsData {

@@ -1,5 +1,8 @@
 import Words from '../../api/words';
-import { WordData } from '../../interfaces/interfaces';
+import { optionalOfUserWord, StatisticsData, UserWordData, WordData } from '../../interfaces/interfaces';
+import UserWords from '../../api/usersWords';
+import currentUser from '../../models/currentUser';
+import UserStat from '../../api/usersStat';
 import State from '../../models/state';
 import Levels from '../../views/components/dictionary/levels/levels';
 import levelsMap from '../../views/components/dictionary/levels/levelsMap';
@@ -11,6 +14,10 @@ import { showSpinner } from '../../utils/utils';
 
 export default class Game {
     baseURL = 'https://rs-lang-kdz.herokuapp.com';
+
+    userWordAPI = new UserWords();
+
+    userStatsAPI = new UserStat();
 
     gameLevel: number | undefined;
 
@@ -25,6 +32,8 @@ export default class Game {
     rightAnswersSession = 0;
 
     currentAnswersSession = 0;
+
+    newLearnedCounter = 0;
 
     renderLevels() {
         const GAME_CONTAINER = <HTMLElement>document.getElementById('game__container');
@@ -100,6 +109,163 @@ export default class Game {
             game.render();
             this.rightAnswersSession = State.games.sprint.rightAnswersSession;
         }
+    }
+
+    async learnedWordsUpdate() {
+        const allUserWord = await this.userWordAPI.getAllUserWords(currentUser.userId, currentUser.token);
+
+        if (allUserWord) {
+            const learnedWords = allUserWord?.filter((word) => word.difficulty === 'learned');
+            const difficultWords = allUserWord?.filter((word) => word.difficulty === 'hard');
+            const inProgresstWords = allUserWord?.filter((word) => word.difficulty === 'inProgress');
+
+            for (let i = 0; i < this.rightAnswers.length; i++) {
+                const wordIndex = this.rightAnswers[i];
+                const word = (<WordData[]>this.words)[wordIndex];
+                const wordInDifficult = <UserWordData>difficultWords?.find((w) => w.wordId === word.id) || undefined;
+
+                const isDifficult = await this.wordPropsUpdate(wordInDifficult, 5, 'learned');
+                if (isDifficult) {
+                    continue;
+                }
+
+                const wordInProgress = <UserWordData>inProgresstWords?.find((w) => w.wordId === word.id) || undefined;
+                const isInProgress = await this.wordPropsUpdate(wordInProgress, 3, 'learned');
+                if (isInProgress) {
+                    continue;
+                }
+
+                const wordInLearned = <UserWordData>learnedWords?.find((w) => w.wordId === word.id) || undefined;
+                const isLearned = await this.wordPropsUpdate(wordInLearned, 3, 'learned');
+                if (isLearned) {
+                    continue;
+                }
+
+                const newUserWord: UserWordData = {
+                    difficulty: 'inProgress',
+                    optional: {
+                        counter: 1,
+                        wrongCounter: 0,
+                        rightCounter: 1,
+                    },
+                };
+                await this.userWordAPI.createUserWord(currentUser.userId, word.id, newUserWord, currentUser.token);
+            }
+            for (let i = 0; i < this.wrongAnswers.length; i++) {
+                const wordIndex = this.wrongAnswers[i];
+                const word = (<WordData[]>this.words)[wordIndex];
+
+                const wordInLearned = <UserWordData>learnedWords?.find((w) => w.wordId === word.id) || undefined;
+
+                const isLearned = await this.wordPropsUpdate(wordInLearned, 0, 'inProgress');
+                if (isLearned) {
+                    continue;
+                }
+
+                const wordInDifficult = <UserWordData>difficultWords?.find((w) => w.wordId === word.id) || undefined;
+                const isDifficult = await this.wordPropsUpdate(wordInDifficult, 0, 'hard');
+                if (isDifficult) {
+                    continue;
+                }
+
+                const wordInProgress = <UserWordData>inProgresstWords?.find((w) => w.wordId === word.id) || undefined;
+
+                if (wordInProgress) {
+                    (<optionalOfUserWord>wordInProgress.optional).wrongCounter += 1;
+                    const body: UserWordData = {
+                        difficulty: wordInProgress.difficulty,
+                        optional: wordInProgress.optional,
+                    };
+                    await this.userWordAPI.updateUserWord(
+                        currentUser.userId,
+                        <string>wordInProgress.wordId,
+                        body,
+                        currentUser.token
+                    );
+                    continue;
+                }
+
+                const newUserWord: UserWordData = {
+                    difficulty: 'inProgress',
+                    optional: {
+                        counter: 0,
+                        wrongCounter: 1,
+                        rightCounter: 0,
+                    },
+                };
+                await this.userWordAPI.createUserWord(currentUser.userId, word.id, newUserWord, currentUser.token);
+            }
+        }
+    }
+
+    async wordPropsUpdate(word: UserWordData, limit: number, group: string) {
+        if (word) {
+            switch (group) {
+                case 'learned': {
+                    if (<optionalOfUserWord>word.optional) {
+                        (<optionalOfUserWord>word.optional).counter += 1;
+                        (<optionalOfUserWord>word.optional).rightCounter += 1;
+                        if ((<optionalOfUserWord>word.optional).counter >= limit) {
+                            word.difficulty = group;
+                            this.newLearnedCounter += 1;
+                        }
+                    } else {
+                        word = {
+                            difficulty: word.difficulty,
+                            optional: {
+                                counter: 1,
+                                wrongCounter: 0,
+                                rightCounter: 1,
+                            },
+                        };
+                    }
+                    break;
+                }
+
+                case 'inProgress': {
+                    if (<optionalOfUserWord>word.optional) {
+                        (<optionalOfUserWord>word.optional).wrongCounter += 1;
+                        (<optionalOfUserWord>word.optional).counter = 0;
+                    } else {
+                        word = {
+                            difficulty: word.difficulty,
+                            optional: {
+                                counter: 0,
+                                wrongCounter: 1,
+                                rightCounter: 0,
+                            },
+                        };
+                    }
+
+                    if ((<optionalOfUserWord>word.optional).counter >= limit) {
+                        word.difficulty = group;
+                    }
+                    break;
+                }
+
+                case 'hard': {
+                    if (<optionalOfUserWord>word.optional) {
+                        (<optionalOfUserWord>word.optional).wrongCounter += 1;
+                    } else {
+                        word = {
+                            difficulty: word.difficulty,
+                            optional: {
+                                counter: 0,
+                                wrongCounter: 1,
+                                rightCounter: 0,
+                            },
+                        };
+                    }
+                    break;
+                }
+            }
+            const body: UserWordData = {
+                difficulty: word.difficulty,
+                optional: word.optional,
+            };
+            await this.userWordAPI.updateUserWord(currentUser.userId, <string>word.wordId, body, currentUser.token);
+            return true;
+        } else return false;
     }
 
     discriptionGamePageListners() {
