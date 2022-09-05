@@ -81,16 +81,16 @@ export default class Sprint extends Game {
         if (answer === (<WordPair>this.allPairs)[this.currentQuestion][0].correct) {
             this.highlightQuestion(this.currentQuestion, true);
             this.rightAnswers.push(this.currentQuestion);
-            this.changeOwl();
             this.currentAnswersSession += 1;
             this.currentQuestion += 1;
+            this.changeOwl();
             return true;
         }
         this.highlightQuestion(this.currentQuestion, false);
         this.wrongAnswers.push(this.currentQuestion);
-        this.changeOwl();
         this.currentAnswersSession = 0;
         this.currentQuestion += 1;
+        this.changeOwl();
         return false;
     }
 
