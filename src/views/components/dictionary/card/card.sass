@@ -123,7 +123,7 @@ $background-blue: #00093c
   background-color: #e9f5fc
   cursor: default
 .studied__card
-  display: flex
+  display: none
   justify-content: center
   align-items: center
   flex-direction: column
@@ -227,19 +227,19 @@ $background-blue: #00093c
 
 @media (max-width: 992px)
   .cards
-    width: 600px
+    width: 80%
     align-items: flex-end
     height: 400px
 
   .cards__img
     width: 230px
     height: 152px
-    margin-top: 20px
-    margin-bottom: 20px
+    align-self: center
 
   .card__info
-    margin-top: 20px
     width: 380px
+    height: fit-content
+    align-self: center
 
   .card-info__name
     font-size: 16px
@@ -253,17 +253,19 @@ $background-blue: #00093c
     width: 140px
     height: 39px
     font-size: 12px
+    margin-bottom: 0
 
   .sound
     width: 47px
     height: 41px
     margin-right: 10px
     position: relative
-    top: -180px
-    right: 390px
+    top: -340px
+    right: 570px
+
   .studied__card
     top: 8px
-    right: 7px
+    right: 460px
 
 @media (max-width: 768px)
 
