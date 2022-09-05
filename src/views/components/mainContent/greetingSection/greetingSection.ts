@@ -39,7 +39,7 @@ export default class GreetingSection implements View {
             <a href="#/games/">Игры</a>
           </div>
           <div class="functionality_kind functionality_kind_login">
-            <a href="#/login/">Войти</a>
+            <a href="?#/login/">Войти</a>
           </div>
         </div>
       </div>
