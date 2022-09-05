@@ -323,6 +323,7 @@ export default class DictionaryDevelopments {
                 buttonPage.style.backgroundColor = '#e9ecfd';
             }
         } else {
+            main.style.setProperty('background-color', '#ffffff', 'important');
             // htmlElements.BODY.style.backgroundColor = '#ffffff';
             sprint.style.backgroundColor = '#ffffff';
             audiocall.style.backgroundColor = '#ffffff';
